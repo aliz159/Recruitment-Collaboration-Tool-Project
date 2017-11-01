@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="card card-container" onsubmit="CheckUser()" *ngIf="nav.loginVisible">
+        <img id="profile-img" class="profile-img-card" src="../../assets/images/p-trans.gif" />
+        <p id="profile-name" class="profile-name-card"></p>
+        <form class="form-signin">
+            <span id="reauth-email" class="reauth-email"></span>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <div id="remember" class="checkbox">
+                <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+            </div>
+            <button role="button" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+        </form>
+        <a href="#" class="forgot-password" role="button">
+                Forgot the password?
+            </a>
+         <p class="errorMassage">{{Error}}</p> 
+    </div>
+</div>
+<router-outlet></router-outlet>
