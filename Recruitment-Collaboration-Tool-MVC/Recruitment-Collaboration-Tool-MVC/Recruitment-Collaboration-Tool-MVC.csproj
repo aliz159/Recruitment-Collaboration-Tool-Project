@@ -211,6 +211,9 @@
     <Compile Include="Controllers\api\JobController.cs" />
     <Compile Include="Controllers\api\JobToApplicantController.cs" />
     <Compile Include="Controllers\api\SessionController.cs" />
+    <Compile Include="Controllers\api\SkillsetsController.cs" />
+    <Compile Include="Controllers\api\SkillsForTheJobController.cs" />
+    <Compile Include="Controllers\api\SkillsOfAnApplicantController.cs" />
     <Compile Include="Controllers\api\UploadFileController.cs" />
     <Compile Include="Controllers\api\UserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
