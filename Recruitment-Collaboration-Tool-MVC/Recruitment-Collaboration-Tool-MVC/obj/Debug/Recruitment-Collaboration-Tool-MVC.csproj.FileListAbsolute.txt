@@ -109,3 +109,6 @@ C:\Recruitment-Collaboration-Tool-Project\Recruitment-Collaboration-Tool-MVC\Rec
 C:\Recruitment-Collaboration-Tool-Project\Recruitment-Collaboration-Tool-MVC\Recruitment-Collaboration-Tool-MVC\obj\Debug\Recruitment_Collaboration_Tool_MVC.Migrations.deleteField.resources
 C:\Recruitment-Collaboration-Tool-Project\Recruitment-Collaboration-Tool-MVC\Recruitment-Collaboration-Tool-MVC\obj\Debug\Recruitment_Collaboration_Tool_MVC.Migrations.addDateField.resources
 C:\Recruitment-Collaboration-Tool-Project\Recruitment-Collaboration-Tool-MVC\Recruitment-Collaboration-Tool-MVC\obj\Debug\Recruitment_Collaboration_Tool_MVC.Migrations.addUserIdFieldToTable.resources
+C:\Recruitment-Collaboration-Tool-Project\Recruitment-Collaboration-Tool-MVC\Recruitment-Collaboration-Tool-MVC\obj\Debug\Recruitment_Collaboration_Tool_MVC.Migrations.deletingSkillsetFields.resources
+C:\Recruitment-Collaboration-Tool-Project\Recruitment-Collaboration-Tool-MVC\Recruitment-Collaboration-Tool-MVC\obj\Debug\Recruitment_Collaboration_Tool_MVC.Migrations.addingNewFieldsToJobsAndApplicants.resources
+C:\Recruitment-Collaboration-Tool-Project\Recruitment-Collaboration-Tool-MVC\Recruitment-Collaboration-Tool-MVC\obj\Debug\Recruitment_Collaboration_Tool_MVC.Migrations.addingSkillsTables.resources

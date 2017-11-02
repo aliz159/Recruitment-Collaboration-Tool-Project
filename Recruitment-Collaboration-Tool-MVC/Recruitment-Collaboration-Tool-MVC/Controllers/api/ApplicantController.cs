@@ -37,7 +37,7 @@ namespace Recruitment_Collaboration_Tool_MVC.Controllers.api
         bool validationIsOk(Applicant applicant)
         {
             return !string.IsNullOrEmpty(applicant.Name) && !string.IsNullOrEmpty(applicant.Title) &&
-                !string.IsNullOrEmpty(applicant.Skillset) && !string.IsNullOrEmpty(applicant.Cv);
+                 !string.IsNullOrEmpty(applicant.Cv);
         }
 
         // POST /api/Applicant
@@ -73,7 +73,6 @@ namespace Recruitment_Collaboration_Tool_MVC.Controllers.api
 
             applicant.Name = a.Name;
             applicant.Title = a.Title;
-            applicant.Skillset = a.Skillset;
             applicant.Cv = a.Cv;
             applicant.IsLocked = a.IsLocked;
             applicant.UserIdLockedBy = a.UserIdLockedBy;

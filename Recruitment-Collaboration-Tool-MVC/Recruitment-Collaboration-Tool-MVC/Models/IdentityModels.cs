@@ -26,6 +26,10 @@ namespace Recruitment_Collaboration_Tool_MVC.Models
         public DbSet<InterviewSummary> SummaryOfInterviews { get; set; }
         public DbSet<JobToApplicant> JobToApplicant { get; set; }
         public DbSet<Session> Sessions { get; set; }
+        public DbSet<Skillsets> Skillset { get; set; }
+        public DbSet<SkillsForTheJob> SkillsForTheJob { get; set; }
+        public DbSet<SkillsOfAnApplicant> SkillsOfAnApplicant { get; set; }
+
 
 
 

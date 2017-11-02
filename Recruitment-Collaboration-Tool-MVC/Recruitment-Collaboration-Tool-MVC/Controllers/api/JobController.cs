@@ -63,7 +63,7 @@ namespace Recruitment_Collaboration_Tool_MVC.Controllers.api
         bool validationIsOk(Job job)
         {
             var ValidationIsOk = !string.IsNullOrEmpty(job.Name) && !string.IsNullOrEmpty(job.Description)
-                && !string.IsNullOrEmpty(job.Skillset) && !string.IsNullOrEmpty(job.Requirements);
+                && !string.IsNullOrEmpty(job.Requirements);
             return ValidationIsOk;
         }
 
@@ -98,7 +98,6 @@ namespace Recruitment_Collaboration_Tool_MVC.Controllers.api
             job.UserId = j.UserId;
             job.Name = j.Name;
             job.Description = j.Description;
-            job.Skillset = j.Skillset;
             job.Requirements = j.Requirements;
             job.IsActive = j.IsActive;
 

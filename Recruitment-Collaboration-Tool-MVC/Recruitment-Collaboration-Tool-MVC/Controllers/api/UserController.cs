@@ -114,26 +114,28 @@ namespace Recruitment_Collaboration_Tool_MVC.Controllers.api
 
                 if (user != null)
                 {
-                    Encryption encryption = new Encryption();
+                if (user.Password == password) {
+                    //Encryption encryption = new Encryption();
 
-                    if (encryption.ValidatePassword(password, user.Password))
-                    {
-                        SessionIDManager manager = new SessionIDManager();
-                        string newSessionId = manager.CreateSessionID(HttpContext.Current);
+                    //if (encryption.ValidatePassword(password, user.Password))
+                    //{
+                    SessionIDManager manager = new SessionIDManager();
+                    string newSessionId = manager.CreateSessionID(HttpContext.Current);
 
-                        string CurrentTime = DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second;
-                        string CurrentDate = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
+                    string CurrentTime = DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second;
+                    string CurrentDate = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
 
-                        sessionNew.UserId = user.Id;
-                        sessionNew.SessionStr = newSessionId;
-                        sessionNew.SessionDate = CurrentDate;
-                        sessionNew.SessionTime = CurrentTime;
+                    sessionNew.UserId = user.Id;
+                    sessionNew.SessionStr = newSessionId;
+                    sessionNew.SessionDate = CurrentDate;
+                    sessionNew.SessionTime = CurrentTime;
 
-                        m_db.Sessions.Add(sessionNew);
-                        m_db.SaveChanges();
+                    m_db.Sessions.Add(sessionNew);
+                    m_db.SaveChanges();
 
                     return Request.CreateResponse(HttpStatusCode.OK, sessionNew);
-                    }
+                    //}
+                }
                 }
             return Request.CreateResponse(HttpStatusCode.Forbidden, "user name or password is invalid");
         }
