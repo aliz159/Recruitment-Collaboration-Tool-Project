@@ -37,18 +37,21 @@ namespace Recruitment_Collaboration_Tool_MVC.Controllers.api
         bool validationIsOk(Applicant applicant)
         {
             return !string.IsNullOrEmpty(applicant.Name) && !string.IsNullOrEmpty(applicant.Title) &&
-                !string.IsNullOrEmpty(applicant.Skillset) && !string.IsNullOrEmpty(applicant.Cv);
-        }
+                 !string.IsNullOrEmpty(applicant.Cv) && !string.IsNullOrEmpty(applicant.Position) &&
+                 !string.IsNullOrEmpty(applicant.InterviewDate) && !string.IsNullOrEmpty(applicant.StatusAfterInterview);
+    }
 
         // POST /api/Applicant
         [HttpPost]
         public IHttpActionResult CreateApplicant(Applicant applicant)
         {
-            if (!validationIsOk(applicant))
+            if (!validationIsOk(applicant) || applicant.YearOfExperience < 0)
             {
                 return BadRequest();
             }
             applicant.IsActive = true;
+            applicant.InterviewDate = null;
+            applicant.StatusAfterInterview = null;
             m_db.Applicants.Add(applicant);
             m_db.SaveChanges();
 
@@ -59,7 +62,7 @@ namespace Recruitment_Collaboration_Tool_MVC.Controllers.api
         [HttpPut]
         public IHttpActionResult UpdateApplicant(Applicant a)
         {
-            if (!validationIsOk(a))
+            if (!validationIsOk(a) || a.YearOfExperience < 0)
             {
                 return BadRequest();
             }
@@ -73,12 +76,16 @@ namespace Recruitment_Collaboration_Tool_MVC.Controllers.api
 
             applicant.Name = a.Name;
             applicant.Title = a.Title;
-            applicant.Skillset = a.Skillset;
+            applicant.Position = a.Position;
+            applicant.Phone = a.Phone;
+            applicant.YearOfExperience = a.YearOfExperience;
             applicant.Cv = a.Cv;
             applicant.IsLocked = a.IsLocked;
             applicant.UserIdLockedBy = a.UserIdLockedBy;
             applicant.IsPublished = a.IsPublished;
             applicant.IsActive = a.IsActive;
+            applicant.InterviewDate = a.InterviewDate;
+            applicant.StatusAfterInterview = a.StatusAfterInterview;
 
             m_db.SaveChanges();
             return StatusCode(HttpStatusCode.NoContent);

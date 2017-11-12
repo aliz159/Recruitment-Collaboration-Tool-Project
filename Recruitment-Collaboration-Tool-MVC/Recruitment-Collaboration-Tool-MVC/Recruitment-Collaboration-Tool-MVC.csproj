@@ -211,6 +211,9 @@
     <Compile Include="Controllers\api\JobController.cs" />
     <Compile Include="Controllers\api\JobToApplicantController.cs" />
     <Compile Include="Controllers\api\SessionController.cs" />
+    <Compile Include="Controllers\api\SkillsetsController.cs" />
+    <Compile Include="Controllers\api\SkillsForTheJobController.cs" />
+    <Compile Include="Controllers\api\SkillsOfAnApplicantController.cs" />
     <Compile Include="Controllers\api\UploadFileController.cs" />
     <Compile Include="Controllers\api\UserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -238,6 +241,18 @@
     <Compile Include="Migrations\201711010639570_addUserIdFieldToTable.Designer.cs">
       <DependentUpon>201711010639570_addUserIdFieldToTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711022220347_deletingSkillsetFields.cs" />
+    <Compile Include="Migrations\201711022220347_deletingSkillsetFields.Designer.cs">
+      <DependentUpon>201711022220347_deletingSkillsetFields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711022222258_addingNewFieldsToJobsAndApplicants.cs" />
+    <Compile Include="Migrations\201711022222258_addingNewFieldsToJobsAndApplicants.Designer.cs">
+      <DependentUpon>201711022222258_addingNewFieldsToJobsAndApplicants.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711022232126_addingSkillsTables.cs" />
+    <Compile Include="Migrations\201711022232126_addingSkillsTables.Designer.cs">
+      <DependentUpon>201711022232126_addingSkillsTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Applicant.cs" />
@@ -247,6 +262,9 @@
     <Compile Include="Models\JobToApplicant.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Session.cs" />
+    <Compile Include="Models\Skillsets.cs" />
+    <Compile Include="Models\SkillsForTheJob.cs" />
+    <Compile Include="Models\SkillsOfAnApplicant.cs.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -342,6 +360,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711010639570_addUserIdFieldToTable.resx">
       <DependentUpon>201711010639570_addUserIdFieldToTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711022220347_deletingSkillsetFields.resx">
+      <DependentUpon>201711022220347_deletingSkillsetFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711022222258_addingNewFieldsToJobsAndApplicants.resx">
+      <DependentUpon>201711022222258_addingNewFieldsToJobsAndApplicants.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711022232126_addingSkillsTables.resx">
+      <DependentUpon>201711022232126_addingSkillsTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

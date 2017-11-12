@@ -63,7 +63,8 @@ namespace Recruitment_Collaboration_Tool_MVC.Controllers.api
         bool validationIsOk(Job job)
         {
             var ValidationIsOk = !string.IsNullOrEmpty(job.Name) && !string.IsNullOrEmpty(job.Description)
-                && !string.IsNullOrEmpty(job.Skillset) && !string.IsNullOrEmpty(job.Requirements);
+                && !string.IsNullOrEmpty(job.Requirements) && !string.IsNullOrEmpty(job.strUniqueID)
+                && !string.IsNullOrEmpty(job.Position);
             return ValidationIsOk;
         }
 
@@ -71,10 +72,11 @@ namespace Recruitment_Collaboration_Tool_MVC.Controllers.api
         [HttpPost]
         public IHttpActionResult CreateJob(Job job, Session strSession)
         {
-            if (job.UserId == 0 || job.IsActive == true || !validationIsOk(job))
+            if (job.UserId == 0 || job.YearOfExperience < 0 || !validationIsOk(job))
             {
                 return BadRequest();
             }
+            job.IsActive = true;
             m_db.Jobs.Add(job);
             m_db.SaveChanges();
             return CreatedAtRoute("DefaultApi", new { id = job.Id }, job);
@@ -84,7 +86,7 @@ namespace Recruitment_Collaboration_Tool_MVC.Controllers.api
         [HttpPut]
         public IHttpActionResult UpdateJob(Job j)
         {
-            if (j.UserId == 0 || j.IsActive == true || !validationIsOk(j))
+            if (j.UserId == 0 || !validationIsOk(j) || j.YearOfExperience < 0)
             {
                 return BadRequest();
             }
@@ -95,11 +97,14 @@ namespace Recruitment_Collaboration_Tool_MVC.Controllers.api
                 return NotFound();
             }
 
-            job.UserId = j.UserId;
             job.Name = j.Name;
+            job.Position = j.Position;
+            job.strUniqueID = j.strUniqueID;
+            job.UserId = j.UserId;
             job.Description = j.Description;
-            job.Skillset = j.Skillset;
             job.Requirements = j.Requirements;
+            job.YearOfExperience = j.YearOfExperience;
+
             job.IsActive = j.IsActive;
 
             m_db.SaveChanges();
