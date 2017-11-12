@@ -1,18 +1,49 @@
-<div>
-  <span class="glyphicon glyphicon-plus"></span>
-  <div>UX Designer</div>
-  <div>Reccruiters: 
+<div class="divContainAll">
+ 
+  <span class="plusIcon glyphicon glyphicon-floppy-saved"></span>
+
+  <div class="container">
+    <p> UX Designer
+    <br><br>
+    Reccruiters: 
       <button> 
       <span class="glyphicon glyphicon-plus"></span> Add
       </button> 
+    <p>
   </div>
-  <div>Description <br>
-       
+
+  <div class="container">
+    <p>Description
+    <br>  
+    <textarea></textarea> 
+    </p>
   </div>
-  <div>Skillset <br>
-      <button> 
+
+  <div class="container">
+   <p>Skillset 
+      <button (click)="addSkill()"> 
       <span class="glyphicon glyphicon-plus"></span> Add
       </button> 
-  
+    <br><br>
+
+    <input type="checkbox" name="vehicle" value="Bike">JavaScript 
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <input type="checkbox" name="vehicle" value="Car">CSS
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <input type="checkbox" name="vehicle" value="Bike">C#<br>
+    <input type="checkbox" name="vehicle" value="Car">C++
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <input type="checkbox" name="vehicle" value="Car">HTML 
+    &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;
+    <input type="checkbox" name="vehicle" value="Car">Java 
+    
+   </p>
+  </div>
+
+ <div class="container">
+   <p>Requirement 
+   <br>
+   <textarea></textarea>
+   </p>
   </div>
 </div>
