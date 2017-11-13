@@ -14,6 +14,7 @@ import { JobToApplicantService } from "./services/JobToApplicantService/job-to-a
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  IsLogged = false;
   applicants: any;
   recruiterApplicants: any;
   allJobs: any;

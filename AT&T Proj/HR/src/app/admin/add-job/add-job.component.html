@@ -1,3 +1,62 @@
-<p>
-  add-job works!
-</p>
+<div class="divContainAll">
+ 
+  <span class="plusIcon glyphicon glyphicon-floppy-saved"></span>
+
+  <div class="container">
+    <p> UX Designer
+    <br><br>
+    Title  
+    <input class="inputText" class="form-control" type="text" >
+ 
+    Reccruiters: 
+      <button> 
+      <span class="glyphicon glyphicon-plus"></span> Add
+      </button> 
+    <p>
+  </div>
+
+  <div class="container">
+    <p>
+    Position
+    <input class="inputText" class="form-control" type="text" disabled value="Developer">
+    
+
+     
+    Years of experience
+    <input class="inputText" class="form-control" type="number">
+    
+
+    Description
+    <br>  
+    <textarea></textarea> 
+    </p>
+  </div>
+
+  <div class="container">
+   <p>Skillset 
+      <button (click)="addSkill()"> 
+      <span class="glyphicon glyphicon-plus"></span> Add
+      </button> 
+    <br><br>
+
+    <input class="inputCheckBox" type="checkbox" name="vehicle" value="Bike">JavaScript 
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <input class="inputCheckBox" type="checkbox" name="vehicle" value="Car">CSS
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <input class="inputCheckBox" type="checkbox" name="vehicle" value="Bike">C#<br>
+    <input class="inputCheckBox" type="checkbox" name="vehicle" value="Car">C++
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <input class="inputCheckBox" type="checkbox" name="vehicle" value="Car">HTML 
+    &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;
+    <input class="inputCheckBox" type="checkbox" name="vehicle" value="Car">Java 
+    
+   </p>
+  </div>
+
+ <div class="container">
+   <p>Requirement 
+   <br>
+   <textarea></textarea>
+   </p>
+  </div>
+</div>

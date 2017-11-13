@@ -12,4 +12,7 @@ export class AddJobComponent implements OnInit {
   ngOnInit() {
   }
 
+  addSkill(){
+    
+  }
 }

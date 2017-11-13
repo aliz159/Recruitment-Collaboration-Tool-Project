@@ -1,0 +1,43 @@
+.divContainAll{
+     margin-top: 10%;
+    width: 80%;
+    padding-top: 3%;
+    margin-left: 15%;
+    font-size: 22px; 
+}
+div{
+   border: 1px solid darkgray;
+    width: 94%;
+    margin-left: 3%;
+    margin-bottom: 3%;
+    padding-top: 2%;
+    padding-bottom: 2%
+}
+button{
+    border: 1px solid deepskyblue;
+    margin-left: 6%;
+    font-size: 18px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 5px;
+}
+p{
+    margin-left: 9%;
+}
+.plusIcon{
+    float: right;
+    margin-top: -3.2%;
+    margin-right: 3%;
+    /* color: white; */
+}
+textarea{
+    margin-top: 2%;
+        height: 78px;
+            width: 91%;
+}
+.inputCheckBox{
+    margin-left:3%
+}
+.form-control{
+    width: 91%;
+}
