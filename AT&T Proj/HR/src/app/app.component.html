@@ -1,4 +1,4 @@
-<div class="container" *ngIf="IsLogged">
+ <div class="container" *ngIf="IsLogged">
     <div class="card card-container" onsubmit="CheckUser()" *ngIf="nav.loginVisible">
         <img id="profile-img" class="profile-img-card" src="../../assets/images/p-trans.gif" />
         <p id="profile-name" class="profile-name-card"></p>
@@ -19,4 +19,5 @@
          <p class="errorMassage">{{Error}}</p> 
     </div>
 </div>
+
 <router-outlet></router-outlet>

@@ -30,7 +30,7 @@ import { CookiesService } from "./services/CookiesService/cookies.service";
 const appRoutes: Routes = [
   // { path: '', pathMatch: 'full', redirectTo: 'Home' },
   { path: 'Lock', component: LockComponent },
-  { path: '', component: AppComponent },
+  { path: 'b', component: AppComponent },
   { path: 'Job', component: JobComponent },
   { path: 'Applicant', component: ApplicantComponent },
   { path: 'AllJobs', component: AllJobsComponent },
