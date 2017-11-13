@@ -10,7 +10,7 @@ export class ApplicantService {
   headers: any;
 
   constructor( @Inject(Http) private http: Http) {
-    this.url = "http://localhost:61641/api/Applicant";
+    this.url = "http://localhost:55187/api/Applicant";
     this.headers = new Headers({ 'Accept': 'application/json' })
   }
 
