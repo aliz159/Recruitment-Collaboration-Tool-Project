@@ -35,6 +35,9 @@ textarea{
         height: 78px;
             width: 91%;
 }
-    input{
-        margin-left:3%
-    }
+.inputCheckBox{
+    margin-left:3%
+}
+.form-control{
+    width: 91%;
+}
