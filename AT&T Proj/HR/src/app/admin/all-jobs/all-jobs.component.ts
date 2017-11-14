@@ -27,4 +27,9 @@ export class AllJobsComponent{
       });
   }
 
+
+
+  MarkJobAsInActive(){
+    window.alert("hi");
+  }
 }

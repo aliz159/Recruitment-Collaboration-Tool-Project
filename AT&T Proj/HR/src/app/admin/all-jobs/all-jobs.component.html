@@ -1,18 +1,45 @@
-<p>
-  all-jobs works!
-</p><br><br><br>
+<h1>
+    all-jobs !
+</h1><br><br><br>
 
 
 
-<div *ngFor="let job of allJobs">
+
+<div class="row" *ngFor="let job of allJobs">
+      <div class="col-sm-12">
+      <div class="card">
+      <div class="card-block">
+        <h3 class="card-title">{{job.strUniqueID}}. {{job.Name}}
+        <span class="glyphicon glyphicon-remove-circle"
+        (click)="MarkJobAsInActive()"></span>
+        </h3>
+        <p>
+         <strong> Manager Name:</strong> {{job.UserId}} 
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <strong>  Position : </strong> {{job.Position}}
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <strong> Year Of Experience: </strong> {{job.YearOfExperience}}
+          <br/>
+
+        </p>
+        <p class="card-text">
+          <strong>Description:</strong> {{job.Description}}<br/>
+          <strong>Requirements:</strong> {{job.Requirements}}</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+      </div>
+      </div>
+  </div>
+
+<!-- <div *ngFor="let job of allJobs"> 
 Id :  {{job.Id}}<br>
-User Id :  {{job.UserId}}<br>
+ User Id :  {{job.UserId}}<br>
 Name :  {{job.Name}}<br>
-Description :  {{job.Description}}<br>
+Description :  {{job.Description}}<br> -->
 Requirements :  {{job.Requirements}}<br>
 IsActive :  {{job.IsActive}}<br>
-YearOfExperience :  {{job.YearOfExperience}}<br>
-strUniqueID :  {{job.strUniqueID}}<br>
-Position :  {{job.Position}}<br>
-<br><br><br><br>
-</div>
+<!-- YearOfExperience :  {{job.YearOfExperience}}<br> 
+ strUniqueID :  {{job.strUniqueID}}<br> 
+ Position :  {{job.Position}}<br> 
+ <br><br><br><br>
+</div> -->

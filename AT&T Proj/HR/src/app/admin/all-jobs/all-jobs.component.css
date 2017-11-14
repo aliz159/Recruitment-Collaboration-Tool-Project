@@ -1,0 +1,14 @@
+.col-sm-4{
+    width: 100%;
+}
+.row{
+    margin-right: -15px;
+    margin-left: 20%;
+}
+h1{
+    text-align: center;
+}
+.glyphicon-remove-circle{
+    float: right;
+    margin-right: 2%;
+}
