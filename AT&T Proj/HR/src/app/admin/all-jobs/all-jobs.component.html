@@ -2,9 +2,9 @@
     all-jobs !
 </h1><br><br><br>
 
-
-<button></button>
-
+<a routerLink="/AddJob">
+<button type="button" class="btn btn-primary">Add New Job</button>
+</a>
 <div class="row" *ngFor="let job of allJobs">
   <div *ngIf="job.IsActive">
       <div class="col-sm-12">
