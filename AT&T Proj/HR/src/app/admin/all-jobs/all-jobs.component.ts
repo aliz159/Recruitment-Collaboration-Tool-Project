@@ -9,10 +9,31 @@ import { Http } from '@angular/http';
 })
 export class AllJobsComponent {
   allJobs: any;
-
+  openFormToEditJob:boolean=false;
+  Skills:any[];
   constructor(public jobService: JobService) {
     this.getAllJobs();
   }
+
+
+ ngOnInit() {
+    this.jobService.GetSkillSet().subscribe(rsp => {
+      if (rsp.status == 200) {
+        this.Skills = rsp.json();
+
+        console.log("Array Skiils From DB");
+        console.log(this.Skills);
+      }
+      else { console.log("server responded error : " + rsp); }
+    },
+      (err) => {
+        console.log("error : " + err);
+      });
+    }
+
+
+
+
 
   getAllJobs() {
     this.jobService.Get().subscribe(rsp => {
@@ -49,4 +70,27 @@ export class AllJobsComponent {
         console.log("error : " + err);
       });
    }
+
+// Id
+// IsActive
+// Position
+// "Developer"
+// UserId
+// YearOfExperience
+
+
+ Title:string;
+ UniqueID:string;
+ MinimumYearsOfExperience:number;
+  Description:string;
+  Requirements:string;
+     EditJob(job:any){
+       console.log(job)
+       this.openFormToEditJob = true;
+      this.Title = job.Name;
+       this.UniqueID = job.strUniqueID;
+       this.MinimumYearsOfExperience = job.YearOfExperience;
+       this.Description = job.Description;
+      this.Requirements =  job.Requirements;
+     }
 }

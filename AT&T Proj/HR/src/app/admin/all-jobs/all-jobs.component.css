@@ -21,3 +21,15 @@ h1{
     margin-right: 5%;
     font-size: 125%;
 }
+.glyphicon-pencil{
+float: right;
+margin-right: 2.5%;
+}
+.form-control{
+    width: 50%;
+    margin-left: 26%;
+}
+label{
+    font-size: 25px;
+    margin-left: 26%;
+}

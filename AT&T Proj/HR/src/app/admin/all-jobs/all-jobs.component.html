@@ -6,14 +6,17 @@
 <button type="button" class="btn btn-primary">Add New Job</button>
 </a>
 <div class="row" *ngFor="let job of allJobs">
-  <div *ngIf="job.IsActive">
+  <div *ngIf="job.IsActive && openFormToEditJob==false">
       <div class="col-sm-12">
       <div class="card">
       <div class="card-block">
         <h3 class="card-title">{{job.strUniqueID}}. {{job.Name}}
-        <span class="glyphicon glyphicon-remove-circle"
-        (click)="MarkJobAsInActive(job)"></span>
-        </h3>
+       
+          <span class="glyphicon glyphicon-remove-circle"
+          (click)="MarkJobAsInActive(job)"></span>
+          <span class="glyphicon glyphicon-pencil"
+          (click)="EditJob(job)"></span>
+      </h3>
         <p>
          <strong> Manager Name:</strong> {{job.UserId}} 
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -32,7 +35,50 @@
       </div>
   </div>
 </div>
+<!--  -->
+<div *ngIf="openFormToEditJob">
+   <form>
+    <div class="form-group">
+      <label for="usr">Title:</label>
+      <input type="text" class="form-control" id="usr"
+       [(ngModel)]="Title" name="title">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Unique ID:</label>
+      <input type="password" class="form-control" id="pwd"
+       [(ngModel)]="UniqueID" name="uniqueID">
+    </div>
+      <div class="form-group">
+      <label for="usr">Minimum years of experience:</label>
+      <input type="number" class="form-control" id="usr"
+      [(ngModel)]="MinimumYearsOfExperience" name="yearsExperience">
+    </div>
 
+     <div class="form-group">
+      <label for="usr">Skillset </label>
+      <button (click)="addSkill()"> 
+      <span class="glyphicon glyphicon-plus"></span> Add
+      </button> 
+    <br><br>
 
+    <p *ngFor="let skill of Skills">
+    <input type="checkbox"  name="skill" 
+    [(ngModel)]="skill.selected"
+    (change)="SkillsetArray(skill)"
+    [value]="skill.value"> {{skill.skill}}
+    </p>
+    </div>
+
+     <div class="form-group">
+      <label for="usr">Description:</label>
+       <textarea [(ngModel)]="Description" name="description"></textarea> 
+    </div>
+      <div class="form-group">
+      <label for="usr">Requirement:</label>
+       <textarea [(ngModel)]="Requirement" name="requirement"></textarea> 
+    </div>
+   
+  </form>
+</div>
 
   
