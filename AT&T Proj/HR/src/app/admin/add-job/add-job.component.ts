@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Job } from "./Job.interface";
 import { JobService } from "../../services/JobService/job.service";
 
 @Component({
@@ -11,11 +10,11 @@ export class AddJobComponent implements OnInit {
 
   constructor(private jobService: JobService) { }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.jobService.GetSkillSet().subscribe(rsp => {
-     if (rsp.status == 200) {
+      if (rsp.status == 200) {
         this.Skills = rsp.json();
-        
+
         console.log("Array Skiils From DB");
         console.log(this.Skills);
       }
@@ -42,7 +41,7 @@ export class AddJobComponent implements OnInit {
   }
 
   Title: string;
-  uniqueID:string;
+  uniqueID: string;
   position = "Developer";
   YearsExperience: number;
   Description: string;
@@ -53,37 +52,40 @@ export class AddJobComponent implements OnInit {
   ArrayManagers: any[] = [];
   AddManager: boolean = false;
   isActive: boolean = false;
-  jobObj:any;
-  skillObj:any[];
+  jobObj: any;
+  skillObj: any[];
 
   SaveDatilesJob() {
     let allSkills = this.ArraySkills.toString();
-    
-    this.jobService.addJob(this.ArrayManagers[0],this.uniqueID, this.Title,this.position,
-      this.Description,this.YearsExperience, this.Requirements, this.isActive).subscribe(rsp => {
-        //if (rsp.status == 200) { 
-          this.jobObj = rsp;
-          console.log("job Obj=>>>>>>>>>>>>");
-          console.log(this.jobObj);
-      
-            debugger;
-             this.jobService.addSkillsetForJob(this.jobObj.Id,allSkills).subscribe(rsp => {
-             //if (rsp.status == 200) { 
-               debugger; 
-                this.skillObj = rsp;
-                //window.alert("skill Added successfully=>>>>>>>>>>")
-                console.log("skill Added successfully=>>>>>>>>>>");
-                console.log(this.skillObj);
-                window.alert("the job has Successfully added")
-             // }
-            //  else {debugger;  console.log("server responded error : " + rsp); }
-            },
-             (err) => { debugger; console.log("error : " + err); });
 
+    this.jobService.addJob(this.ArrayManagers[0], this.uniqueID, this.Title, this.position,
+      this.Description, this.YearsExperience, this.Requirements, this.isActive)
+      .subscribe(rsp => {
+ 
+        this.jobObj = rsp;
+        console.log("job Obj=>>>>>>>>>>>>");
+        console.log(this.jobObj);
+        this.jobService.addSkillsetForJob(this.jobObj.Id, allSkills)
+        .subscribe(rsp => {
 
-        //}
-       // else {debugger; console.log("server responded error : " + rsp);//}
-    },
+          debugger;
+          this.skillObj = rsp;
+          console.log("skill Added successfully=>>>>>>>>>>");
+          console.log(this.skillObj);
+          window.alert("the job has Successfully added")
+          this.Title = "";
+          this.uniqueID = "";
+          this.YearsExperience = 0;
+          this.Description = "";
+           this.Skills=[];
+           this.Managers=[];
+          this.Requirements = "";
+          this.ArraySkills = [];
+          this.ArrayManagers = [];
+        },
+          (err) => { debugger; console.log("error : " + err); });
+      },
+        
       (err) => { debugger; console.log("error : " + err); });
 
     console.log(
@@ -97,7 +99,6 @@ export class AddJobComponent implements OnInit {
 
   RecruitingMangersList() {
     this.AddManager = true;
-    //   this.RecruitingManagers ;
   }
 
 
@@ -129,14 +130,4 @@ export class AddJobComponent implements OnInit {
 
   addSkill() {
   }
-  //  RecruitingManagers = [
-  //   { value: 'Avi', display: 'Avi' },
-  //   { value: 'Liat', display: 'Liat' },
-  //   { value: 'Yaffa', display: 'Yaffa' },// ];
-  //  Skills1 = [
-  //   { value: 'HTML', display: 'HTML' },
-  //   { value: 'CSS', display: 'CSS' },
-  //   { value: 'Python', display: 'Python' },
-  //   { value: 'C', display: 'C' },
-  //   { value: 'JavaScript', display: 'JavaScript' },// ];
 }

@@ -7,13 +7,14 @@ import { Http } from '@angular/http';
   templateUrl: './all-jobs.component.html',
   styleUrls: ['./all-jobs.component.css']
 })
-export class AllJobsComponent{
+export class AllJobsComponent {
   allJobs: any;
 
   constructor(public jobService: JobService) {
     this.getAllJobs();
   }
-    getAllJobs() {
+
+  getAllJobs() {
     this.jobService.Get().subscribe(rsp => {
       if (rsp.status == 200) {
         this.allJobs = rsp.json();
@@ -28,8 +29,24 @@ export class AllJobsComponent{
   }
 
 
-
-  MarkJobAsInActive(){
+  jobEditObj:any;     
+  MarkJobAsInActive(job: any) {
     window.alert("hi");
-  }
+    console.log("job obj =>>>>>>>>");
+    console.log(job);
+
+    const req = this.jobService.editJob(job.Id,job.UserId,job.strUniqueID,
+      job.Name,job.Position,job.Description,job.Requirements,
+     job.IsActive ,job.YearOfExperience)
+    .subscribe(rsp => {
+      if (rsp.status == 200) {
+        debugger;
+        this.jobEditObj = rsp.json();
+      }
+      else { console.log("server responded error : " + rsp); }
+    },
+      (err) => {
+        console.log("error : " + err);
+      });
+   }
 }
