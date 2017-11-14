@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApplicantService } from "../../services/ApplicantService/applicant.service";
+import { JobToApplicantService } from "../../services/JobToApplicantService/job-to-applicant.service";
 
 @Component({
   selector: 'app-all-applicants',
@@ -6,10 +8,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./all-applicants.component.css']
 })
 export class AllApplicantsComponent implements OnInit {
+  applicants: any;
 
-  constructor() { }
+  constructor(public applicantService: ApplicantService) {
+    this.getAllApplicants();
+  }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  getAllApplicants() {
+    this.applicantService.Get().subscribe(rsp => {
+      if (rsp.status == 200) {
+        this.applicants = rsp.json();
+        console.log("all the applicants:");
+        console.log(this.applicants);
+      }
+      else { console.log("server responded error : " + rsp); }
+    },
+      (err) => {
+        console.log("error : " + err);
+      });
   }
 
 }

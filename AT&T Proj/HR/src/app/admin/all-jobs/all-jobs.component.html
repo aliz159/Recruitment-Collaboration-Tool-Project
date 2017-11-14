@@ -1,3 +1,18 @@
 <p>
   all-jobs works!
-</p>
+</p><br><br><br>
+
+
+
+<div *ngFor="let job of allJobs">
+Id :  {{job.Id}}<br>
+User Id :  {{job.UserId}}<br>
+Name :  {{job.Name}}<br>
+Description :  {{job.Description}}<br>
+Requirements :  {{job.Requirements}}<br>
+IsActive :  {{job.IsActive}}<br>
+YearOfExperience :  {{job.YearOfExperience}}<br>
+strUniqueID :  {{job.strUniqueID}}<br>
+Position :  {{job.Position}}<br>
+<br><br><br><br>
+</div>

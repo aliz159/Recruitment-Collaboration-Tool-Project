@@ -19,11 +19,11 @@ export class JobService {
     return this.http.get(this.url);
   }
 
-  addJob(userId: number, name: string, description: string, skillset: string, 
+  addJob(userId: number, name: string, description: string,
     requirements: string, isActive: boolean) {
 
     let url = this.url;
-    let body = { UserId: userId, Name: name, Description: description, Skillset: skillset,
+    let body = { UserId: userId, Name: name, Description: description, 
     Requirements: requirements, IsActive: isActive};
 
     return this.http.post(url, body, this.headers).map((res) => {
@@ -31,11 +31,11 @@ export class JobService {
     });
   }
 
-  editJob(Id: number, userId: number, name: string, description: string, skillset: string, 
+  editJob(Id: number, userId: number, name: string, description: string, 
     requirements: string, isActive: boolean) {
 
     let url = this.url + "/" + Id;
-    let body = { id: Id, UserId: userId, Name: name, Description: description, Skillset: skillset,
+    let body = { id: Id, UserId: userId, Name: name, Description: description, 
     Requirements: requirements, IsActive: isActive};
 
     return this.http.put(url, body, this.headers).map((res) => {

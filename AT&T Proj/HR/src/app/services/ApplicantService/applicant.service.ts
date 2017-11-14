@@ -19,13 +19,13 @@ export class ApplicantService {
     return this.http.get(this.url);
   }
 
-  addApplicant(name: string, title: string, skillset: string,
+  addApplicant(name: string, title: string, 
     cv: string, message: string, isLocked: boolean, userIdLockedBy: number,
     isPublished: boolean, isActive: boolean) {
 
     let url = this.url;
     let body = {
-      Name: name, Title: title, Skillset: skillset, Cv: cv,
+      Name: name, Title: title, Cv: cv,
       IsLocked: isLocked, UserIdLockedBy: userIdLockedBy,
       IsPublished: isPublished, IsActive: isActive
     };
@@ -35,13 +35,13 @@ export class ApplicantService {
     });
   }
 
-  editApplicant(Id: number, name: string, title: string, skillset: string,
+  editApplicant(Id: number, name: string, title: string,
     cv: string, message: string, isLocked: boolean, userIdLockedBy: number,
     isPublished: boolean, isActive: boolean) {
 
     let url = this.url + "/" + Id;
     let body = {
-      id: Id, Name: name, Title: title, Skillset: skillset, Cv: cv,
+      id: Id, Name: name, Title: title,Cv: cv,
       IsLocked: isLocked, UserIdLockedBy: userIdLockedBy,
       IsPublished: isPublished, IsActive: isActive
     };
