@@ -4,11 +4,15 @@
   (click)="SaveDatilesJob()"></span>
 
   <div class="container">
-    <p> UX Designer
-    <br><br>
+    <p> UX Designer <br><br>
+     Unique ID
+    <input class="inputText" class="form-control" type="text"
+    [(ngModel)]="uniqueID" name="unique">
+
+ 
     Title  
     <input class="inputText" class="form-control" type="text"
-    [(ngModel)]="Title">
+    [(ngModel)]="Title" name="title">
  
     Reccruiters: 
       <button> 
@@ -16,28 +20,25 @@
       (click)="RecruitingMangersList()"></span> Add
       </button> 
 
-
-    <!-- <ul *ngIf="AddManager">
-      <li *ngFor="let manager of RecruitingManagers"
-      (click)="select(manager.display)">
-      {{manager.display}}</li>
-    </ul> -->
-
-<p *ngFor="let manager of RecruitingManagers">
+<!-- <div *ngIf="AddManager">  -->
+   <p *ngFor="let manager of Managers">
     <input type="checkbox"  name="skill" 
     [(ngModel)]="manager.selected"
     (change)="ManagersArray(manager)"
-    [value]="manager.value">
-    {{manager.display}}
-</p>
+    [value]="manager.value"> {{manager.Name}}
+   </p>
+<!-- </div>   -->
+
+
+
+
     <p>
   </div>
 
   <div class="container">
     <p>
     Position
-    <input class="inputText" class="form-control" type="text" disabled value="Developer"
-    >
+    <input class="inputText" class="form-control" type="text" disabled value="Developer">
     
     Years of experience
     <input class="inputText" class="form-control" type="number"
@@ -56,45 +57,19 @@
       </button> 
     <br><br>
 
-  <p *ngFor="let skill of Skills1">
+  <p *ngFor="let skill of Skills">
     <input type="checkbox"  name="skill" 
     [(ngModel)]="skill.selected"
     (change)="SkillsetArray(skill)"
-    [value]="skill.value">
-    {{skill.display}}
-   
+    [value]="skill.value"> {{skill.skill}}
   </p>
-
-
-    <!-- <input class="inputCheckBox" type="checkbox" name="vehicle" value="Bike"
-    [(ngModel)]="JavaScript">JavaScript
-
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    <input class="inputCheckBox" type="checkbox" name="vehicle" value="Car"
-    [(ngModel)]="CSS">CSS
-
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    <input class="inputCheckBox" type="checkbox" name="vehicle" value="Bike"
-    [(ngModel)]="C">C#<br>
-
-    <input class="inputCheckBox" type="checkbox" name="vehicle" value="Car"
-    [(ngModel)]="Python">Python
-
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    <input class="inputCheckBox" type="checkbox" name="vehicle" value="Car"
-    [(ngModel)]="HTML" value="HTML">HTML 
-
-    &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;
-    <input class="inputCheckBox" type="checkbox" name="vehicle" value="Car"
-    [(ngModel)]="Java">Java 
-     
-   </p>-->
   </div>
 
   <div class="container">
    <p>Requirement 
    <br>
-   <textarea></textarea>
+   <textarea
+   [(ngModel)]="Requirements" name="requirements"></textarea>
    </p>
   </div>
 
