@@ -50,8 +50,9 @@ export class UserService {
   }
 
   UserConfirmation(email: string, password: string) {
-    let url = this.url + "?Email=" + email + "&Password=" + password;
-    return this.http.get(url, this.headers).map((res) => {
+    let url = "http://localhost:55187/api/UserValidation";
+    let body = { Email: email, Password: password };
+    return this.http.post(url, body, this.headers).map((res) => {
       return res.json()
     });
   }

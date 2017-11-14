@@ -84,36 +84,28 @@ export class AppComponent implements OnInit {
 
   Login() {
     this.userService.UserConfirmation(this.Email, this.Password).subscribe((rsp: any) => {
-      this.userSession = rsp;
+      this.userObj = rsp.json();
 
-      if (this.userSession != "user name or password is invalid") {
-        this.userService.GetOneUser(this.userSession.UserId).subscribe(rsp => {
-          this.userObj = rsp.json();
+      if (this.userObj != "user name or password is invalid") {
 
-          if (rsp.status == 200) {
-            this.createCookies();
+        // this.createCookies();
 
-            if (this.userObj.UserType == "Admin") {
-              this.routeToAdminFramework();
-            }
-            else if (this.userObj.UserType == "Recruiter") {
-              this.allJobToApplicant = this.allJobToApplicant.filter((jToA: any) => jToA.UserId == this.userObj.Id);        
-                    this.allJobToApplicant.forEach((jToA: any) => {
-                        this.applicants.forEach((applicant: any) => {
-                            if (jToA.ApplicantId == applicant.Id) {
-                                this.recruiterApplicants.push(applicant);
-                                console.log("all this recruiter applicants are:")
-                                console.log(this.recruiterApplicants)
-                            }
-                        });
-                    });
-              this.routeToRecruiterFramework();
-            }
-
-          }
-          else { console.log("error"); }
-
-        });
+        if (this.userObj.UserType == "Admin") {
+          this.routeToAdminFramework();
+        }
+        else if (this.userObj.UserType == "Recruiter") {
+          // this.allJobToApplicant = this.allJobToApplicant.filter((jToA: any) => jToA.UserId == this.userObj.Id);        
+          //       this.allJobToApplicant.forEach((jToA: any) => {
+          //           this.applicants.forEach((applicant: any) => {
+          //               if (jToA.ApplicantId == applicant.Id) {
+          //                   this.recruiterApplicants.push(applicant);
+          //                   console.log("all this recruiter applicants are:")
+          //                   console.log(this.recruiterApplicants)
+          //               }
+          //           });
+          //       });
+          this.routeToRecruiterFramework();
+        }
 
       }
     },
@@ -124,16 +116,16 @@ export class AppComponent implements OnInit {
   }
 
 
-  createCookies() {
-    let keySessionStr: any = "sessionStr";
-    let keyUserId: any = "userID";
-    let keyPrimaryId: any = "sessionPrimaryID";
-    let keyUserType: any = "Type";
-    this.cookieService.setCoockie(keySessionStr, this.userSession.SessionId);
-    this.cookieService.setCoockie(keyUserId, this.userSession.CustomerId);
-    this.cookieService.setCoockie(keyPrimaryId, this.userSession.Id);
-    this.cookieService.setCoockie(keyUserType, this.userObj.UserType);
-  }
+  // createCookies() {
+  //   let keySessionStr: any = "sessionStr";
+  //   let keyUserId: any = "userID";
+  //   let keyPrimaryId: any = "sessionPrimaryID";
+  //   let keyUserType: any = "Type";
+  //   this.cookieService.setCoockie(keySessionStr, this.userSession.SessionId);
+  //   this.cookieService.setCoockie(keyUserId, this.userSession.CustomerId);
+  //   this.cookieService.setCoockie(keyPrimaryId, this.userSession.Id);
+  //   this.cookieService.setCoockie(keyUserType, this.userObj.UserType);
+  // }
 
 
   routeToRecruiterFramework() {

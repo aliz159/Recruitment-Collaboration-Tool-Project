@@ -215,6 +215,7 @@
     <Compile Include="Controllers\api\SkillsOfAnApplicantController.cs" />
     <Compile Include="Controllers\api\UploadFileController.cs" />
     <Compile Include="Controllers\api\UserController.cs" />
+    <Compile Include="Controllers\api\UserValidationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
