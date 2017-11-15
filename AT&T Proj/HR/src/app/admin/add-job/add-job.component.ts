@@ -60,16 +60,12 @@ export class AddJobComponent implements OnInit {
 
     this.jobService.addJob(this.ArrayManagers[0], this.uniqueID, this.Title, this.position,
       this.Description, this.YearsExperience, this.Requirements, this.isActive)
-      .subscribe(rsp => {
- 
-        this.jobObj = rsp;
+      .subscribe(rsp => { this.jobObj = rsp;
         console.log("job Obj=>>>>>>>>>>>>");
         console.log(this.jobObj);
+       // debugger;
         this.jobService.addSkillsetForJob(this.jobObj.Id, allSkills)
-        .subscribe(rsp => {
-
-          debugger;
-          this.skillObj = rsp;
+        .subscribe(rsp => { debugger; this.skillObj = rsp;
           console.log("skill Added successfully=>>>>>>>>>>");
           console.log(this.skillObj);
           window.alert("the job has Successfully added")

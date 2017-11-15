@@ -13,12 +13,16 @@ export class AllApplicantsComponent implements OnInit {
   allApplicant: any;
 
   constructor(public applicantService: ApplicantService,
-  private router:Router) {
-   // this.getAllApplicants();
+    private router: Router) {
+    // this.getAllApplicants();
   }
 
   ngOnInit() {
- this.applicantService.Get().subscribe(rsp => {
+    this.getAllApplicants();
+  }
+
+  getAllApplicants() {
+    this.applicantService.Get().subscribe(rsp => {
       if (rsp.status == 200) {
         this.allApplicant = rsp.json();
         console.log("all the applicants:");
@@ -31,28 +35,14 @@ export class AllApplicantsComponent implements OnInit {
       });
   }
 
-  getAllApplicants() {
-   
+
+
+
+  SeeApplicant(applicant: any) {
+    console.log("=>>>>>>"); console.log(applicant);
+    this.router.navigate(['/Applicant', applicant.Id]);
   }
-
-
-
-
-SeeApplicant(applicant:any){
-  console.log("=>>>>>>");console.log(applicant);
-  this.router.navigate(['/Applicant',applicant.Id]);
-}
-lockApplicant(){
-  window.alert("lock Applicant");
-}
-  // allAplicant=[
-  //       {Id:2,Name:"Yaffa Belete",Title:"Web Developer"},
-  //       {Id:1,Name:"Aliza Zeru",Title:"Web Developer"},
-  //       {Id:4,Name:"Josef Mahary",Title:"Web Developer"},
-  //       {Id:3,Name:"Ronit Motza",Title:"Web Developer"}
-  // ];
-
-
-
-  
+  lockApplicant() {
+    window.alert("lock Applicant");
+  }
 }

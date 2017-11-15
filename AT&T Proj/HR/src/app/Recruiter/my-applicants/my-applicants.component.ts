@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JobToApplicantService } from "../../services/JobToApplicantService/job-to-applicant.service";
 import { Http } from '@angular/http';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-my-applicants',
@@ -12,12 +13,14 @@ export class MyApplicantsComponent implements OnInit {
   allJobToApplicant: any;
   recruiterApplicants: any;
 
-  constructor(public jobToApplicantService: JobToApplicantService) {
-    this.getAllJobToApplicant();
+  constructor(public jobToApplicantService: JobToApplicantService,
+              private router: Router) {
+    
   }
 
   ngOnInit() {
-  }
+  this.getAllJobToApplicant();
+}
 
   getAllJobToApplicant() {
     this.jobToApplicantService.Get().subscribe(rsp => {
@@ -32,6 +35,21 @@ export class MyApplicantsComponent implements OnInit {
         console.log("error : " + err);
       });
   }
+
+
+
+
+
+
+
+  SeeApplicant(applicant: any) {
+    console.log("=>>>>>>"); console.log(applicant);
+    this.router.navigate(['/Applicant', applicant.Id]);
+  }
+  lockApplicant() {
+    window.alert("lock Applicant");
+  }
+
 
 
             // this.allJobToApplicant = this.allJobToApplicant.filter((jToA: any) => jToA.UserId == this.userObj.Id);        

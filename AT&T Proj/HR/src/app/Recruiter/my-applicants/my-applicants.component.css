@@ -1,0 +1,21 @@
+button{
+    margin-top: 3%;
+    border: 1px solid gray;
+    margin-left: 6%;
+    font-size: 18px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 5px;
+        width: 6%;
+    height: 36px;
+    margin-top: 10%;
+    margin-left: 15%;
+}
+ div{
+        display: inline-block;
+    border: 1px solid gray;
+    margin-left: 12%;
+    margin-top: 3%;
+    padding: 1%;
+    
+}  

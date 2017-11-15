@@ -44,7 +44,7 @@ export class JobService {
   addSkillsetForJob(Id:number,skillset:string){
      let url = this.urlJobSkills;
      let body = { JobId: Id,SkillsetsId: skillset};
-
+    debugger;
     return this.http.post(url, body, this.headers).map((res) => {
       return res.json();
     });

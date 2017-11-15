@@ -1,5 +1,25 @@
-<p>
-  my-applicants works!
-</p>
+<h1>
+    all-applicant for recruiter !
+</h1><br><br><br>
+  
+<button href="#" data-toggle="tooltip" title="Add Aplicant!"> 
+<span class="glyphicon glyphicon-plus"></span>Add
+</button> 
+<br>
 
 
+<div class="card" *ngFor="let applicant of allJobToApplicant"
+ style="width: 25rem;" (click)="SeeApplicant(applicant)">
+    <h4 class="card-title">{{applicant.Name}}
+    <span class="glyphicon glyphicon-lock" (click)="lockApplicant()"
+    href="#" data-toggle="tooltip" title="Lock Applicant!"></span>
+    </h4>
+    <p class="card-text">{{applicant.Title}}
+     <span class="glyphicon glyphicon-trash"
+     href="#" data-toggle="tooltip" title="Delete Applicant!"></span> 
+      <span class="glyphicon glyphicon-pencil"
+      href="#" data-toggle="tooltip" title="Edit Applicant!"></span>
+    </p>
+    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+</div>
+ 

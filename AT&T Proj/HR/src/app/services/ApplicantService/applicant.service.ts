@@ -7,12 +7,31 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ApplicantService {
   private url: string;
+  private urlSkillApplicant: string;
   headers: any;
 
   constructor( @Inject(Http) private http: Http) {
     this.url = "http://localhost:55187/api/Applicant";
+    this.urlSkillApplicant = "http://localhost:55187/api/SkillsOfAnApplicant";
     this.headers = new Headers({ 'Accept': 'application/json' })
   }
+
+
+
+
+  GetApplicantSkills(id: number) {
+    let url = this.urlSkillApplicant + "/" + id;
+     return this.http.get(url);
+  }
+
+
+
+
+
+
+
+
+
 
 
   Get() {
@@ -22,7 +41,6 @@ export class ApplicantService {
     let url = this.url + "/" + id;
      return this.http.get(url);
   }
-
   addApplicant(name: string, title: string, 
     cv: string, message: string, isLocked: boolean, userIdLockedBy: number,
     isPublished: boolean, isActive: boolean) {
