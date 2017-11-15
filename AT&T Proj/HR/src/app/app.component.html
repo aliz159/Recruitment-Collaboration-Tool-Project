@@ -29,7 +29,7 @@
 
 
 
-<nav class="navbar navbar-default sidebar" role="navigation">
+<nav *ngIf="nav.menuVisible" class="navbar navbar-default sidebar" role="navigation">
     <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
@@ -47,7 +47,7 @@
           <ul class="dropdown-menu forAnimate" role="menu">
           </ul>
         </li>          
-        <li ><a href="/AllApplicants">Applicant<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a></li>        
+        <li ><a routerLink="/AllApplicants">Applicant<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a></li>        
         <li ><a routerLink="/AllJobs">Jobs<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tags"></span></a></li>
       </ul>
     </div>

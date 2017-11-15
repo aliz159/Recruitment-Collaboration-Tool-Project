@@ -16,7 +16,11 @@ export class ApplicantService {
 
 
   Get() {
-    return this.http.get(this.url);
+     return this.http.get(this.url);
+  }
+  GetOneApplicant(id: number) {
+    let url = this.url + "/" + id;
+     return this.http.get(url);
   }
 
   addApplicant(name: string, title: string, 

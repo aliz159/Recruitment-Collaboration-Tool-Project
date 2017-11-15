@@ -1,35 +1,26 @@
-<button> 
+ <h1>
+    all-applicant !
+</h1><br><br><br>
+  
+<button href="#" data-toggle="tooltip" title="Add Aplicant!"> 
 <span class="glyphicon glyphicon-plus"></span>Add
 </button> 
 <br>
 
-<!-- <div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-3">
-      Yaffa Belete //lock<br>
-      Web Developer //edit / delete applicant
-    </div>
-    <div class="col-sm-3">
-           Yaffa Belete //lock<br>
-      Web Developer //edit / delete applicant
-    </div>
-    <div class="col-sm-3">
-           Yaffa Belete //lock<br>
-      Web Developer //edit / delete applicant
-    </div>
-  </div>
-</div> -->
 
+<div class="card" *ngFor="let applicant of allApplicant"
+ style="width: 25rem;" (click)="SeeApplicant(applicant)">
+    <h4 class="card-title">{{applicant.Name}}
+    <span class="glyphicon glyphicon-lock" (click)="lockApplicant()"
+    href="#" data-toggle="tooltip" title="Lock Applicant!"></span>
+    </h4>
+    <p class="card-text">{{applicant.Title}}
+     <span class="glyphicon glyphicon-trash"
+     href="#" data-toggle="tooltip" title="Delete Applicant!"></span> 
+      <span class="glyphicon glyphicon-pencil"
+      href="#" data-toggle="tooltip" title="Edit Applicant!"></span>
+    </p>
+    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+</div>
+ 
   
-    <div class="">
-      Yaffa Belete //lock<br>
-      Web Developer //edit / delete 
-    </div>
-    <div class="">
-           Yaffa Belete //lock<br>
-      Web Developer //edit / delete 
-    </div>
-    <div class="">
-      Yaffa Belete    //lock<br>
-      Web Developer  //edit / delete 
-    </div>

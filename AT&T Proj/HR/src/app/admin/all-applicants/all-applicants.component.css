@@ -1,7 +1,7 @@
-.col-sm-3{
+/* .col-sm-3{
     border: 1px solid gray;
     margin-left: 15%;
-}
+} */
 button{
     margin-top: 3%;
     border: 1px solid gray;
@@ -10,17 +10,34 @@ button{
     padding-left: 7px;
     padding-right: 7px;
     border-radius: 5px;
-    
+        width: 6%;
+    height: 36px;
     margin-top: 10%;
     margin-left: 15%;
 }
-.row {
+/* .row {
     margin-left: 61px;
-}
-div{
+}*/
+ div{
         display: inline-block;
     border: 1px solid gray;
-    margin-left: 15%;
+    margin-left: 12%;
     margin-top: 3%;
     padding: 1%;
+    
+}  
+h4, p{
+    font-size: 22px;
+}
+.glyphicon {
+font-size: 22px;
+    float: right;
+    margin-right: 2%;
+}
+.glyphicon-trash{
+     margin-right: 3%;
+     
+}
+.glyphicon-pencil{
+ margin-right: 3%;
 }
