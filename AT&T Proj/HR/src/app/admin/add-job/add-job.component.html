@@ -1,6 +1,7 @@
+ <!-- <br><br><br><br><br><br><br> -->
 <div class="divContainAll">
- 
-  <span class="plusIcon glyphicon glyphicon-floppy-saved"
+ <div class="a">
+  <span role="button" class="plusIcon glyphicon glyphicon-floppy-saved"
   (click)="SaveDatilesJob()"></span>
 
   <div class="container">
@@ -16,7 +17,7 @@
  
     Reccruiters: 
       <button> 
-      <span class="glyphicon glyphicon-plus"
+      <span class="glyphicon glyphicon-plus" role="button"
       (click)="RecruitingMangersList()"></span> Add
       </button> 
 
@@ -35,7 +36,7 @@
     <p>
   </div>
 
-  <div class="container">
+  <div id="b" class="container">
     <p>
     Position
     <input class="inputText" class="form-control" type="text" disabled value="Developer">
@@ -50,7 +51,7 @@
     </p>
   </div>
 
-  <div class="container">
+  <div id="c" class="container">
    <p>Skillset 
       <button (click)="addSkill()"> 
       <span class="glyphicon glyphicon-plus"></span> Add
@@ -58,19 +59,19 @@
     <br><br>
 
   <p *ngFor="let skill of Skills">
-    <input type="checkbox"  name="skill" 
+    <input type="checkbox" name="skill" 
     [(ngModel)]="skill.selected"
     (change)="SkillsetArray(skill)"
     [value]="skill.value"> {{skill.skill}}
   </p>
   </div>
 
-  <div class="container">
+  <div id="d" class="container">
    <p>Requirement 
    <br>
    <textarea
    [(ngModel)]="Requirements" name="requirements"></textarea>
    </p>
   </div>
-
+ </div>
 </div>

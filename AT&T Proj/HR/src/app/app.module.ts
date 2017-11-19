@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes, ActivatedRoute } from '@angular/router';
 import { Http, HttpModule, RequestOptions } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+// import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 //Components
 import { AppComponent } from './app.component';
 import { LockComponent } from './lock/lock.component';
@@ -58,7 +59,8 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes),
-    FormsModule, HttpModule
+    FormsModule, HttpModule, 
+    /*Ng2FilterPipeModule*/
   ],
   providers: [
     ApplicantService,

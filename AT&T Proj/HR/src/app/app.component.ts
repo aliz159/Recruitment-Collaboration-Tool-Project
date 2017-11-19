@@ -14,6 +14,8 @@ export class AppComponent implements OnInit {
   Password: string;
   Error: string;
   userObj: any;
+  JisClicked = false;
+  AisClicked = false;
   //IsLogged:true;
   ngOnInit() {
     this.nav.hideMenu();
