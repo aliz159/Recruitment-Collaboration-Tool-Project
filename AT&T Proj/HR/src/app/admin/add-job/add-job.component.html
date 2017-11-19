@@ -4,16 +4,25 @@
   (click)="SaveDatilesJob()"></span>
 
   <div class="container">
-    <p> UX Designer <br><br>
+<p> 
      Unique ID
     <input class="inputText" class="form-control" type="text"
-    [(ngModel)]="uniqueID" name="unique">
-
- 
+    [(ngModel)]="uniqueID" name="unique" required #unique="ngModel">
+    <div *ngIf="unique.errors && (unique.dirty || unique.touched)" class="alert alert-danger">
+              <p [hidden]="!unique.errors.required" class="error"> 
+                Unique ID is required
+              </p>                  
+    </div>   
+<p>      
     Title  
     <input class="inputText" class="form-control" type="text"
-    [(ngModel)]="Title" name="title">
- 
+    [(ngModel)]="Title" name="title" required #title="ngModel">
+    <div *ngIf="title.errors && (title.dirty || title.touched)" class="alert alert-danger">
+              <p [hidden]="!title.errors.required" class="error"> 
+                Title is required
+              </p>                  
+    </div>  
+<p>
     Reccruiters: 
       <button> 
       <span class="glyphicon glyphicon-plus"
@@ -22,43 +31,55 @@
 
 <!-- <div *ngIf="AddManager">  -->
    <p *ngFor="let manager of Managers">
-    <input type="checkbox"  name="skill" 
+    <input type="checkbox"  name="skill" required
     [(ngModel)]="manager.selected"
     (change)="ManagersArray(manager)"
     [value]="manager.value"> {{manager.Name}}
    </p>
+
 <!-- </div>   -->
 
 
 
 
-    <p>
+    
   </div>
 
   <div class="container">
     <p>
     Position
-    <input class="inputText" class="form-control" type="text" disabled value="Developer">
+    <input class="inputText" class="form-control" type="text" disabled value="Developer" required>
     
     Years of experience
     <input class="inputText" class="form-control" type="number"
-    [(ngModel)]="YearsExperience" name="YearsExperience">
- 
+    [(ngModel)]="YearsExperience" name="YearsExperience" required #yearsExperience="ngModel">
+    <div *ngIf="yearsExperience.errors && (yearsExperience.dirty || yearsExperience.touched)" class="alert alert-danger">
+              <p [hidden]="!yearsExperience.errors.required" class="error"> 
+                Years of experience is required
+              </p>                  
+    </div>  
+<p>
     Description
     <br>  
-    <textarea [(ngModel)]="Description" name="description"></textarea> 
-    </p>
+    <textarea [(ngModel)]="Description" name="description" required #description="ngModel"></textarea> 
+    <div *ngIf="description.errors && (description.dirty || description.touched)" class="alert alert-danger">
+              <p [hidden]="!description.errors.required" class="error"> 
+                Description is required
+              </p>                  
+    </div>  
+    
+    
   </div>
 
   <div class="container">
    <p>Skillset 
       <button (click)="addSkill()"> 
       <span class="glyphicon glyphicon-plus"></span> Add
-      </button> 
-    <br><br>
+      </button> </p>
+    
 
   <p *ngFor="let skill of Skills">
-    <input type="checkbox"  name="skill" 
+    <input type="checkbox"  name="skill" required
     [(ngModel)]="skill.selected"
     (change)="SkillsetArray(skill)"
     [value]="skill.value"> {{skill.skill}}
@@ -69,8 +90,15 @@
    <p>Requirement 
    <br>
    <textarea
-   [(ngModel)]="Requirements" name="requirements"></textarea>
-   </p>
+   [(ngModel)]="Requirements" name="requirements" required #requirements="ngModel">
+    </textarea>
+    <div *ngIf="requirements.errors && (requirements.dirty || requirements.touched)" class="alert alert-danger">
+              <p [hidden]="!requirements.errors.required" class="error"> 
+                Requirements is required
+              </p>                  
+    </div>
+   
+   
   </div>
 
 </div>

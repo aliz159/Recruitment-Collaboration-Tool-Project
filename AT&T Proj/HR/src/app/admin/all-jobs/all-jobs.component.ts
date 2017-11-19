@@ -12,11 +12,12 @@ export class AllJobsComponent {
   openFormToEditJob:boolean=false;
   Skills:any[];
   constructor(public jobService: JobService) {
-    this.getAllJobs();
+    
   }
 
 
  ngOnInit() {
+   this.getAllJobs();
     this.jobService.GetSkillSet().subscribe(rsp => {
       if (rsp.status == 200) {
         this.Skills = rsp.json();

@@ -32,7 +32,7 @@ export class JobService {
   }  
   addJob(userId: number,uniqueID:string, name: string,position:string, description: string,
     YearsExperience:number, requirements: string, isActive: boolean) {
-    //debugger;
+    debugger;
     let url = this.url;
     let body = { UserId: userId,strUniqueID: uniqueID, Name: name,Position: position, Description: description,
     YearOfExperience:YearsExperience,Requirements: requirements, IsActive: isActive};
@@ -41,10 +41,10 @@ export class JobService {
       return res.json();
     });
   }
-  addSkillsetForJob(Id:number,ListSkillForJob:number[]){
+  addSkillsetForJob(id:number,ListSkillForJob:number[]){
      let url = this.urlJobSkills;
     // var skillset:number[] = [1,2];
-     let body = { JobId: Id,ListSkill: ListSkillForJob};
+    let body = { Id: id,Skills: ListSkillForJob};
     debugger;
     return this.http.post(url, body, this.headers).map((res) => {
       return res.json();
