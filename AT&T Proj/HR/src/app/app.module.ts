@@ -40,7 +40,7 @@ const appRoutes: Routes = [
   { path: 'AddApplicant', component: AddApplicantComponent },
   { path: 'EditJob', component: EditJobComponent },
   { path: 'EditApplicant', component: EditApplicantComponent },
-  { path: 'MyApplicants', component: MyApplicantsComponent }
+  { path: 'MyApplicants/:id', component: MyApplicantsComponent }
 ];
 
 @NgModule({

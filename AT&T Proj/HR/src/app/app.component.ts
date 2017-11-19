@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
           this.nav.hideLoginForm();
         }
         else if (this.userObj.UserType == "Recruiter") {
-          this.routeToRecruiterFramework();
+          this.routeToRecruiterFramework(this.userObj.Id);
           this.nav.showMenu();
           this.nav.hideLoginForm();
         }
@@ -48,8 +48,8 @@ export class AppComponent implements OnInit {
       });
   }
 
-  routeToRecruiterFramework() {
-    this.router.navigate(['/MyApplicants']);
+  routeToRecruiterFramework(id:number) {
+    this.router.navigate(['/MyApplicants', id]);
   }
 
   routeToAdminFramework() {

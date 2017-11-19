@@ -109,6 +109,8 @@ C:\Recruitment-Collaboration-Tool-Project\Recruitment-Collaboration-MVC\WebAppli
 C:\Recruitment-Collaboration-Tool-Project\Recruitment-Collaboration-MVC\WebApplication1\obj\Debug\WebApplication1.Migrations.addField.resources
 C:\Recruitment-Collaboration-Tool-Project\Recruitment-Collaboration-MVC\WebApplication1\obj\Debug\WebApplication1.csproj.CoreCompileInputs.cache
 C:\Recruitment-Collaboration-Tool-Project\Recruitment-Collaboration-MVC\WebApplication1\obj\Debug\WebApplication1.Migrations.addEmailFielsToApplicant.resources
+<<<<<<< HEAD
+=======
 C:\Users\user\Desktop\New folder (5)\Recruitment-Collaboration-Tool-Project\Recruitment-Collaboration-MVC\WebApplication1\bin\ApplicationInsights.config
 C:\Users\user\Desktop\New folder (5)\Recruitment-Collaboration-Tool-Project\Recruitment-Collaboration-MVC\WebApplication1\bin\roslyn\csc.exe
 C:\Users\user\Desktop\New folder (5)\Recruitment-Collaboration-Tool-Project\Recruitment-Collaboration-MVC\WebApplication1\bin\roslyn\csc.exe.config
@@ -329,3 +331,4 @@ C:\Users\user\Desktop\AT&T\Recruitment-Collaboration-Tool-Project\Recruitment-Co
 C:\Users\user\Desktop\AT&T\Recruitment-Collaboration-Tool-Project\Recruitment-Collaboration-MVC\WebApplication1\obj\Debug\WebApplication1.csproj.GenerateResource.Cache
 C:\Users\user\Desktop\AT&T\Recruitment-Collaboration-Tool-Project\Recruitment-Collaboration-MVC\WebApplication1\obj\Debug\WebApplication1.dll
 C:\Users\user\Desktop\AT&T\Recruitment-Collaboration-Tool-Project\Recruitment-Collaboration-MVC\WebApplication1\obj\Debug\WebApplication1.pdb
+>>>>>>> b9bd706490077245c3a770786cc8d9a4ed15fe1f
