@@ -48,24 +48,26 @@ export class AddJobComponent implements OnInit {
   Skills: string[];
   Managers: string[];
   Requirements: string;
-  ArraySkills: string[] = [];
+  ListSkillForJob:number[] = [];
+  // ArraySkills: string[] = [];
   ArrayManagers: any[] = [];
   AddManager: boolean = false;
   isActive: boolean = false;
   jobObj: any;
-  skillObj: any[];
+  skillObj: any;
 
   SaveDatilesJob() {
-    let allSkills = this.ArraySkills.toString();
-
+    
+    //debugger;
     this.jobService.addJob(this.ArrayManagers[0], this.uniqueID, this.Title, this.position,
       this.Description, this.YearsExperience, this.Requirements, this.isActive)
       .subscribe(rsp => { this.jobObj = rsp;
         console.log("job Obj=>>>>>>>>>>>>");
         console.log(this.jobObj);
-       // debugger;
-        this.jobService.addSkillsetForJob(this.jobObj.Id, allSkills)
-        .subscribe(rsp => { debugger; this.skillObj = rsp;
+        debugger;
+        this.jobService.addSkillsetForJob(this.jobObj.Id, this.ListSkillForJob)
+        .subscribe(rsp => { 
+          debugger; this.skillObj = rsp.json();
           console.log("skill Added successfully=>>>>>>>>>>");
           console.log(this.skillObj);
           window.alert("the job has Successfully added")
@@ -73,10 +75,10 @@ export class AddJobComponent implements OnInit {
           this.uniqueID = "";
           this.YearsExperience = 0;
           this.Description = "";
-           this.Skills=[];
-           this.Managers=[];
+          this.Skills=[];
+          this.Managers=[];
           this.Requirements = "";
-          this.ArraySkills = [];
+          this.ListSkillForJob = [];
           this.ArrayManagers = [];
         },
           (err) => { debugger; console.log("error : " + err); });
@@ -86,7 +88,7 @@ export class AddJobComponent implements OnInit {
 
     console.log(
       this.ArrayManagers[0], this.Title,
-      this.Description, allSkills,
+      this.Description, this.ListSkillForJob,
       this.Requirements, this.isActive)
   }
 
@@ -113,13 +115,13 @@ export class AddJobComponent implements OnInit {
 
   SkillsetArray(skill) {
     if (skill.selected) {
-      this.ArraySkills.push(skill.Id);
+      this.ListSkillForJob.push(skill.Id);
     }
     else {
-      var removeSkill = this.ArraySkills.indexOf(skill.Id);
-      this.ArraySkills.splice(removeSkill, 1);
+      var removeSkill = this.ListSkillForJob.indexOf(skill.Id);
+      this.ListSkillForJob.splice(removeSkill, 1);
     }
-    console.log(this.ArraySkills)
+    console.log(this.ListSkillForJob)
   }
 
 

@@ -41,9 +41,10 @@ export class JobService {
       return res.json();
     });
   }
-  addSkillsetForJob(Id:number,skillset:string){
+  addSkillsetForJob(Id:number,ListSkillForJob:number[]){
      let url = this.urlJobSkills;
-     let body = { JobId: Id,SkillsetsId: skillset};
+    // var skillset:number[] = [1,2];
+     let body = { JobId: Id,ListSkill: ListSkillForJob};
     debugger;
     return this.http.post(url, body, this.headers).map((res) => {
       return res.json();
