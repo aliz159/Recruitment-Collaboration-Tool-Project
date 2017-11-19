@@ -73,12 +73,12 @@ namespace WebApplication1.Controllers.api
             job.Position = j.Position;
             job.strUniqueID = j.strUniqueID;
             job.UserId = j.UserId;
-            job.IsActive = j.IsActive;
+            job.IsActive = false;
             job.Description = j.Description;
             job.Requirements = j.Requirements;
             job.YearOfExperience = j.YearOfExperience;
             m_db.SaveChanges();
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok(HttpStatusCode.NoContent);
         }
 
         // DELETE /api/Job/4 -> delete Job with id 4

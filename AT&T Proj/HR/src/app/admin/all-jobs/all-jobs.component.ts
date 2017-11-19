@@ -53,17 +53,18 @@ export class AllJobsComponent {
 
   jobEditObj:any;     
   MarkJobAsInActive(job: any) {
-    window.alert("hi");
     console.log("job obj =>>>>>>>>");
     console.log(job);
 
     const req = this.jobService.editJob(job.Id,job.UserId,job.strUniqueID,
       job.Name,job.Position,job.Description,job.Requirements,
      job.IsActive ,job.YearOfExperience)
-    .subscribe(rsp => {
-      if (rsp.status == 200) {
+    .subscribe(rsp => {debugger;
+      if (rsp == 204) {
         debugger;
-        this.jobEditObj = rsp.json();
+        // this.jobEditObj = rsp.json();
+         window.alert("the job has been removed")
+         this.getAllJobs();
       }
       else { console.log("server responded error : " + rsp); }
     },
