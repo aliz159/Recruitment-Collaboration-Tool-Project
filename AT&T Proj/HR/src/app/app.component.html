@@ -1,4 +1,4 @@
-<div class="navbar navbar-fixed-top navbar-default" role="navigation">
+<div *ngIf="nav.menuVisible" class="navbar navbar-fixed-top navbar-default" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -6,12 +6,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Project name</a>
+            <a class="navbar-brand" href="#">AT&T Collaboration Tool <br> Hi, {{userObj.Name}} ( {{userObj.UserType}} )</a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
+                <li class="active"><a routerLink="/AllJobs">Jobs<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-tags"></span></a></li>
+                <li><a routerLink="/AllApplicants">Applicants<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-user-circle"></span></a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -21,17 +21,23 @@
 </div>
 <!-- /.navbar -->
 
-    <div class="navbar-fixed-left">
-        <div style="background:#f8f8f8;width:15%"  class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+<nav *ngIf="nav.menuVisible" style="background:#f8f8f8;width:15%;height:100%;position:fixed" class="col-xs-6 col-sm-3 sidebar-offcanvas">
+    <div style="background:#f8f8f8;height:100%;" class="navbar-fixed-left" >
+        <!-- <div style="background:#f8f8f8;width:15%;"  class="col-xs-6 col-sm-3 sidebar-offcanvas" role="navigation"> -->
             <div class="sidebar-nav">
                 <ul class="nav">
-                    <br><br><br><br><br>
+                    <li style="margin-top:48%;" class="nav-divider"></li>
+                    <li></li>
+                   <li></li>
                     <li class="nav-divider"></li>
-                    <li><a href="#">Link</a></li>
-                    <li><a href="#">Link</a></li>
-                   <li class="nav-divider"></li>
-                    <li ><a routerLink="/AllJobs">Jobs<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-tags"></span></a></li>
-                   <li ><a routerLink="/AllApplicants">Applicants<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-user-circle"></span></a></li>
+                    <li><a routerLink="/AllJobs">Jobs<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-tags"></span></a></li>
+                   <li><a routerLink="/AllApplicants">Applicants<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-user-circle"></span></a></li>
+                    <li class="nav-divider"></li>
+                    <li><a routerLink="/AllJobs">Jobs<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-tags"></span></a></li>
+                   <li><a routerLink="/AllApplicants">Applicants<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-user-circle"></span></a></li>
+                    <li class="nav-divider"></li>
+                    <li><a routerLink="/AllJobs">Jobs<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-tags"></span></a></li>
+                   <li><a routerLink="/AllApplicants">Applicants<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-user-circle"></span></a></li>
                 </ul>
             </div>
 <!-- 
@@ -44,8 +50,9 @@
     </div>
     <!--/row-->
 
-</div>
+
 <!--/.container-->
+</nav>
 
 <router-outlet></router-outlet>
 
@@ -104,3 +111,5 @@
     </div>
   </div>
 </nav> -->
+
+<

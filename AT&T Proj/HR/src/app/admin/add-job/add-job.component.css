@@ -1,5 +1,5 @@
 .divContainAll{
-     margin-top: 10%;
+     margin-top: 5%;
     width: 80%;
     padding-top: 3%;
     margin-left: 15%;
@@ -40,4 +40,8 @@ textarea{
 }
 .form-control{
     width: 91%;
+}
+
+.sidebar-offcanvas{
+    margin-top: 0% !important;
 }
