@@ -41,6 +41,9 @@ namespace WebApplication1.Controllers.api
         [HttpPost]
         public HttpResponseMessage CreateSkillsForTheJob(AllSkills allskills)
         {
+            if(allskills.Id == 0 && allskills.Skills == null){
+                return Request.CreateResponse(HttpStatusCode.Forbidden, "Job Id Or Skills are invalid");
+            }
             SkillsForTheJob skill = new SkillsForTheJob();
 
             foreach (var skillId in allskills.Skills)

@@ -58,7 +58,7 @@ export class AddJobComponent implements OnInit {
 
   SaveDatilesJob() {
     
-    //debugger;
+    debugger;
     this.jobService.addJob(this.ArrayManagers[0], this.uniqueID, this.Title, this.position,
       this.Description, this.YearsExperience, this.Requirements, this.isActive)
       .subscribe(rsp => { this.jobObj = rsp;
@@ -67,7 +67,7 @@ export class AddJobComponent implements OnInit {
         debugger;
         this.jobService.addSkillsetForJob(this.jobObj.Id, this.ListSkillForJob)
         .subscribe(rsp => { 
-          debugger; this.skillObj = rsp.json();
+          debugger; this.skillObj = rsp;
           console.log("skill Added successfully=>>>>>>>>>>");
           console.log(this.skillObj);
           window.alert("the job has Successfully added")
@@ -80,6 +80,7 @@ export class AddJobComponent implements OnInit {
           this.Requirements = "";
           this.ListSkillForJob = [];
           this.ArrayManagers = [];
+          this.ngOnInit();
         },
           (err) => { debugger; console.log("error : " + err); });
       },
@@ -94,9 +95,11 @@ export class AddJobComponent implements OnInit {
 
 
 
+
   RecruitingMangersList() {
     this.AddManager = true;
   }
+
 
 
 
