@@ -21,15 +21,13 @@ namespace WebApplication1.Controllers.api
 
         [HttpGet]
         // GET /api/InterviewSummary/1
-        public IHttpActionResult GetInterviewSummary(long id)
+        public IHttpActionResult GetInterviewSummary(long Id)
         {
-            InterviewSummary summary = m_db.SummaryOfInterview.SingleOrDefault(s => s.Id == id);
-
+            List<InterviewSummary> summary = m_db.SummaryOfInterview.Where(s => s.ApplicantId == Id).ToList();
             if (summary == null)
             {
                 return NotFound();
             }
-
             return Ok(summary);
         }
 

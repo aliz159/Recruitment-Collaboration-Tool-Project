@@ -34,13 +34,15 @@ const appRoutes: Routes = [
   { path: 'b', component: AppComponent },
   { path: 'Job', component: JobComponent },
   { path: 'Applicant/:id', component: ApplicantComponent },
+  { path: 'Applicant/:ApplicantId/:RecruitmentId', component: ApplicantComponent },
   { path: 'AllJobs', component: AllJobsComponent },
   { path: 'AllApplicants', component: AllApplicantsComponent },
   { path: 'AddJob', component: AddJobComponent },
   { path: 'AddApplicant', component: AddApplicantComponent },
   { path: 'EditJob', component: EditJobComponent },
   { path: 'EditApplicant', component: EditApplicantComponent },
-  { path: 'MyApplicants/:id', component: MyApplicantsComponent }
+  { path: 'MyApplicants/:id', component: MyApplicantsComponent },
+  
 ];
 
 @NgModule({

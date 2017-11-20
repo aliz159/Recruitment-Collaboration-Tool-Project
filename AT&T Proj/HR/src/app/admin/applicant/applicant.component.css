@@ -1,6 +1,45 @@
 .publishBtn{
-    width: 40%;
-    height: 40px;
-    margin-top: -20%;
-    margin-left: -2%;
+   width: 8%;
+    height: 29px;
+    border: 1px solid blue;
+    margin-top: -1%;
+    margin-left: 89%;
 }
+.card{
+    margin-top: 8%;
+    max-width: 97rem;
+    margin-left: 19%;
+}
+.labelSummary{
+    font-size: 24px;  
+    margin-left: 6%;
+}
+.textAreaSummaray{
+    width: 87%;
+    margin-left: 6%;
+    height: 91px;
+}
+.addSummarayButtom{
+    border: 1px solid blue;
+    border-radius: 3px;
+    height: 28px;
+    width: 13%;
+    margin-top: 3%;
+    margin-left: 79%;
+}
+p{
+    margin-left: 6%;
+    font-size: 20px;
+}
+h2{
+    font-size: 30px;
+    margin-left: 38%;
+}
+.CommentManagers{
+     border: 1px solid rgb(185,198,217);
+    width: 87%;
+    margin-left: 6%;
+}
+    .text-center{
+        /* border:1px solid gray; */
+    }

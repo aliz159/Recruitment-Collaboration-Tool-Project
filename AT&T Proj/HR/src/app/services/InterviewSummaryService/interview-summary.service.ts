@@ -17,7 +17,10 @@ export class InterviewSummaryService {
   Get() {
     return this.http.get(this.url);
   }
-
+  GetAllApplicantInterview(Id:number) {
+    let url = this.url +"/"+ Id;
+    return this.http.get(url);
+  }
   addInterviewSummary(userId: number, applicantId: number, summary: string) {
 
     let url = this.url;

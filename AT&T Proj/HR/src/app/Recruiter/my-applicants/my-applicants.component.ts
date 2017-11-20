@@ -49,8 +49,11 @@ export class MyApplicantsComponent implements OnInit {
   }
 
   SeeApplicant(applicant: any) {
-    console.log("=>>>>>>"); console.log(applicant);
-    this.router.navigate(['/Applicant', applicant.Id]);
+    console.log("=>>>>>>"); 
+    console.log(applicant);
+    console.log(this.recruiterID);
+    debugger;
+    this.router.navigate(['/Applicant', applicant.Id,this.recruiterID]);
   }
   lockApplicant() {
     window.alert("lock Applicant");

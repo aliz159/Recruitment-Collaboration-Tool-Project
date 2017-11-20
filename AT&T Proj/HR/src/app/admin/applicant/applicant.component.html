@@ -1,18 +1,75 @@
-
-    <div>
+<div class="card text-primary border-primary">
+    <!-- <button class="publishBtn" (click)="Publish()" *ngIf="isPublished == false">Publish</button> -->
+    <div class="card-body">
+        <h2 class="card-title">{{Name}}</h2>
         <button class="publishBtn" (click)="Publish()" *ngIf="isPublished == false">Publish</button>
+        <p class="card-text">
+            Email : {{Email}}<br> Phone : {{Phone}}<br> Position : {{Position}}<br> Year Of Experience : {{YearOfExperience}}
+            <br>Skills :
+        </p>
+<a href="http://localhost:55187/UploadedCV's/38971.doc" download>click to download CV</a>
+        <p *ngFor="let s of skillsObj">
+            {{s.skill}},<br>
+        </p>
+        
+       
 
-        <h4 class="card-title"><strong>{{Name}}</strong></h4>
-        <h5>{{Title}}</h5>
 
-        <div class="card-text">
-            Email : {{Email}}<br> 
-            Phone : {{Phone}}<br> 
-            Position : {{Position}}<br> 
-            Year Of Experience : {{YearOfExperience}} <br><br> 
-            Skills:<br>
-            <div *ngFor="let s of skillsObj">
-                {{s.skill}}<br>
-            </div>
+<strong>Here Are The Matching Jobs List : </strong><br/><br/>
+    <div *ngFor="let job of MatchingJobsList">
+        <strong> Name : </strong> {{job.Name}}<br/>
+        <strong>  Position : </strong> {{job.Position}}<br/>
+        <strong> Year Of Experience: </strong> {{job.YearOfExperience}}<br/>
+        <strong>Description:</strong> {{job.Description}}<br/>
+        <strong>Requirements:</strong> {{job.Requirements}}<br/><br/><br/>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="secondpart" *ngIf="SummaryRecruitment">
+        <div class="form-group">
+            <label class="labelSummary"> Interview Summary </label>
+            <textarea class="form-control textAreaSummaray" [(ngModel)]="Summary" name="summary" placeholder="Interviwe Summary"> </textarea>
+            <button class="addSummarayButtom" (click)="addInterviwe()"> 
+      <span class="glyphicon glyphicon-plus"></span>
+       Add Summary
+      </button>
         </div>
     </div>
+
+
+
+
+
+
+
+
+<div class="">
+<div class="CommentManagers" *ngFor="let summary of SummaryObj">
+    <div class="card-header">
+      {{summary.Date}}
+  </div>
+  <div class="card-block">
+    <h4 class="card-title">{{summary.UserId}}</h4>
+    <p class="card-text">{{summary.Summary}}</p>
+  </div>
+</div>
+
+</div>
+
+
+    <!-- Links -->
+        <a href="#" class="card-link">Sun Gone</a>
+        <a href="#" class="card-link">Still Gone</a>
+    
+</div>
+</div>

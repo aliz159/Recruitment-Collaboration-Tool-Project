@@ -18,6 +18,11 @@ export class JobToApplicantService {
     return this.http.get(this.url);
   }
 
+   GetMatchingJobs(id: number) {
+    let url = this.url + "/" + id;
+    return this.http.get(url);
+  }
+
   addJobToApplicant(jobId: number, applicantId: number) {
 
     let url = this.url;
