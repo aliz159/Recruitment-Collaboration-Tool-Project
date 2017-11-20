@@ -11,5 +11,6 @@ namespace WebApplication1.Models
         public long UserId { get; set; } //Foreign key
         public long JobId { get; set; } //Foreign key
         public long ApplicantId { get; set; } //Foreign key
+        //public int MatchPercent { get; set; } 
     }
 }

@@ -41,16 +41,24 @@ namespace WebApplication1.Controllers.api
 
         // POST /api/Skillsets
         [HttpPost]
-        public IHttpActionResult CreateSkillset(Skillset skill)
+        public HttpResponseMessage CreateSkillset(Skillset skill)
         {
             if (!validationIsOk(skill))
             {
-                return BadRequest();
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
+
+            Skillset Skillset = m_db.Skillset.SingleOrDefault(s => s.skill == skill.skill);
+            if (Skillset != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden, "Skill already exists");
+
+            }
+
             m_db.Skillset.Add(skill);
             m_db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = skill.Id }, skill);
+            return Request.CreateResponse(HttpStatusCode.OK, skill);
         }
 
         // PUT /api/JobToApplicant

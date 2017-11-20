@@ -74,7 +74,7 @@ namespace WebApplication1.Controllers.api
             applicant.StatusAfterInterview = null;
             m_db.Applicants.Add(applicant);
             m_db.SaveChanges();
-
+           
             return CreatedAtRoute("DefaultApi", new { id = applicant.Id }, applicant);
         }
 
