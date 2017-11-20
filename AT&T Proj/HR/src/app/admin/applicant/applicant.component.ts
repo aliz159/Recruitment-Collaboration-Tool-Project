@@ -2,16 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ApplicantService } from "../../services/ApplicantService/applicant.service";
 import { ActivatedRoute } from "@angular/router";
 import { UserService } from "../../services/UsersService/user.service";
-<<<<<<< HEAD
 import { InterviewSummaryService } from "../../services/InterviewSummaryService/interview-summary.service";
 import { CookiesService } from "../../services/CookiesService/cookies.service";
 import { JobToApplicantService } from "../../services/JobToApplicantService/job-to-applicant.service";
-UserService
-=======
-import { JobToApplicantService } from "../../services/JobToApplicantService/job-to-applicant.service";
 
-
->>>>>>> 65b1b61fce76656065b6821023f9c310d4d22e03
 @Component({
   selector: 'app-applicant',
   templateUrl: './applicant.component.html',
@@ -34,7 +28,6 @@ export class ApplicantComponent implements OnInit {
   Position: string;
   YearOfExperience: number;
   CV: string;
-<<<<<<< HEAD
   isPublished: boolean;
   UserIdLockedBy:number;
   IsLocked:boolean;
@@ -67,16 +60,6 @@ export class ApplicantComponent implements OnInit {
       this.SummaryRecruitment = true;
       console.log(this.SummaryRecruitment)
     }
-=======
-  isPublished:boolean; 
-  MatchingJobsList:any;
-
-  ngOnInit() {}
-  constructor(private route: ActivatedRoute, private userService: UserService,
-    private applicantService: ApplicantService, 
-    private JToAService:JobToApplicantService) {
-          this.id = route.snapshot.params['id'];
->>>>>>> 65b1b61fce76656065b6821023f9c310d4d22e03
 
     this.applicantService.GetOneApplicant(Number(this.ApplicantId)).subscribe(rsp => {
       if (rsp.status == 200) {
@@ -106,23 +89,6 @@ export class ApplicantComponent implements OnInit {
       (err) => {
         console.log("error : " + err);
       });
-<<<<<<< HEAD
-=======
-
-
-      this.JToAService.GetMatchingJobs(this.id).subscribe(rsp => {
-      if (rsp.status == 200) {
-        this.MatchingJobsList = rsp.json();
-        console.log("Matching Jobs List: =>");
-        console.log(this.MatchingJobsList);
-      }
-      else { console.log("server responded error : " + rsp); }
-    },
-      (err) => {
-        console.log("error : " + err);
-      });
-     }
->>>>>>> 65b1b61fce76656065b6821023f9c310d4d22e03
 
 
 
