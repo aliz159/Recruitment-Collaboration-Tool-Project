@@ -33,6 +33,16 @@ namespace WebApplication1.Controllers.api
             return Ok(applicant);
         }
 
+        [HttpPatch]
+        public IEnumerable<Applicant> GetRecruiterApplicants(User user)
+        {
+            var CampList = from applicant in m_db.Applicants
+                           from jTOa in m_db.JobToApplicant
+                           where jTOa.UserId == user.Id && jTOa.ApplicantId == applicant.Id
+                           select applicant;
+            return CampList.AsQueryable();
+        }
+
         // simple validation
         bool validationIsOk(Applicant applicant)
         {

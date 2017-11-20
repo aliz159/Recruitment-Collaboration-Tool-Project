@@ -58,28 +58,6 @@ namespace WebApplication1.Controllers.api
             return Request.CreateResponse(HttpStatusCode.OK, user);
         }
 
-        [HttpPatch]
-        public HttpResponseMessage UserConfirmation(User u)
-        {
-            if (string.IsNullOrEmpty(u.Email) && string.IsNullOrEmpty(u.Password))
-            {
-                return Request.CreateResponse(HttpStatusCode.Forbidden, "user name or password is invalid");
-            }
-
-            User user = m_db.AllUsers.SingleOrDefault(x => x.Email == u.Email);
-
-            if (user != null)
-            {
-                Encryption encryption = new Encryption();
-                if (encryption.ValidatePassword(u.Password, user.Password))
-                {
-                    return Request.CreateResponse(HttpStatusCode.OK, user);
-                }
-            }
-            return Request.CreateResponse(HttpStatusCode.Forbidden, "user name or password is invalid");
-        }
-
-
         // PUT /api/User
         [HttpPut]
         public IHttpActionResult UpdateUser(User u)
@@ -118,6 +96,30 @@ namespace WebApplication1.Controllers.api
 
             return Ok(user);
         }
+
+
+        [HttpPatch]
+        public HttpResponseMessage UserConfirmation(User u)
+        {
+            if (string.IsNullOrEmpty(u.Email) && string.IsNullOrEmpty(u.Password))
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden, "user name or password is invalid");
+            }
+
+            User user = m_db.AllUsers.SingleOrDefault(x => x.Email == u.Email);
+
+            if (user != null)
+            {
+                Encryption encryption = new Encryption();
+                if (encryption.ValidatePassword(u.Password, user.Password))
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, user);
+                }
+            }
+            return Request.CreateResponse(HttpStatusCode.Forbidden, "user name or password is invalid");
+        }
+
+
 
         protected override void Dispose(bool disposing)
         {

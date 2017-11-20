@@ -19,18 +19,15 @@ namespace WebApplication1.Controllers.api
             return m_db.SkillsForTheJob.AsEnumerable();
         }
 
+
         [HttpGet]
-        // GET /api/SkillsForTheJob/1
-        public IHttpActionResult GetSkill(long id)
+        public IEnumerable<Skillset> GetJobSkills(long id)
         {
-            SkillsForTheJob skills = m_db.SkillsForTheJob.SingleOrDefault(skill => skill.Id == id);
-
-            if (skills == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(skills);
+            var appSkillsList = from jobSkill in m_db.SkillsForTheJob
+                                from skill in m_db.Skillset
+                                where jobSkill.JobId == id && jobSkill.SkillsetsId == skill.Id
+                                select skill;
+            return appSkillsList.AsQueryable();
         }
 
         // simple validation
@@ -39,19 +36,24 @@ namespace WebApplication1.Controllers.api
             return Skill.SkillsetsId != 0 && Skill.JobId != 0;
         }
 
+
         // POST /api/SkillsForTheJob
         [HttpPost]
-        public IHttpActionResult CreateSkillsForTheJob(SkillsForTheJob skill)
+        public HttpResponseMessage CreateSkillsForTheJob(AllSkills allskills)
         {
-            if (!validationIsOk(skill))
-            {
-                return BadRequest();
-            }
-            m_db.SkillsForTheJob.Add(skill);
-            m_db.SaveChanges();
+            SkillsForTheJob skill = new SkillsForTheJob();
 
-            return CreatedAtRoute("DefaultApi", new { id = skill.Id }, skill);
+            foreach (var skillId in allskills.Skills)
+            {
+                skill.SkillsetsId = skillId;
+                skill.JobId = allskills.Id;
+
+                m_db.SkillsForTheJob.Add(skill);
+                m_db.SaveChanges();
+            }
+            return Request.CreateResponse(HttpStatusCode.OK, "Job skills added successfully");           
         }
+
 
         // PUT /api/SkillsForTheJob
         [HttpPut]

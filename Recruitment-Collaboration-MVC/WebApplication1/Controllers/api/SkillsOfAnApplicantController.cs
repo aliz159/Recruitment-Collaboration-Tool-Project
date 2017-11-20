@@ -19,18 +19,15 @@ namespace WebApplication1.Controllers.api
             return m_db.SkillsOfAnApplicant.AsEnumerable();
         }
 
+
         [HttpGet]
-        // GET /api/SkillsOfAnApplicant/1
-        public IHttpActionResult GetSkill(long id)
+        public IEnumerable<Skillset> GetApplicantSkills(long id)
         {
-            SkillsOfAnApplicant skill = m_db.SkillsOfAnApplicant.SingleOrDefault(skills => skills.Id == id);
-
-            if (skill == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(skill);
+            var appSkillsList = from appSkill in m_db.SkillsOfAnApplicant
+                                from skill in m_db.Skillset                          
+                           where appSkill.ApplicantId == id && appSkill.SkillsetsId == skill.Id
+                           select skill;
+            return appSkillsList.AsQueryable();
         }
 
         // simple validation
@@ -39,19 +36,24 @@ namespace WebApplication1.Controllers.api
             return Skill.SkillsetsId != 0 && Skill.ApplicantId != 0;
         }
 
-        // POST /api/SkillsOfAnApplicant
-        [HttpPost]
-        public IHttpActionResult CreateSkillsOfAnApplicant(SkillsOfAnApplicant skill)
-        {
-            if (!validationIsOk(skill))
-            {
-                return BadRequest();
-            }
-            m_db.SkillsOfAnApplicant.Add(skill);
-            m_db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = skill.Id }, skill);
+        [HttpPost]
+        public IHttpActionResult CreateSkillsOfAnApplicant(AllSkills allskills)
+        {
+            SkillsOfAnApplicant skill = new SkillsOfAnApplicant();
+
+            foreach (var skillId in allskills.Skills)
+            {
+                skill.SkillsetsId = skillId;
+                skill.ApplicantId = allskills.Id;
+
+                m_db.SkillsOfAnApplicant.Add(skill);
+                m_db.SaveChanges();
+            }
+
+            return Ok();
         }
+
 
         // PUT /api/SkillsOfAnApplicant
         [HttpPut]

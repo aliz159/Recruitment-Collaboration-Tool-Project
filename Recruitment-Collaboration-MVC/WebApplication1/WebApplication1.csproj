@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -232,8 +233,13 @@
     <Compile Include="Migrations\201711132324328_addField.Designer.cs">
       <DependentUpon>201711132324328_addField.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711200213157_addEmailFielsToApplicant.cs" />
+    <Compile Include="Migrations\201711200213157_addEmailFielsToApplicant.Designer.cs">
+      <DependentUpon>201711200213157_addEmailFielsToApplicant.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AllSkills.cs" />
     <Compile Include="Models\Applicant.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\InterviewSummary.cs" />
@@ -332,6 +338,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711132324328_addField.resx">
       <DependentUpon>201711132324328_addField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711200213157_addEmailFielsToApplicant.resx">
+      <DependentUpon>201711200213157_addEmailFielsToApplicant.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

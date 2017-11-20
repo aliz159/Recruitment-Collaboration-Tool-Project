@@ -95,6 +95,25 @@ namespace WebApplication1.Controllers.api
             return Ok(job);
         }
 
+        //[HttpPatch]
+        //public IEnumerable<Applicant> Match(long JobId)
+        //{
+        //    SkillsForTheJob js = m_db.SkillsForTheJob.SingleOrDefault(skill => skill.JobId == JobId);
+
+        //    foreach (var applicantSkill in m_db.SkillsOfAnApplicant)
+        //    {
+        //        foreach (var jobSkill in m_db.SkillsForTheJob)
+        //        {
+
+        //        }
+        //    }
+        //    var CampList = from appSkill in m_db.SkillsOfAnApplicant
+        //                   from jobSkill in m_db.SkillsForTheJob
+        //                   where jobSkill.JobId == JobId && jobSkill.SkillsetsId == appSkill.SkillsetsId
+        //                   select appSkill;
+        //    return CampList.AsQueryable();
+        //}
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

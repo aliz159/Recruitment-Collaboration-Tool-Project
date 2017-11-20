@@ -20,5 +20,6 @@ namespace WebApplication1.Models
         public string InterviewDate { get; set; }
         public string StatusAfterInterview { get; set; }
         public string Phone { get; set; }
+        public string Email { get; set; }
     }
 }
