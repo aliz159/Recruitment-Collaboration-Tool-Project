@@ -5,3 +5,60 @@
     margin-left: 15%;
     font-size: 22px; 
 }
+.divContainAll{
+    margin-top: 10%;
+    width: 80%;
+    padding-top: 3%;
+    margin-left: 15%;
+    font-size: 22px; 
+}
+button{
+    border: 1px solid deepskyblue;
+    margin-left: 6%;
+    font-size: 23px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 5px;
+}
+#SkillId{
+    font-size: 30px;
+    font-weight: bolder;
+       font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#divForm{
+    width: 100%;
+    height: 50%; 
+}
+.FormInput{
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border:none;
+}
+#firstpart{
+border: 1px solid black;
+padding:3%;
+margin-bottom: 3%;
+}
+.secondpart{
+    border: 1px solid black;
+padding:3%;
+margin-bottom: 3%;
+}
+#Misgert{
+  border: 1px solid black;
+  padding:4%;
+}
+h1{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 50px;
+    margin-bottom: 2%;
+    font-weight: bolder;
+    text-align: center;
+}
+input[type="radio"]{
+    font-size: 20px;
+}
+/* #InputSkill{
+    font-size: 20px;
+} */
+

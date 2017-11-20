@@ -8,15 +8,18 @@ import { Injectable } from '@angular/core';
 export class ApplicantService {
   private url: string;
   private urlSkillApplicant: string;
+  private urlInterviewSummary: string;
+private urlSkillset:string;
+
   headers: any;
 
   constructor( @Inject(Http) private http: Http) {
     this.url = "http://localhost:55187/api/Applicant";
     this.urlSkillApplicant = "http://localhost:55187/api/SkillsOfAnApplicant";
+   this.urlInterviewSummary = "http://localhost:55187/api/InterviewSummary";
+this.urlSkillset = "http://localhost:55187/api/Skillsets";
     this.headers = new Headers({ 'Accept': 'application/json' })
   }
-
-
 
 
   GetApplicantSkills(id: number) {
@@ -26,11 +29,10 @@ export class ApplicantService {
 
 
 
-
-
-
-
-
+Post(body: any ) {
+   
+return this.http.post(this.url , body)
+}  
 
 
 
@@ -41,15 +43,18 @@ export class ApplicantService {
     let url = this.url + "/" + id;
      return this.http.get(url);
   }
-  addApplicant(name: string, title: string, 
-    cv: string, message: string, isLocked: boolean, userIdLockedBy: number,
-    isPublished: boolean, isActive: boolean) {
+  addApplicant(name: string, title: string,
+    cv: string,phone:string, experience:number,position:string,
+   ) {
 
     let url = this.url;
     let body = {
-      Name: name, Title: title, Cv: cv,
-      IsLocked: isLocked, UserIdLockedBy: userIdLockedBy,
-      IsPublished: isPublished, IsActive: isActive
+      Name: name,
+       Title: title,
+        Cv: cv, 
+        Phone:phone
+        ,YearOfExperience:experience,
+        Position:position,
     };
 
     return this.http.post(url, body, this.headers).map((res) => {
@@ -79,4 +84,31 @@ export class ApplicantService {
       return res.json()
     });
   }
+
+
+    addSkillset(skillset:string){
+     let url = this.urlSkillset;
+     let body = { skill: skillset};
+    //debugger;
+    return this.http.post(url, body, this.headers).map((res) => {
+      return res.json();
+    });
+  }
+
+   addInterviewSummary(userId: number, applicantId: number, summary: string) {
+
+    let url = this.urlInterviewSummary;
+    let body = { UserId: userId, ApplicantId: applicantId, Summary: summary };
+
+    return this.http.post(url, body, this.headers).map((res) => {
+      return res.json();
+    });
+  }
+  // addSInterviewSummary(summary:string, applicantId:number){
+  //   let url = this.urlInterviewSummary;
+  //   let body = { Summary: summary,ApplicantId: applicantId};
+  // return this.http.post(url , body, this.headers).map((res) => {
+  //     return res.json();
+  //   });
+  // }
 }
