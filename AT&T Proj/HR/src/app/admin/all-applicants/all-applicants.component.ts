@@ -36,11 +36,21 @@ export class AllApplicantsComponent implements OnInit {
   }
 
 
+Publish(applicant: any){
+    this.applicantService.editApplicant(applicant.Id, applicant.Name, applicant.Title, 
+      applicant.Phone, applicant.Email, applicant.YearOfExperience,applicant.Position, applicant.Cv, 
+      applicant.IsLocked, applicant.UserIdLockedBy,true, 
+      applicant.IsActive, applicant.InterviewDate, applicant.StatusAfterInterview).subscribe(rsp => {
+        console.log(rsp.json());     
+    },
+      (err) => {
+        console.log("error : " + err);
+      });
+}
 
-
-  SeeApplicant(applicant: any) {
-    console.log("=>>>>>>"); console.log(applicant);
-    this.router.navigate(['/Applicant', applicant.Id]);
+  SeeApplicant(id: number) {
+    console.log("=>>>>>>"); console.log(id);
+    this.router.navigate(['/Applicant', id]);
   }
   lockApplicant() {
     window.alert("lock Applicant");

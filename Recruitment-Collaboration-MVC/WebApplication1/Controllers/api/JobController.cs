@@ -16,8 +16,15 @@ namespace WebApplication1.Controllers.api
         [HttpGet]
         public IEnumerable<Job> GetJobs()
         {
-            return m_db.Jobs.AsEnumerable();
+            return m_db.Jobs.Where(a => a.IsActive == true).AsEnumerable();
         }
+
+        //[HttpGet]
+        //public IEnumerable<Job> GetJobsInArchives()
+        //{
+        //    return m_db.Applicants.Where(a => a.IsActive == false).AsEnumerable();
+        //}
+
 
         // /api/Job
         [HttpGet]

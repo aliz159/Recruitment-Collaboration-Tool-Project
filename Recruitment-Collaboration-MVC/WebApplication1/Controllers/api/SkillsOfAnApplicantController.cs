@@ -38,7 +38,7 @@ namespace WebApplication1.Controllers.api
 
 
         [HttpPost]
-        public IHttpActionResult CreateSkillsOfAnApplicant(AllSkills allskills)
+        public HttpResponseMessage CreateSkillsOfAnApplicant(AllSkills allskills)
         {
             SkillsOfAnApplicant skill = new SkillsOfAnApplicant();
 
@@ -51,7 +51,7 @@ namespace WebApplication1.Controllers.api
                 m_db.SaveChanges();
             }
 
-            return Ok();
+            return Request.CreateResponse(HttpStatusCode.OK, "Applicant skills added successfully");
         }
 
 

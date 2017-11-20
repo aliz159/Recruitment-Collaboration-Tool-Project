@@ -1,26 +1,18 @@
 
-<div class="card card-cascade">
-    <div class="view overlay hm-white-slight">    
-        <a><div class="mask"></div></a>
-    </div>
-    <div class="card-body text-center">
+    <div>
+        <button class="publishBtn" (click)="Publish()" *ngIf="isPublished == false">Publish</button>
+
         <h4 class="card-title"><strong>{{Name}}</strong></h4>
         <h5>{{Title}}</h5>
-        <p class="card-text">
-        Phone : {{Phone}}
-        Position : {{Position}}
-        Year Of Experience : {{YearOfExperience}} <br>
-        
-        
-        <!-- <p *ngFor="let skill of skillsObj">
-        Skills : {{skill.SkillsetsId}} 
-         CV : {{CV}}
-        </p> -->
-        
-       
-        </p>
-        <a type="button" class="btn-floating btn-small btn-fb"><i class="fa fa-facebook"></i></a>
-        <a type="button" class="btn-floating btn-small btn-tw"><i class="fa fa-twitter"></i></a>
-        <a type="button" class="btn-floating btn-small btn-dribbble"><i class="fa fa-dribbble"></i></a>
+
+        <div class="card-text">
+            Email : {{Email}}<br> 
+            Phone : {{Phone}}<br> 
+            Position : {{Position}}<br> 
+            Year Of Experience : {{YearOfExperience}} <br><br> 
+            Skills:<br>
+            <div *ngFor="let s of skillsObj">
+                {{s.skill}}<br>
+            </div>
+        </div>
     </div>
-</div>

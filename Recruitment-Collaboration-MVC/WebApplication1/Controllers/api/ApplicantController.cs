@@ -14,10 +14,16 @@ namespace WebApplication1.Controllers.api
 
         // /api/Applicant
         [HttpGet]
-        public IEnumerable<Applicant> GetContacts()
+        public IEnumerable<Applicant> GetApplicants()
         {
-            return m_db.Applicants.AsEnumerable();
+            return m_db.Applicants.Where(a => a.IsActive == true).AsEnumerable();
         }
+
+        //[HttpGet]
+        //public IEnumerable<Applicant> GetApplicantInArchives()
+        //{
+        //    return m_db.Applicants.Where(a => a.IsActive == false).AsEnumerable();
+        //}
 
         [HttpGet]
         // GET /api/Applicant/1
@@ -38,7 +44,8 @@ namespace WebApplication1.Controllers.api
         {
             var CampList = from applicant in m_db.Applicants
                            from jTOa in m_db.JobToApplicant
-                           where jTOa.UserId == user.Id && jTOa.ApplicantId == applicant.Id
+                           where jTOa.UserId == user.Id && jTOa.ApplicantId == applicant.Id 
+                           && applicant.IsPublished != false && applicant.IsActive != false
                            select applicant;
             return CampList.AsQueryable();
         }
