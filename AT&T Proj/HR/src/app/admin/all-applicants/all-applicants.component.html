@@ -2,14 +2,15 @@
     all-applicant for HR !
 </h1><br><br><br>
   
-<button href="#" data-toggle="tooltip" title="Add Aplicant!" routerLink="/AddApplicant"> 
+<button href="#" data-toggle="tooltip" title="Add Aplicant!" 
+ routerLink="/AddApplicant" style="margin-left:25%;margin-top:1%;"> 
 <span class="glyphicon glyphicon-plus"></span>Add
 </button> 
 <br>
 
 
 <div class="card" *ngFor="let applicant of allApplicant"
- style="width: 25rem;" (click)="SeeApplicant(applicant)">
+ style="width: 25rem; margin-left:25%;" (click)="SeeApplicant(applicant)">
     <h4 class="card-title">{{applicant.Name}}
     <span class="glyphicon glyphicon-lock" (click)="lockApplicant()"
     href="#" data-toggle="tooltip" title="Lock Applicant!"></span>

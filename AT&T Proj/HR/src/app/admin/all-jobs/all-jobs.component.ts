@@ -32,9 +32,6 @@ export class AllJobsComponent {
     }
 
 
-
-
-
   getAllJobs() {
     this.jobService.Get().subscribe(rsp => {
       if (rsp.status == 200) {

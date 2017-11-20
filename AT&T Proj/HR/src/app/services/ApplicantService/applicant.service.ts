@@ -43,6 +43,27 @@ return this.http.post(this.url , body)
     let url = this.url + "/" + id;
      return this.http.get(url);
   }
+  // GetRecruiterApplicants(Recruiter:any) {
+
+  //   let url = this.url;
+
+  //   return this.http.patch(url, Recruiter, this.headers).map((res) => {
+  //     return res.json();
+  //   });
+  // }
+
+    GetRecruiterApplicants(id: number, name: string, email: string, 
+      password: string, userType: string) {
+
+    let url = this.url;
+    let body = { Id: id, Name: name, Email: email, Password: password, 
+      UserType: userType };
+
+    return this.http.patch(url, body, this.headers).map((res) => {
+      return res.json();
+    });
+  }
+
   addApplicant(name: string, title: string, email:string,
     cv: string,phone:string, experience:number,position:string,
    ) {

@@ -2,14 +2,14 @@
     all-applicant for recruiter !
 </h1><br><br><br>
   
-<button href="#" data-toggle="tooltip" title="Add Aplicant!"> 
+<button href="#" data-toggle="tooltip" title="Add Aplicant!" style="margin-left:20%;"> 
 <span class="glyphicon glyphicon-plus"></span>Add
 </button> 
 <br>
 
 
-<div class="card" *ngFor="let applicant of allJobToApplicant"
- style="width: 25rem;" (click)="SeeApplicant(applicant)">
+<div class="card" *ngFor="let applicant of recruiterApplicants"
+ style="width: 25rem; margin-left:20%;" (click)="SeeApplicant(applicant)">
     <h4 class="card-title">{{applicant.Name}}
     <span class="glyphicon glyphicon-lock" (click)="lockApplicant()"
     href="#" data-toggle="tooltip" title="Lock Applicant!"></span>

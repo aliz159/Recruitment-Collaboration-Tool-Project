@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { JobToApplicantService } from "../../services/JobToApplicantService/job-to-applicant.service";
 import { Http } from '@angular/http';
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
+import { ApplicantService } from "../../services/ApplicantService/applicant.service";
+import { UserService } from "../../services/UsersService/user.service";
 
 @Component({
   selector: 'app-my-applicants',
@@ -9,25 +11,23 @@ import { Router } from "@angular/router";
   styleUrls: ['./my-applicants.component.css']
 })
 export class MyApplicantsComponent implements OnInit {
-  applicants: any;
-  allJobToApplicant: any;
   recruiterApplicants: any;
+  recruiterID: number;
+  recruiterObj: any;
+
+  ngOnInit() { }
 
   constructor(public jobToApplicantService: JobToApplicantService,
-              private router: Router) {
-    
-  }
+    public ApplicantService: ApplicantService, private router: Router,
+    route: ActivatedRoute, public userService: UserService) {
+    this.recruiterID = route.snapshot.params['id'];
 
-  ngOnInit() {
-  this.getAllJobToApplicant();
-}
-
-  getAllJobToApplicant() {
-    this.jobToApplicantService.Get().subscribe(rsp => {
+    this.userService.GetOneUser(this.recruiterID).subscribe(rsp => {
       if (rsp.status == 200) {
-        this.allJobToApplicant = rsp.json();
-        console.log("all the allJobToApplicant:");
-        console.log(this.allJobToApplicant);
+        this.recruiterObj = rsp.json();
+        console.log("recruiter Obj:");
+        console.log(this.recruiterObj);
+        this.GetRecruiterApplicants();
       }
       else { console.log("server responded error : " + rsp); }
     },
@@ -36,11 +36,17 @@ export class MyApplicantsComponent implements OnInit {
       });
   }
 
-
-
-
-
-
+  GetRecruiterApplicants() {
+    this.ApplicantService.GetRecruiterApplicants(this.recruiterObj.Id, this.recruiterObj.Name,
+      this.recruiterObj.Email, this.recruiterObj.Password, this.recruiterObj.UserType).subscribe(rsp => {
+          this.recruiterApplicants = rsp;
+          console.log("all the allJobToApplicant:");
+          console.log(this.recruiterApplicants);
+      },
+      (err) => {
+        console.log("error : " + err);
+      });
+  }
 
   SeeApplicant(applicant: any) {
     console.log("=>>>>>>"); console.log(applicant);
@@ -49,18 +55,4 @@ export class MyApplicantsComponent implements OnInit {
   lockApplicant() {
     window.alert("lock Applicant");
   }
-
-
-
-            // this.allJobToApplicant = this.allJobToApplicant.filter((jToA: any) => jToA.UserId == this.userObj.Id);        
-            //     this.allJobToApplicant.forEach((jToA: any) => {
-            //         this.applicants.forEach((applicant: any) => {
-            //             if (jToA.ApplicantId == applicant.Id) {
-            //                 this.recruiterApplicants.push(applicant);
-            //                 console.log("all the recruiter applicants are:")
-            //                 console.log(this.recruiterApplicants)
-            //             }
-            //         });
-            //     });
-
 }
