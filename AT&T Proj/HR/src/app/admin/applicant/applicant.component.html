@@ -1,29 +1,48 @@
 <div class="card text-primary border-primary">
     <!-- <button class="publishBtn" (click)="Publish()" *ngIf="isPublished == false">Publish</button> -->
     <div class="card-body">
-        <h2 class="card-title">{{Name}}</h2>
+        <h1 class="card-title">{{Name}}</h1>
         <button class="publishBtn" (click)="Publish()" *ngIf="isPublished == false">Publish</button>
         <p class="card-text">
-            Email : {{Email}}<br> Phone : {{Phone}}<br> Position : {{Position}}<br> Year Of Experience : {{YearOfExperience}}
-            <br>Skills :
+        <span class="glyphicon glyphicon-envelope"></span> {{Email}}<br>
+        
+        <span class="glyphicon glyphicon-phone"></span> {{Phone}}<br> 
+        Position : {{Position}}<br> 
+        Year Of Experience : {{YearOfExperience}}
+            <br>
         </p>
-<a href="http://localhost:55187/UploadedCV's/38971.doc" download>click to download CV</a>
-        <p *ngFor="let s of skillsObj">
+        <div>
+            <p class ="skills">Skills :<p>
+             <p class ="skills" *ngFor="let s of skillsObj">
             {{s.skill}},<br>
+             </p>
+        </div>
+        <br>
+        <p>
+        <span class="glyphicon glyphicon-download"></span>
+        <a href="http://localhost:55187/UploadedCV's/38971.doc" download>click to download CV</a><br>
         </p>
         
        
 
 
-<strong>Here Are The Matching Jobs List : </strong><br/><br/>
-    <div *ngFor="let job of MatchingJobsList">
-        <strong> Name : </strong> {{job.Name}}<br/>
+<h3>
+    <span class="glyphicon glyphicon-lock"></span>
+    Here Are The Matching Jobs List : 
+</h3>
+  
+<div class="card JobCard">
+  <div class="card-block" *ngFor="let job of MatchingJobsList">
+    <p class="card-text">
+        <strong> Name : </strong> {{job.Name}}<br>
         <strong>  Position : </strong> {{job.Position}}<br/>
         <strong> Year Of Experience: </strong> {{job.YearOfExperience}}<br/>
         <strong>Description:</strong> {{job.Description}}<br/>
         <strong>Requirements:</strong> {{job.Requirements}}<br/><br/><br/>
-    </div>
-
+        
+       </p>
+  </div>
+</div>
 
 
 
@@ -48,31 +67,13 @@
 
 
 
-
-
-
-
-
-
-
-
-<div class="">
-<div class="CommentManagers" *ngFor="let summary of SummaryObj">
-    <div class="card-header">
-      {{summary.Date}}
-  </div>
-  <div class="card-block">
-    <h4 class="card-title">{{summary.UserId}}</h4>
+<div class="card SummaryCard">
+  <div class="card-block" *ngFor="let summary of SummaryObj">
+    <h4 class="card-title">{{summary.UserId}}  {{summary.Date}}</h4>
     <p class="card-text">{{summary.Summary}}</p>
   </div>
 </div>
 
-</div>
 
-
-    <!-- Links -->
-        <a href="#" class="card-link">Sun Gone</a>
-        <a href="#" class="card-link">Still Gone</a>
-    
 </div>
 </div>

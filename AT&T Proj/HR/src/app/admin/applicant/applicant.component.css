@@ -28,18 +28,31 @@
     margin-left: 79%;
 }
 p{
+    color: black;
     margin-left: 6%;
     font-size: 20px;
 }
-h2{
-    font-size: 30px;
+h1{
+     color: black;
     margin-left: 38%;
+}
+h3{
+     color: black;
+    margin-left: 30%;
 }
 .CommentManagers{
      border: 1px solid rgb(185,198,217);
     width: 87%;
     margin-left: 6%;
 }
-    .text-center{
-        /* border:1px solid gray; */
-    }
+.skills{
+       display: table-cell;
+}
+.SummaryCard{
+    width: 87%;
+    margin-left: 6%;
+}
+.JobCard{
+    margin-left: 2%;
+    width: 96%;
+}
