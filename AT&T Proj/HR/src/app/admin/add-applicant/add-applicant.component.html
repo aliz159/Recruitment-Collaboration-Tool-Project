@@ -61,16 +61,18 @@
 
 
     <div *ngIf = "AddSkillInput" >
-    <input class="form-control" type="text" [(ngModel)]="newSkill" name="newSkill" placeholder="Add New Skill">
-    <button  (click)="addSkill()"> Add Skill</button>
+    <input class="form-control" type="text" [(ngModel)]="newSkill" 
+    name="newSkill" placeholder="Add New Skill">
+    <button (click)="addNewSkill()"> Add Skill</button>
     </div>
 
 
   <p *ngFor="let skill of Skills">
-    <input type="checkbox"  (click)="SkillsetArray(skill)" name="skill" 
+    <input type="checkbox" name="skill" 
     [(ngModel)]="skill.selected"
-   
+   (change)="SkillsetArray(skill)"
     [value]="skill.value"> {{skill.skill}}
+    <!-- (click)="SkillsetArray(skill)"  -->
   </p>
 
 
@@ -78,7 +80,7 @@
 <!-- </form> -->
   </div> 
 
-<div class="secondpart">
+<!-- <div class="secondpart">
 <div class="form-group">
 <label class="FormInput"> Interviwe Summary </label> 
 <textarea   class="form-control" [(ngModel)]="summary" name="summary" placeholder="Interviwe Summary" > </textarea>
@@ -86,7 +88,7 @@
       <span class="glyphicon glyphicon-plus"></span> Add
       </button>
 </div>
-</div>
+</div> -->
 
   </div>
 </div>

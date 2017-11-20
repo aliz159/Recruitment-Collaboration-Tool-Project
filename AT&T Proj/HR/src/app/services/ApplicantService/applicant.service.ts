@@ -43,7 +43,7 @@ return this.http.post(this.url , body)
     let url = this.url + "/" + id;
      return this.http.get(url);
   }
-  addApplicant(name: string, title: string,
+  addApplicant(name: string, title: string, email:string,
     cv: string,phone:string, experience:number,position:string,
    ) {
 
@@ -51,6 +51,7 @@ return this.http.post(this.url , body)
     let body = {
       Name: name,
        Title: title,
+       Email:email,
         Cv: cv, 
         Phone:phone
         ,YearOfExperience:experience,
@@ -90,6 +91,14 @@ return this.http.post(this.url , body)
      let url = this.urlSkillset;
      let body = { skill: skillset};
     //debugger;
+    return this.http.post(url, body, this.headers).map((res) => {
+      return res.json();
+    });
+  }
+  
+      addApplicantSkills(Id:number,skillset:any){
+     let url = this.urlSkillApplicant;
+     let body = { Id: Id, Skills: skillset};
     return this.http.post(url, body, this.headers).map((res) => {
       return res.json();
     });

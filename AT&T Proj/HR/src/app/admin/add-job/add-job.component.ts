@@ -92,11 +92,9 @@ export class AddJobComponent implements OnInit {
 
 
 
-
   RecruitingMangersList() {
     this.AddManager = true;
   }
-
 
 
 

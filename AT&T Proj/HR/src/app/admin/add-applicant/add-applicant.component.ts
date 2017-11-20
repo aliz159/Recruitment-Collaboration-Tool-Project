@@ -12,13 +12,34 @@ import { Observable } from 'rxjs/Rx';
   styleUrls: ['./add-applicant.component.css']
 })
 export class AddApplicantComponent implements OnInit {
- 
 
- constructor(private jobService: JobService , private ApplicantService: ApplicantService, private http: Http 
-  , private InterviweSummary:InterviewSummaryService ) { }
+  Skills: string[];
+  name: string;
+  email: string;
+  title: string;
+  position: string = "developer";
+  phone: string;
+  experience: number;
+  //cv:string= "CV CV";
+  ApplicantObj: any;
+  summary: string;
+  AddSkillInput: boolean;
+  newSkill: string;
+  skillsArryChecked: any[] = [];
+  IdApp: number;
+  ArraySkills: number[] = [];
+
+  file: File;
+  formData: FormData = new FormData();
+  options: any;
+  apiUrl1: string;
+
+
+  constructor(private jobService: JobService, private ApplicantService: ApplicantService,
+    private http: Http, private InterviweSummary: InterviewSummaryService) { }
 
   ngOnInit() {
-        this.jobService.GetSkillSet().subscribe(rsp => {
+    this.jobService.GetSkillSet().subscribe(rsp => {
       if (rsp.status == 200) {
         this.Skills = rsp.json();
         console.log("Array Skiils From DB");
@@ -29,62 +50,69 @@ export class AddApplicantComponent implements OnInit {
       (err) => {
         console.log("error : " + err);
       });
-
   }
 
-    Skills: string[];
-    name:string;
-    email:string;
-    title:string;
-    position:string = "developer";
-    phone:string;
-    experience:number;
-    //cv:string= "CV CV";
-    ApplicantObj:any[];
-    summary:string;
-    AddSkillInput:boolean;
-    newSkill:string;
-    skillsArryChecked:any[] =[];
-  IdApp:number;
-SendApplicant(myNgForm: any){
-   const req = this.ApplicantService.addApplicant(this.name,this.title,
-    this.file.name,this.phone,this.experience,this.position);
+  SendApplicant(myNgForm: any) {
+    const req = this.ApplicantService.addApplicant(this.name, this.title,
+      this.email, this.file.name, this.phone, this.experience, this.position);
     req.subscribe(rsp => {
-        this.AddCV();
-        console.log("success : " + rsp)
-         window.alert("The Applicat Has Added Succeessfully :)")
-         this.ApplicantObj = rsp;
-         
-         console.log( "Applicant obj",this.ApplicantObj);
+
+      this.ApplicantObj = rsp;
+      //this.AddCV();
+      console.log("Applicant obj is : ");
+      console.log(this.ApplicantObj);
+      //window.alert("The Applicat Has Added Succeessfully :)");
+
+      this.addSkills(this.ApplicantObj.Id);
     },
       (err) => {
         console.log("error : " + err);
       }
-    );}
-ShowaddSkill(){
- this.AddSkillInput =! this.AddSkillInput;
- }
-addSkill(){
-  const req = this.ApplicantService.addSkillset(this.newSkill);
- req.subscribe(rsp =>{ console.log("Skill Added"); 
- this.newSkill = null;
-  },(err)=>{console.log("ERROR: " + err);
- });  
+    );
+  }
 
- }
+  ShowaddSkill() {
+    this.AddSkillInput = !this.AddSkillInput;
+  }
 
+  addSkills(id: number) {
+    const req = this.ApplicantService.addApplicantSkills(id, this.ArraySkills);
+    req.subscribe(rsp => {
+      console.log("Applicant Skills Added Succeessfully");
+      this.newSkill = null;
+    }, (err) => {
+      console.log("ERROR: " + err);
+    });
+  }
 
-  file: File;
-  formData: FormData = new FormData();
-  options: any;
-  apiUrl1: string;
+  SkillsetArray(skill) {
+   if (skill.selected) {
+      this.ArraySkills.push(skill.Id);
+    }
+    else {
+      var removeSkill = this.ArraySkills.indexOf(skill.Id);
+      this.ArraySkills.splice(removeSkill, 1);
+    }
+    console.log(this.ArraySkills)
+  }
+  
+  addNewSkill() {
+    const req = this.ApplicantService.addSkillset(this.newSkill);
+    req.subscribe(rsp => {
+      console.log("New Skill Added Succeessfully");
+      this.newSkill = null;
+    }, (err) => {
+      console.log("ERROR: " + err);
+    });
+  }
+
 
   //preper image data
   fileChange(event: any) {
     let fileList: FileList = event.target.files;
     if (fileList.length > 0) {
       this.file = fileList[0];
-      this.formData.append('uploadFile', this.file,"\\" + this.file.name);
+      this.formData.append('uploadFile', this.file, "\\" + this.file.name);
       let headers = new Headers()
       this.options = new RequestOptions({ headers: headers });
       this.apiUrl1 = "http://localhost:55187/api/UploadFile";
@@ -102,42 +130,15 @@ addSkill(){
       )
   }
 
-addInterviwe(){
+  // addInterviwe() {
 
-  const req = this.ApplicantService.addInterviewSummary( 3,this.ApplicantObj[0].Id, this.summary); 
-  req.subscribe(res =>{ console.log("summery is added successfully")},
-   (err)=>{ console.log("ERROR " + err);
-   })
+  //   const req = this.ApplicantService.addInterviewSummary(3, this.ApplicantObj[0].Id, this.summary);
+  //   req.subscribe(res => { console.log("summery is added successfully") },
+  //     (err) => {
+  //       console.log("ERROR " + err);
+  //     })
 
-}
-
-
-SkillsetArray(skill){
- //let skillChecked = skill;
-
-  console.log(skill);
-  console.log(this.skillsArryChecked);
-  for (var i = 0; i < this.skillsArryChecked.length; i++) {
-   
-   if(skill == this.skillsArryChecked[i]){
-       this.skillsArryChecked.splice(1,skill);
-      console.log("splice"+ this.skillsArryChecked);
-   
-   }
-   
-    else{
-      this.skillsArryChecked.push(skill);
-     console.log(this.skillsArryChecked);
-      console.log("push"+ this.skillsArryChecked);
-    }
-
-    
-  }
-
-
-}
-
-
+  // }
 }
 
 
