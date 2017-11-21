@@ -44,7 +44,7 @@ export class ApplicantComponent implements OnInit {
     private cookiesService: CookiesService,
   private JToAService:JobToApplicantService) {
     debugger;
-    this.ApplicantId = route.snapshot.params['ApplicantId'];
+    this.ApplicantId = route.snapshot.params['id'];
     this.RecruitmentId = route.snapshot.params['RecruitmentId'];
   }
 
@@ -91,10 +91,6 @@ export class ApplicantComponent implements OnInit {
       });
 
 
-
-
-
-
   this.JToAService.GetMatchingJobs(Number(this.ApplicantId)).subscribe(rsp => {
       if (rsp.status == 200) {
         this.MatchingJobsList = rsp.json();
@@ -106,18 +102,9 @@ export class ApplicantComponent implements OnInit {
       (err) => {
         console.log("error : " + err);
       });
-
-
-  
-      
   }
 
   
-
-
-
-
-
   GetApplicantSkills(id: number) {
     this.applicantService.GetApplicantSkills(id).subscribe(rsp => {
       if (rsp.status == 200) {
