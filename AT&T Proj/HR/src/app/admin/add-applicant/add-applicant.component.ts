@@ -63,8 +63,6 @@ private router: Router) { }
       this.AddCV();
       console.log("Applicant obj is : ");
       console.log(this.ApplicantObj);
-      //window.alert("The Applicat Has Added Succeessfully :)");
-
       this.addSkills(this.ApplicantObj.Id);
     },
       (err) => {
@@ -137,15 +135,7 @@ private router: Router) { }
     console.log(id);
     this.router.navigate(['/Applicant', id]);
   }
-  // addInterviwe() {
 
-  //   const req = this.ApplicantService.addInterviewSummary(3, this.ApplicantObj[0].Id, this.summary);
-  //   req.subscribe(res => { console.log("summery is added successfully") },
-  //     (err) => {
-  //       console.log("ERROR " + err);
-  //     })
-
-  // }
 }
 
 
