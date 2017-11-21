@@ -20,18 +20,28 @@ namespace WebApplication1.Controllers.api
         }
 
         [HttpGet]
-        // GET /api/JobToApplicant/1
-        public IHttpActionResult GetJobToApplicant(long id)
+        public IEnumerable<Job> GetJobToApplicant(long id)
         {
-            JobToApplicant jobToApplicant = m_db.JobToApplicant.SingleOrDefault(j => j.Id == id);
-
-            if (jobToApplicant == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(jobToApplicant);
+            var MatchingJob = from JToA in m_db.JobToApplicant
+                                from job in m_db.Jobs
+                                where JToA.ApplicantId == id && job.Id == JToA.JobId
+                                select job;
+            return MatchingJob.AsQueryable();
         }
+
+        //[HttpGet]
+        //// GET /api/JobToApplicant/1
+        //public IHttpActionResult GetJobToApplicant(long id)
+        //{
+        //    JobToApplicant jobToApplicant = m_db.JobToApplicant.SingleOrDefault(j => j.Id == id);
+
+        //    if (jobToApplicant == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return Ok(jobToApplicant);
+        //}
 
         // simple validation
         bool validationIsOk(JobToApplicant jobToApplicant)

@@ -51,6 +51,44 @@ namespace WebApplication1.Controllers.api
                 m_db.SaveChanges();
             }
 
+            int counter = 0;
+            float MatchPassingScore = 0;
+            IEnumerable<SkillsForTheJob> OneJobSkillset;
+            var appSkills = m_db.SkillsOfAnApplicant.Where(a => a.ApplicantId == allskills.Id).ToList();
+            var jobs = (from job in m_db.SkillsForTheJob select job.JobId).Distinct().ToList();
+            JobToApplicant jobToApplicantObj = new JobToApplicant();
+
+            foreach (var job in jobs)
+            {
+                OneJobSkillset = m_db.SkillsForTheJob.Where(J => J.JobId == job).ToList();
+                MatchPassingScore = (OneJobSkillset.Count() * 60) / 100;
+
+                foreach (var jobSkill in OneJobSkillset)
+                {
+                    foreach (var appSkill in appSkills)
+                    {
+                        if (jobSkill.SkillsetsId == appSkill.SkillsetsId)
+                        {
+                            counter++;
+                        }
+                    }
+                }
+
+                if (counter > MatchPassingScore)
+                {
+                    Job Job = m_db.Jobs.SingleOrDefault(j => j.Id == job);
+                    User user = m_db.AllUsers.SingleOrDefault(u => u.Id == Job.UserId);
+
+                    jobToApplicantObj.UserId = user.Id;
+                    jobToApplicantObj.JobId = job;
+                    jobToApplicantObj.ApplicantId = allskills.Id;
+                    m_db.JobToApplicant.Add(jobToApplicantObj);
+                    m_db.SaveChanges();
+
+                    counter = 0;
+                }
+            }
+
             return Request.CreateResponse(HttpStatusCode.OK, "Applicant skills added successfully");
         }
 

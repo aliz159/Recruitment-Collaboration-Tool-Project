@@ -211,7 +211,6 @@ C:\Users\TC14\Desktop\AT&T Project\Recruitment-Collaboration-MVC\WebApplication1
 C:\Users\TC14\Desktop\AT&T Project\Recruitment-Collaboration-MVC\WebApplication1\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\TC14\Desktop\AT&T Project\Recruitment-Collaboration-MVC\WebApplication1\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\TC14\Desktop\AT&T Project\Recruitment-Collaboration-MVC\WebApplication1\bin\Microsoft.AI.Web.xml
-C:\Users\TC14\Desktop\AT&T Project\Recruitment-Collaboration-MVC\WebApplication1\obj\Debug\WebApplication1.csprojResolveAssemblyReference.cache
 C:\Users\TC14\Desktop\AT&T Project\Recruitment-Collaboration-MVC\WebApplication1\obj\Debug\WebApplication1.Migrations.Initial.resources
 C:\Users\TC14\Desktop\AT&T Project\Recruitment-Collaboration-MVC\WebApplication1\obj\Debug\WebApplication1.Migrations.deleteField.resources
 C:\Users\TC14\Desktop\AT&T Project\Recruitment-Collaboration-MVC\WebApplication1\obj\Debug\WebApplication1.Migrations.addField.resources
@@ -220,3 +219,4 @@ C:\Users\TC14\Desktop\AT&T Project\Recruitment-Collaboration-MVC\WebApplication1
 C:\Users\TC14\Desktop\AT&T Project\Recruitment-Collaboration-MVC\WebApplication1\obj\Debug\WebApplication1.csproj.CoreCompileInputs.cache
 C:\Users\TC14\Desktop\AT&T Project\Recruitment-Collaboration-MVC\WebApplication1\obj\Debug\WebApplication1.dll
 C:\Users\TC14\Desktop\AT&T Project\Recruitment-Collaboration-MVC\WebApplication1\obj\Debug\WebApplication1.pdb
+C:\Users\TC14\Desktop\AT&T Project\Recruitment-Collaboration-MVC\WebApplication1\obj\Debug\WebApplication1.csprojResolveAssemblyReference.cache

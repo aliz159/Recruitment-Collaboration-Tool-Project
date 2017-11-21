@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ApplicantService } from "../../services/ApplicantService/applicant.service";
 import { ActivatedRoute } from "@angular/router";
 import { UserService } from "../../services/UsersService/user.service";
-UserService
+import { JobToApplicantService } from "../../services/JobToApplicantService/job-to-applicant.service";
+
+
 @Component({
   selector: 'app-applicant',
   templateUrl: './applicant.component.html',
@@ -20,10 +22,12 @@ export class ApplicantComponent implements OnInit {
   YearOfExperience: number;
   CV: string;
   isPublished:boolean; 
+  MatchingJobsList:any;
 
   ngOnInit() {}
   constructor(private route: ActivatedRoute, private userService: UserService,
-    private applicantService: ApplicantService) {
+    private applicantService: ApplicantService, 
+    private JToAService:JobToApplicantService) {
           this.id = route.snapshot.params['id'];
 
     this.applicantService.GetOneApplicant(this.id).subscribe(rsp => {
@@ -41,6 +45,19 @@ export class ApplicantComponent implements OnInit {
         this.CV = this.applicantsObj.Cv;
         this.isPublished = this.applicantsObj.IsPublished;
   
+    },
+      (err) => {
+        console.log("error : " + err);
+      });
+
+
+      this.JToAService.GetMatchingJobs(this.id).subscribe(rsp => {
+      if (rsp.status == 200) {
+        this.MatchingJobsList = rsp.json();
+        console.log("Matching Jobs List: =>");
+        console.log(this.MatchingJobsList);
+      }
+      else { console.log("server responded error : " + rsp); }
     },
       (err) => {
         console.log("error : " + err);

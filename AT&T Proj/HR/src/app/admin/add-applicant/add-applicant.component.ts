@@ -4,6 +4,7 @@ import { ApplicantService } from "../../services/ApplicantService/applicant.serv
 import { InterviewSummaryService } from "../../services/InterviewSummaryService/interview-summary.service";
 import { Http, RequestOptions, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -36,7 +37,8 @@ export class AddApplicantComponent implements OnInit {
 
 
   constructor(private jobService: JobService, private ApplicantService: ApplicantService,
-    private http: Http, private InterviweSummary: InterviewSummaryService) { }
+    private http: Http, private InterviweSummary: InterviewSummaryService,
+private router: Router) { }
 
   ngOnInit() {
     this.jobService.GetSkillSet().subscribe(rsp => {
@@ -58,7 +60,7 @@ export class AddApplicantComponent implements OnInit {
     req.subscribe(rsp => {
 
       this.ApplicantObj = rsp;
-      //this.AddCV();
+      this.AddCV();
       console.log("Applicant obj is : ");
       console.log(this.ApplicantObj);
       //window.alert("The Applicat Has Added Succeessfully :)");
@@ -80,6 +82,7 @@ export class AddApplicantComponent implements OnInit {
     req.subscribe(rsp => {
       console.log("Applicant Skills Added Succeessfully");
       this.newSkill = null;
+      this.RouteToSeeApplicant(this.ApplicantObj.Id);
     }, (err) => {
       console.log("ERROR: " + err);
     });
@@ -122,14 +125,18 @@ export class AddApplicantComponent implements OnInit {
   //add file (image) to folder
   AddCV() {
     this.http.post(this.apiUrl1, this.formData, this.options)
-      .map(res => res.json())
+      .map(res => res)
       .catch(error => Observable.throw(error))
       .subscribe(
       data => console.log('success'),
       error => console.log(error)
       )
   }
-
+  RouteToSeeApplicant(id: number) {
+    console.log("=>>>>>>"); 
+    console.log(id);
+    this.router.navigate(['/Applicant', id]);
+  }
   // addInterviwe() {
 
   //   const req = this.ApplicantService.addInterviewSummary(3, this.ApplicantObj[0].Id, this.summary);
