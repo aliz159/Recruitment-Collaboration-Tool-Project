@@ -23,9 +23,9 @@ namespace WebApplication1.Controllers.api
         public IEnumerable<Job> GetJobToApplicant(long id)
         {
             var MatchingJob = from JToA in m_db.JobToApplicant
-                                from job in m_db.Jobs
-                                where JToA.ApplicantId == id && job.Id == JToA.JobId
-                                select job;
+                              from job in m_db.Jobs
+                              where JToA.ApplicantId == id && job.Id == JToA.JobId
+                              select job;
             return MatchingJob.AsQueryable();
         }
 

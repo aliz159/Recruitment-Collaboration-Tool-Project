@@ -19,22 +19,31 @@ namespace WebApplication1.Controllers.api
             return m_db.SummaryOfInterview.AsEnumerable();
         }
 
+        // /api/InterviewSummary
+        [HttpGet]
+        public IEnumerable<InterviewSummary> GetApplicantInterviewSummaries(long id)
+        {
+            return m_db.SummaryOfInterview.Where(s => s.ApplicantId == id).AsEnumerable();
+        }
+
         [HttpGet]
         // GET /api/InterviewSummary/1
-        public IHttpActionResult GetInterviewSummary(long Id)
-        {
-            List<InterviewSummary> summary = m_db.SummaryOfInterview.Where(s => s.ApplicantId == Id).ToList();
-            if (summary == null)
-            {
-                return NotFound();
-            }
-            return Ok(summary);
-        }
+        //public IHttpActionResult GetInterviewSummary(long id)
+        //{
+        //    InterviewSummary summary = m_db.SummaryOfInterview.SingleOrDefault(s => s.Id == id);
+
+        //    if (summary == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return Ok(summary);
+        //}
 
         // simple validation
         bool validationIsOk(InterviewSummary summary)
         {
-            return !string.IsNullOrEmpty(summary.Summary);
+            return !string.IsNullOrEmpty(summary.Summary) && !string.IsNullOrEmpty(summary.RecruiterName);
         }
 
         // POST /api/InterviewSummary
@@ -72,6 +81,7 @@ namespace WebApplication1.Controllers.api
 
             string CurrentDate = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
             summary.Date = CurrentDate;
+            summary.RecruiterName = s.RecruiterName;
             summary.UserId = s.UserId;
             summary.ApplicantId = s.ApplicantId;
             summary.Summary = s.Summary;

@@ -9,6 +9,7 @@ namespace WebApplication1.Models
     {
         public long Id { get; set; } //Primary key
         public long UserId { get; set; } //Foreign key
+        public string RecruiterName { get; set; } //Foreign key
         public long ApplicantId { get; set; } //Foreign key
         public string Summary { get; set; }
         public string Date { get; set; }

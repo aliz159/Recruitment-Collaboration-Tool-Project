@@ -16,13 +16,13 @@ namespace WebApplication1.Controllers.api
         [HttpGet]
         public IEnumerable<Job> GetJobs()
         {
-            return m_db.Jobs.Where(a => a.IsActive == true).AsEnumerable();
+            return m_db.Jobs.Where(job => job.IsActive == true).AsEnumerable();
         }
 
         //[HttpGet]
         //public IEnumerable<Job> GetJobsInArchives()
         //{
-        //    return m_db.Applicants.Where(a => a.IsActive == false).AsEnumerable();
+            //return m_db.Jobs.Where(job => job.IsActive == false).AsEnumerable();
         //}
 
 
@@ -38,12 +38,6 @@ namespace WebApplication1.Controllers.api
             return Ok(job);
         }
 
-        [HttpPatch]
-        public IEnumerable<Job> GetRecruiterJobs(User user)
-        {
-            return m_db.Jobs.Where(job => job.UserId == user.Id && job.IsActive == true).AsEnumerable();
-        }
-
         // simple validation
         bool validationIsOk(Job job)
         {
@@ -51,6 +45,12 @@ namespace WebApplication1.Controllers.api
                 && !string.IsNullOrEmpty(job.Requirements) && !string.IsNullOrEmpty(job.strUniqueID)
                 && !string.IsNullOrEmpty(job.Position);
             return ValidationIsOk;
+        }
+
+        [HttpPatch]
+        public IEnumerable<Job> GetRecruiterJobs(User user)
+        {
+            return m_db.Jobs.Where(job => job.UserId == user.Id && job.IsActive == true).AsEnumerable();
         }
 
         //POST /api/Job

@@ -24,9 +24,9 @@ namespace WebApplication1.Controllers.api
         public IEnumerable<Skillset> GetApplicantSkills(long id)
         {
             var appSkillsList = from appSkill in m_db.SkillsOfAnApplicant
-                                from skill in m_db.Skillset                          
-                           where appSkill.ApplicantId == id && appSkill.SkillsetsId == skill.Id
-                           select skill;
+                                from skill in m_db.Skillset
+                                where appSkill.ApplicantId == id && appSkill.SkillsetsId == skill.Id
+                                select skill;
             return appSkillsList.AsQueryable();
         }
 

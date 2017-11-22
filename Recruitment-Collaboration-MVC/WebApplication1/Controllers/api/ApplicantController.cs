@@ -42,12 +42,12 @@ namespace WebApplication1.Controllers.api
         [HttpPatch]
         public IEnumerable<Applicant> GetRecruiterApplicants(User user)
         {
-            var CampList = from applicant in m_db.Applicants
+            var appList = from applicant in m_db.Applicants
                            from jTOa in m_db.JobToApplicant
-                           where jTOa.UserId == user.Id && jTOa.ApplicantId == applicant.Id 
+                           where jTOa.UserId == user.Id && jTOa.ApplicantId == applicant.Id
                            && applicant.IsPublished != false && applicant.IsActive != false
                            select applicant;
-            return CampList.AsQueryable();
+            return appList.AsQueryable();
         }
 
         // simple validation
@@ -55,7 +55,7 @@ namespace WebApplication1.Controllers.api
         {
             return !string.IsNullOrEmpty(applicant.Name) && !string.IsNullOrEmpty(applicant.Title) &&
                  !string.IsNullOrEmpty(applicant.Cv) && !string.IsNullOrEmpty(applicant.Position) &&
-                 !string.IsNullOrEmpty(applicant.Phone);
+                 !string.IsNullOrEmpty(applicant.Phone) && !string.IsNullOrEmpty(applicant.NameWhoLocked);
         }
 
         // POST /api/Applicant
@@ -70,11 +70,12 @@ namespace WebApplication1.Controllers.api
             applicant.IsLocked = false;
             applicant.IsActive = true;
             applicant.UserIdLockedBy = -1;
+            applicant.NameWhoLocked = null;
             applicant.InterviewDate = null;
             applicant.StatusAfterInterview = null;
             m_db.Applicants.Add(applicant);
             m_db.SaveChanges();
-           
+
             return CreatedAtRoute("DefaultApi", new { id = applicant.Id }, applicant);
         }
 
@@ -103,6 +104,7 @@ namespace WebApplication1.Controllers.api
             applicant.Cv = a.Cv;
             applicant.IsLocked = a.IsLocked;
             applicant.UserIdLockedBy = a.UserIdLockedBy;
+            applicant.NameWhoLocked = a.NameWhoLocked;
             applicant.IsPublished = a.IsPublished;
             applicant.IsActive = a.IsActive;
             applicant.InterviewDate = a.InterviewDate;

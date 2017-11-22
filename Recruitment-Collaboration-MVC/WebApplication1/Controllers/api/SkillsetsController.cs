@@ -51,8 +51,7 @@ namespace WebApplication1.Controllers.api
             Skillset Skillset = m_db.Skillset.SingleOrDefault(s => s.skill == skill.skill);
             if (Skillset != null)
             {
-                return Request.CreateResponse(HttpStatusCode.Forbidden, "Skill already exists");
-
+                return Request.CreateResponse(HttpStatusCode.Forbidden, "Skill already exist");
             }
 
             m_db.Skillset.Add(skill);

@@ -13,6 +13,7 @@ namespace WebApplication1.Models
         public string Cv { get; set; }
         public bool IsLocked { get; set; }
         public long UserIdLockedBy { get; set; } //Foreign key
+        public string NameWhoLocked { get; set; } 
         public bool IsPublished { get; set; }
         public bool IsActive { get; set; }
         public int YearOfExperience { get; set; }
