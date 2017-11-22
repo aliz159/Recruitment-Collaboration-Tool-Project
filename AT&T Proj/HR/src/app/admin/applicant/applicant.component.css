@@ -1,9 +1,12 @@
-.publishBtn{
-   width: 8%;
+.publishBtn, .interviewBtn{
+   /* width: 8%; */
     height: 29px;
-    border: 1px solid blue;
-    margin-top: -1%;
-    margin-left: 89%;
+    border: 1px solid black;
+    float: right;
+    margin-right: 2%;
+    color:black;
+    /* margin-top: -1%;
+    margin-right: 2%; */
 }
 .card{
     margin-top: 8%;
@@ -11,12 +14,12 @@
     margin-left: 19%;
 }
 .labelSummary{
-    font-size: 24px;  
-    margin-left: 6%;
+    font-size: 20px;  
+    margin-left: 2%;
 }
 .textAreaSummaray{
     width: 87%;
-    margin-left: 6%;
+    margin-left: 2%;
     height: 91px;
 }
 .addSummarayButtom{
@@ -27,6 +30,13 @@
     margin-top: 3%;
     margin-left: 79%;
 }
+
+#lockIcon, #unlockIcon, #deleteIcon, #pencilIcon{
+    padding-right: 4%;
+    font-size: 184%;
+    color: black;
+    float: right;
+}
 p{
     color: black;
     margin-left: 6%;
@@ -35,10 +45,11 @@ p{
 h1{
      color: black;
     margin-left: 38%;
+    font-weight: bold;
 }
 h3{
      color: black;
-    margin-left: 30%;
+    margin-left: 5%;
 }
 .CommentManagers{
      border: 1px solid rgb(185,198,217);
@@ -46,13 +57,28 @@ h3{
     margin-left: 6%;
 }
 .skills{
-       display: table-cell;
+    color: black;
+    margin-left: 6%;
+    font-size: 20px;
 }
 .SummaryCard{
     width: 87%;
-    margin-left: 6%;
+    margin-left: 2%;
+    margin-top: -1%;
 }
 .JobCard{
     margin-left: 2%;
     width: 96%;
 }
+.card-text, .card-title{
+    margin-left:1%;
+     margin-top:2%;
+}
+        #title{
+    margin-left:40%;
+     margin-top:2%;
+    }
+    #text{
+    margin-left:5%;
+     margin-top:2%;
+    }

@@ -96,6 +96,7 @@ namespace WebApplication1.Controllers.api
 
             applicant.Name = a.Name;
             applicant.Title = a.Title;
+            applicant.Email = a.Email;
             applicant.Position = a.Position;
             applicant.Phone = a.Phone;
             applicant.YearOfExperience = a.YearOfExperience;

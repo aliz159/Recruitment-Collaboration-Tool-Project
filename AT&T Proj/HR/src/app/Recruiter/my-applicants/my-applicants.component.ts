@@ -39,23 +39,37 @@ export class MyApplicantsComponent implements OnInit {
   GetRecruiterApplicants() {
     this.ApplicantService.GetRecruiterApplicants(this.recruiterObj.Id, this.recruiterObj.Name,
       this.recruiterObj.Email, this.recruiterObj.Password, this.recruiterObj.UserType).subscribe(rsp => {
-          this.recruiterApplicants = rsp;
-          console.log("all the allJobToApplicant:");
-          console.log(this.recruiterApplicants);
+        this.recruiterApplicants = rsp;
+        console.log("all the allJobToApplicant:");
+        console.log(this.recruiterApplicants);
       },
       (err) => {
         console.log("error : " + err);
       });
   }
 
-  SeeApplicant(applicant: any) {
-    console.log("=>>>>>>"); 
-    console.log(applicant);
-    console.log(this.recruiterID);
-    debugger;
-    this.router.navigate(['/Applicant', applicant.Id,this.recruiterID]);
+    LockApplicant(applicant: any) {
+    if (applicant.IsLocked != true) {
+      const req = this.ApplicantService.editApplicant(applicant.Id, applicant.Name, applicant.Title, applicant.Phone,
+        applicant.Email, applicant.YearOfExperience, applicant.Position, applicant.Cv, true, this.recruiterID,
+        this.recruiterObj.Name, applicant.IsPublished, applicant.IsActive, applicant.InterviewDate, applicant.StatusAfterView);
+      req.subscribe(rsp => {
+        window.alert("Applicant locked succssfully");
+        console.log("Applicant locked succssfully")
+      },
+        (err) => { console.log(err); }
+      );
+    }
+    else {
+      window.alert("Applicant is already locked");
+    }
   }
-  lockApplicant() {
-    window.alert("lock Applicant");
+
+  SeeApplicant(applicant: any) {
+    this.router.navigate(['/Applicant', applicant.Id, this.recruiterID]);
+  }
+  EditApplicant(applicantId: any) {
+    this.router.navigate(['/EditApplicant', applicantId]);
+    window.alert("editAPP");
   }
 }

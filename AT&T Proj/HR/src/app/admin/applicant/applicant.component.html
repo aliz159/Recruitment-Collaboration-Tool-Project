@@ -1,79 +1,84 @@
 <div class="card text-primary border-primary">
     <!-- <button class="publishBtn" (click)="Publish()" *ngIf="isPublished == false">Publish</button> -->
+
+    <!-- <span class="glyphicon glyphicon-lock" (click)="LockApplicant()" 
+    data-toggle="tooltip" title="Lock Applicant!"></span> -->
+
     <div class="card-body">
-        <h1 class="card-title">{{Name}}</h1>
+        <h1 class="card-title" id="title">{{Name}}</h1>
+        <button class="interviewBtn" (click)="SetInterviewDate()" *ngIf="IsLocked == true && showAddSummary == true && interviewDate == null">
+        Add interview date</button>
+
         <button class="publishBtn" (click)="Publish()" *ngIf="isPublished == false">Publish</button>
-        <p class="card-text">
-        <span class="glyphicon glyphicon-envelope"></span> {{Email}}<br>
-        
-        <span class="glyphicon glyphicon-phone"></span> {{Phone}}<br> 
-        Position : {{Position}}<br> 
-        Year Of Experience : {{YearOfExperience}}
-            <br>
+
+        <span id="lockIcon" *ngIf="IsLocked == true" class="glyphicon glyphicon-lock" (click)="LockApplicant()" data-toggle="tooltip"
+            title="Locked by {{nameWhoLocked}}"></span>
+        <span id="unlockIcon" *ngIf="IsLocked == false" class="fa fa-unlock-alt" (click)="LockApplicant()" data-toggle="tooltip"
+            title="Lock Applicant"></span>
+
+        <span id="deleteIcon" class="glyphicon glyphicon-trash" *ngIf="!SummaryRecruitment" data-toggle="tooltip" title="Delete Applicant!"></span>
+
+        <span id="pencilIcon" class="glyphicon glyphicon-pencil" (click)="EditApplicant()" data-toggle="tooltip" title="Edit Applicant!"></span>
+
+
+        <p class="card-text" id="text">
+            <span class="glyphicon glyphicon-envelope"></span> {{Email}}<br><br>
+
+            <span class="glyphicon glyphicon-phone"></span> {{Phone}}<br><br>
+            <strong>Position </strong> : {{Position}}<br><br>
+            <strong>Year Of Experience </strong> : {{YearOfExperience}}<br><br>
         </p>
-        <div>
-            <p class ="skills">Skills :<p>
-             <p class ="skills" *ngFor="let s of skillsObj">
-            {{s.skill}},<br>
-             </p>
+
+        <div class="skills">
+            <ins>List of skills : </ins>
+            <ul *ngFor="let skill of skillsObj">
+                <li> {{skill.skill}}</li>
+            </ul>
         </div>
+
         <br>
         <p>
-        <span class="glyphicon glyphicon-download"></span>
-        <a href="http://localhost:55187/UploadedCV's/38971.doc" download>click to download CV</a><br>
+            <span class="glyphicon glyphicon-download"></span>
+            <a href="http://localhost:55187/UploadedCV's/{{CV}}" download>click to download CV</a><br>
         </p>
-        
-       
+
+        <h3>
+            <br>
+            <ins>Here Are The Matching Jobs List :</ins>
+        </h3>
+
+        <div class="card JobCard">
+            <div class="card-block" *ngFor="let job of MatchingJobsList">
+                <p class="card-text">
+                    <strong> Name : </strong> {{job.Name}}<br>
+                    <strong>  Position : </strong> {{job.Position}}<br/>
+                    <strong> Year Of Experience: </strong> {{job.YearOfExperience}}<br/>
+                    <strong>Description:</strong> {{job.Description}}<br/>
+                    <strong>Requirements:</strong> {{job.Requirements}}<br/><br/><br/>
+
+                </p>
+            </div>
+        </div><br/>
+
+        <label class="labelSummary">Summaries of the applicant's interviews</label>
+        <div class="card SummaryCard">
+            <div class="card-block" *ngFor="let summary of SummaryObj">
+                <h4 class="card-title">{{summary.Date}},   by recruiter : {{summary.RecruiterName}}</h4>
+                <p class="card-text"><i>{{summary.Summary}}</i></p>
+            </div>
+        </div><br/>
 
 
-<h3>
-    <span class="glyphicon glyphicon-lock"></span>
-    Here Are The Matching Jobs List : 
-</h3>
-  
-<div class="card JobCard">
-  <div class="card-block" *ngFor="let job of MatchingJobsList">
-    <p class="card-text">
-        <strong> Name : </strong> {{job.Name}}<br>
-        <strong>  Position : </strong> {{job.Position}}<br/>
-        <strong> Year Of Experience: </strong> {{job.YearOfExperience}}<br/>
-        <strong>Description:</strong> {{job.Description}}<br/>
-        <strong>Requirements:</strong> {{job.Requirements}}<br/><br/><br/>
-        
-       </p>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <div class="secondpart" *ngIf="SummaryRecruitment">
-        <div class="form-group">
-            <label class="labelSummary"> Interview Summary </label>
-            <textarea class="form-control textAreaSummaray" [(ngModel)]="Summary" name="summary" placeholder="Interviwe Summary"> </textarea>
-            <button class="addSummarayButtom" (click)="addInterviwe()"> 
+        <div class="secondpart" *ngIf="SummaryRecruitment&&showAddSummary">
+            <div class="form-group">
+                <label class="labelSummary"> Add an interview summary </label>
+                <textarea class="form-control textAreaSummaray" [(ngModel)]="Summary" name="summary" placeholder="Interviwe Summary"></textarea>
+                <button class="addSummarayButtom" (click)="addInterview()"> 
       <span class="glyphicon glyphicon-plus"></span>
        Add Summary
       </button>
+            </div>
         </div>
-    </div><br/><br/> 
 
-
-
-<div class="card SummaryCard">
-  <div class="card-block" *ngFor="let summary of SummaryObj">
-    <h4 class="card-title">{{summary.UserId}}  {{summary.Date}}</h4>
-    <p class="card-text">{{summary.Summary}}</p>
-  </div>
-</div>
-
-
-</div>
+    </div>
 </div>

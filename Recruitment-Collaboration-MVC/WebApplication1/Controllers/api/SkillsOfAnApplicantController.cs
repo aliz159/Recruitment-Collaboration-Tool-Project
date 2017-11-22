@@ -40,6 +40,11 @@ namespace WebApplication1.Controllers.api
         [HttpPost]
         public HttpResponseMessage CreateSkillsOfAnApplicant(AllSkills allskills)
         {
+            if (allskills.Id <= 0)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+
             SkillsOfAnApplicant skill = new SkillsOfAnApplicant();
 
             foreach (var skillId in allskills.Skills)

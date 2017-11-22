@@ -40,7 +40,7 @@ const appRoutes: Routes = [
   { path: 'AddJob', component: AddJobComponent },
   { path: 'AddApplicant', component: AddApplicantComponent },
   { path: 'EditJob', component: EditJobComponent },
-  { path: 'EditApplicant', component: EditApplicantComponent },
+  { path: 'EditApplicant/:id', component: EditApplicantComponent },
   { path: 'MyApplicants/:id', component: MyApplicantsComponent },
   
 ];

@@ -30,6 +30,16 @@ export class JobService {
   GetReccruitersManager(){
     return this.http.get(this.urlReccruitersManager);
   }  
+    GetRecruiterJobs(id: number, name: string, email: string,
+    password: string, userType: string) {
+    let url = this.url;
+    let body = { Id: id, Name: name, Email: email, Password: password,
+                 UserType: userType };
+    return this.http.patch(url, body, this.headers).map((res) => {
+      return res.json();
+    });
+  }
+
   addJob(userId: number,uniqueID:string, name: string,position:string, description: string,
     YearsExperience:number, requirements: string, isActive: boolean) {
     debugger;

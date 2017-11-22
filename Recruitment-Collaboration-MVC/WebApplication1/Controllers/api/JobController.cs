@@ -38,6 +38,12 @@ namespace WebApplication1.Controllers.api
             return Ok(job);
         }
 
+        [HttpPatch]
+        public IEnumerable<Job> GetRecruiterJobs(User user)
+        {
+            return m_db.Jobs.Where(job => job.UserId == user.Id && job.IsActive == true).AsEnumerable();
+        }
+
         // simple validation
         bool validationIsOk(Job job)
         {

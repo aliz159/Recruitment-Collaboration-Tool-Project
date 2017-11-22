@@ -11,10 +11,9 @@ import { Router } from "@angular/router";
 })
 export class AllApplicantsComponent implements OnInit {
   allApplicant: any;
-
+  lock = false;
   constructor(public applicantService: ApplicantService,
     private router: Router) {
-    // this.getAllApplicants();
   }
 
   ngOnInit() {
@@ -35,24 +34,42 @@ export class AllApplicantsComponent implements OnInit {
       });
   }
 
-
-Publish(applicant: any){
-    this.applicantService.editApplicant(applicant.Id, applicant.Name, applicant.Title, 
-      applicant.Phone, applicant.Email, applicant.YearOfExperience,applicant.Position, applicant.Cv, 
-      applicant.IsLocked, applicant.UserIdLockedBy,true, 
+  //Updating the applicant's publication in the database
+  Publish(applicant: any) {
+    this.applicantService.editApplicant(applicant.Id, applicant.Name, applicant.Title,
+      applicant.Phone, applicant.Email, applicant.YearOfExperience, applicant.Position, applicant.Cv,
+      applicant.IsLocked, applicant.UserIdLockedBy, applicant.NameWhoLocked ,true,
       applicant.IsActive, applicant.InterviewDate, applicant.StatusAfterInterview).subscribe(rsp => {
-        console.log(rsp.json());     
-    },
+        console.log(rsp.json());
+      },
       (err) => {
         console.log("error : " + err);
       });
-}
+  }
 
   SeeApplicant(id: number) {
-    console.log("=>>>>>>"); console.log(id);
     this.router.navigate(['/Applicant', id]);
   }
-  lockApplicant() {
+
+  LockApplicant(applicant: any) {
     window.alert("lock Applicant");
+    if(applicant.IsLocked != true){
+    const req = this.applicantService.editApplicant(applicant.Id, applicant.Name, applicant.Title, applicant.Phone,
+      applicant.Email, applicant.YearOfExperience, applicant.Position, applicant.Cv, true, applicant.UserIdLockedBy,
+      applicant.NameWhoLocked ,applicant.IsPublished, applicant.IsActive, applicant.InterviewDate, applicant.StatusAfterView);
+    req.subscribe(rsp => {
+      console.log("Edited succssfully ")
+    },
+      (err) => { console.log(err); }
+    );
+    }
+  else{
+        window.alert("Applicant is already locked");
+  } 
+  }
+
+  EditApplicant(applicantId: any) {
+    this.router.navigate(['/EditApplicant', applicantId]);
+    window.alert("editAPP");
   }
 }

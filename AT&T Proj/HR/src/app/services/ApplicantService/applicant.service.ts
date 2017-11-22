@@ -38,21 +38,16 @@ export class ApplicantService {
 
   GetRecruiterApplicants(id: number, name: string, email: string,
     password: string, userType: string) {
-
     let url = this.url;
-    let body = {
-      Id: id, Name: name, Email: email, Password: password,
-      UserType: userType
-    };
-
+    let body = { Id: id, Name: name, Email: email, Password: password,
+                  UserType: userType };
     return this.http.patch(url, body, this.headers).map((res) => {
       return res.json();
     });
   }
 
   addApplicant(name: string, title: string, email: string,
-    cv: string, phone: string, experience: number, position: string,
-  ) {
+    cv: string, phone: string, experience: number, position: string) {
 
     let url = this.url;
     let body = {
@@ -72,14 +67,15 @@ export class ApplicantService {
 
   editApplicant(Id: number, name: string, title: string, phone: string,
     email: string, experience: number, position: string, cv: string,
-    isLocked: boolean, userIdLockedBy: number, isPublished: boolean,
-    isActive: boolean, interviewDate: string, statusAfterInterview: string) {
+    isLocked: boolean, userIdLockedBy: number, nameWhoLocked:string, 
+    isPublished: boolean, isActive: boolean, interviewDate: string, 
+    statusAfterInterview: string) {
 
     let url = this.url + "/" + Id;
     let body = {
       id: Id, Name: name, Title: title, Phone: phone, Email: email,
       YearOfExperience: experience, Position: position, Cv: cv,
-      IsLocked: isLocked, UserIdLockedBy: userIdLockedBy,
+      IsLocked: isLocked, UserIdLockedBy: userIdLockedBy, NameWhoLocked: nameWhoLocked,
       IsPublished: isPublished, IsActive: isActive, InterviewDate: interviewDate,
       StatusAfterInterview: statusAfterInterview
     };
@@ -113,6 +109,7 @@ export class ApplicantService {
       return res.json();
     });
   }
+
 
   addInterviewSummary(userId: number, applicantId: number, summary: string) {
 

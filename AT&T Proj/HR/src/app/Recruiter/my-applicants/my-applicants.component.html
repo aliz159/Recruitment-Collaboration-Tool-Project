@@ -11,14 +11,16 @@
 <div class="card" *ngFor="let applicant of recruiterApplicants"
  style="width: 25rem; margin-left:20%;" (click)="SeeApplicant(applicant)">
     <h4 class="card-title">{{applicant.Name}}
-    <span class="glyphicon glyphicon-lock" (click)="lockApplicant()"
-    href="#" data-toggle="tooltip" title="Lock Applicant!"></span>
+
+            <span *ngIf="applicant.IsLocked == true" class="glyphicon glyphicon-lock" (click)="LockApplicant(applicant)" 
+    data-toggle="tooltip" title="Locked by {{applicant.NameWhoLocked}}"></span>
+
+      <span *ngIf="applicant.IsLocked == false" class="fa fa-unlock-alt" (click)="LockApplicant(applicant)" 
+      data-toggle="tooltip" title="Lock Applicant"></span>
     </h4>
-    <p class="card-text">{{applicant.Title}}
-     <span class="glyphicon glyphicon-trash"
-     href="#" data-toggle="tooltip" title="Delete Applicant!"></span> 
+    <p class="card-text">{{applicant.Title}} 
       <span class="glyphicon glyphicon-pencil"
-      href="#" data-toggle="tooltip" title="Edit Applicant!"></span>
+      (click)="EditApplicant(applicant.Id)" data-toggle="tooltip" title="Edit Applicant!"></span>
     </p>
     <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
 </div>
