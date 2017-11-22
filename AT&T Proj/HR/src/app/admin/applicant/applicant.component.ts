@@ -42,6 +42,8 @@ export class ApplicantComponent implements OnInit {
   MatchingJobsList: any;
   showAddSummary = false;
   showCalander = false;
+  ShowStatusInterview = false;
+  ClickedPass = false;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -50,7 +52,6 @@ export class ApplicantComponent implements OnInit {
     private SummaryService: InterviewSummaryService,
     private cookiesService: CookiesService,
     private JToAService: JobToApplicantService) {
-    debugger;
     this.ApplicantId = route.snapshot.params['id'];
     this.RecruitmentId = route.snapshot.params['RecruitmentId'];
   }
@@ -77,7 +78,6 @@ export class ApplicantComponent implements OnInit {
       if (rsp.status == 200) {
         this.applicantsObj = rsp.json();
         this.GetApplicantSkills(this.applicantsObj.Id);
-
         this.GetApplicantInterview(Number(this.ApplicantId));
 
         console.log("this.applicantsObj");
@@ -176,7 +176,7 @@ export class ApplicantComponent implements OnInit {
     debugger;
     let applicant = this.applicantsObj;
     this.applicantService.editApplicant(applicant.Id, applicant.Name, applicant.Title,
-      applicant.Phone, applicant.Email, applicant.YearOfExperience, applicant.Position, applicant.Cv,
+      applicant.Phone, applicant.Email, this.applicantsObj.YearOfExperience, applicant.Position, applicant.Cv,
       applicant.IsLocked, applicant.UserIdLockedBy, applicant.NameWhoLocked, true,
       applicant.IsActive, applicant.InterviewDate, applicant.StatusAfterInterview).subscribe(rsp => {
         console.log(rsp.json());
@@ -228,12 +228,74 @@ export class ApplicantComponent implements OnInit {
     }
   }
 
+
+
+
+
+  //update in db applicant IsActive==false
+  Fail_Applicant() {
+     this.AddStatusInterview("Fail");
+  }
+
+  //send an email to HR + add Summary
+  Pass_Applicant() {   
+    this.AddStatusInterview("Pass")
+    debugger;
+    this.ClickedPass = true;
+  }
+
+  //rolle down to add summary + add summary
+  NotRelevant_Applicant() {  
+    this.AddStatusInterview("Not Relevant")
+  }
+
+  AddStatusInterview(status:string) {
+this.applicantService.editApplicant(this.ApplicantId,
+      this.applicantsObj.Name, this.applicantsObj.Title,
+      this.applicantsObj.Phone, this.applicantsObj.Email,
+      this.applicantsObj.Experience, this.applicantsObj.Position,
+      this.applicantsObj.Cv, true, this.applicantsObj.UserIdLockedBy,
+      this.applicantsObj.NameWhoLocked, true, false,
+      this.interviewDate, status)
+      .subscribe(rsp => {
+        window.alert("Your choice: "+status+" was accepted");
+        console.log("");
+        this.IsLocked = true;
+        //else { console.log("server responded error : " + rsp); }
+      },
+      (err) => { console.log(err); }
+      );
+  }
+
+
+
+bb = "yaffa2077@gmail.com";
+
+
+
   EditApplicant() {
     this.router.navigate(['/EditApplicant', this.applicantsObj.Id]);
     window.alert("editAPP");
   }
 
-  SetInterviewDate(){  
+  SetInterviewDate() {
     this.showCalander = !this.showCalander;
-   }
+    debugger;
+    this.applicantService.editApplicant(Number(this.ApplicantId),
+      this.applicantsObj.Name, this.applicantsObj.Title,
+      this.applicantsObj.Phone, this.applicantsObj.Email,
+      this.applicantsObj.YearOfExperience,this.applicantsObj.Position,
+      this.applicantsObj.Cv, this.applicantsObj.IsLocked, 
+      this.applicantsObj.UserIdLockedBy,
+      this.applicantsObj.NameWhoLocked, true, false,
+      this.interviewDate, "")
+      .subscribe(rsp => {
+        window.alert("You Set an interview date");
+        //console.log("Applicant locked succssfully");
+        this.ShowStatusInterview = true;
+        //else { console.log("server responded error : " + rsp); }
+      },
+      (err) => { console.log(err); }
+      );
+  }
 }

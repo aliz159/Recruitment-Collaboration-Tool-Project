@@ -1,12 +1,12 @@
 .publishBtn, .interviewBtn{
-   /* width: 8%; */
-    height: 29px;
+      height: 30px;
     border: 1px solid black;
     float: right;
     margin-right: 2%;
-    color:black;
-    /* margin-top: -1%;
-    margin-right: 2%; */
+    padding-left: 1%;
+    padding-right: 1%;
+    color: black;
+    margin-top: 2px;
 }
 .card{
     margin-top: 8%;
@@ -32,8 +32,9 @@
 }
 
 #lockIcon, #unlockIcon, #deleteIcon, #pencilIcon{
-    padding-right: 4%;
-    font-size: 184%;
+padding-right: 4%;
+    font-size: 227%;
+    margin-top: -5%;
     color: black;
     float: right;
 }
@@ -87,6 +88,15 @@ h3{
     font-size: 101%;
     font-weight: bold;
     height: 0%;
-    margin-left: 63%; 
-    margin-top: 2%;   
+    margin-left: 61%; 
+    margin-top: 0%;   
+    display: inline-block;
+}
+.btn{
+    text-align: center;
+    width: 11%;
+    margin-left: 3%
+}
+.DivBtn{
+        margin-top: -6%;
 }

@@ -6,25 +6,48 @@
 
     <div class="card-body">
         <h1 class="card-title" id="title">{{Name}}</h1>
-        <button class="interviewBtn" (click)="showCalander = !showCalander" *ngIf="IsLocked == true && showAddSummary == true && interviewDate == null">
+       
+         <span id="lockIcon" *ngIf="IsLocked == true" class="glyphicon glyphicon-lock" (click)="LockApplicant()" data-toggle="tooltip"
+            title="Locked by {{nameWhoLocked}}"></span>
+        <span id="unlockIcon" *ngIf="IsLocked == false" class="fa fa-unlock-alt" (click)="LockApplicant()" data-toggle="tooltip"
+            title="Lock Applicant"></span>
+       
+       
+        <button class="interviewBtn" (click)="showCalander = !showCalander" *ngIf="IsLocked == true && showAddSummary == true">
         <strong><span *ngIf="IsLocked == true && showAddSummary == true && interviewDate == null"
         class="glyphicon glyphicon-calendar"></span> Add an interview date</strong></button>
        
         <div *ngIf="showCalander">
             <input type="date" id="Date" [(ngModel)]="interviewDate" #trvDate="ngModel" name="Date" required data-toggle="tooltip" data-placement="bottom"
-                title="Select Interview Date">
+                title="Select Interview Date" (ngModelChange)="SetInterviewDate()">
             <div *ngIf="trvDate.errors && (trvDate.dirty)" class="alert alert-danger alertError">
                 <div [hidden]="!trvDate.hasError('required')">Interview date is required</div>
             </div>
         </div>
         <br/>
 
+
+
+<div class="DivBtn" *ngIf="showCalander || ShowStatusInterview">
+<button class="btn btn-danger" (click)="Fail_Applicant()">Fail</button>
+<button class="btn btn-success" (click)="Pass_Applicant()">Pass</button>
+<button class="btn btn-primary" (click)="NotRelevant_Applicant()">Not Relevant</button>
+</div>
+
+<div *ngIf="ClickedPass">
+<a class="mailto" href="mailto:name@rapidtables.com?subject=The%20subject%20of%20the%20mail">
+   Please click to send an email to HR
+<i class="glyphicon glyphicon-send sendI" title="Response maile to__" aria-hidden="true"></i></a>
+<a href="#!AddSummary">Please click to add summary</a>
+</div>
+
+
+
+
+
         <button class="publishBtn" (click)="Publish()" *ngIf="isPublished == false && showAddSummary == false">Publish</button>
 
-        <span id="lockIcon" *ngIf="IsLocked == true" class="glyphicon glyphicon-lock" (click)="LockApplicant()" data-toggle="tooltip"
-            title="Locked by {{nameWhoLocked}}"></span>
-        <span id="unlockIcon" *ngIf="IsLocked == false" class="fa fa-unlock-alt" (click)="LockApplicant()" data-toggle="tooltip"
-            title="Lock Applicant"></span>
+      
 
         <span id="deleteIcon" class="glyphicon glyphicon-trash" *ngIf="!SummaryRecruitment" data-toggle="tooltip" title="Delete Applicant!"></span>
 
@@ -80,16 +103,15 @@
         </div><br/>
 
 
-        <div class="secondpart" *ngIf="SummaryRecruitment&&showAddSummary">
+        <div id="AddSummary" class="secondpart" *ngIf="SummaryRecruitment&&showAddSummary">
             <div class="form-group">
                 <label class="labelSummary"> Add an interview summary </label>
-                <textarea class="form-control textAreaSummaray" [(ngModel)]="Summary" name="summary" placeholder="Interviwe Summary"></textarea>
+                <textarea  class="form-control textAreaSummaray" [(ngModel)]="Summary" name="summary" placeholder="Interviwe Summary"></textarea>
                 <button class="addSummarayButtom" (click)="addInterview()"> 
       <span class="glyphicon glyphicon-plus"></span>
        Add Summary
       </button>
             </div>
         </div>
-
     </div>
 </div>
