@@ -2,42 +2,47 @@
     all-jobs !
 </h1><br><br><br>
 
-<a routerLink="/AddJob">
+ <a routerLink="/AddJob">
 <button type="button" class="btn btn-primary">Add New Job</button>
-</a>
-<div class="row" *ngFor="let job of allJobs">
+</a> 
+
+
+
+
+
+
+
+ <!--all jobs shortly-->
+<div class="row" *ngFor="let job of allJobs" (click)="SeeJob(job.Id)">
   <div *ngIf="job.IsActive && openFormToEditJob==false">
-      <div class="col-sm-12">
+      <div class="col-sm-6">
       <div class="card">
       <div class="card-block">
-        <h3 class="card-title">{{job.strUniqueID}}. {{job.Name}}
-       
+        <h3 class="card-title">{{job.Name}}   
           <span class="glyphicon glyphicon-remove-circle"
           (click)="MarkJobAsInActive(job)"></span>
           <span class="glyphicon glyphicon-pencil"
           (click)="EditJob(job)"></span>
-      </h3>
-        <p>
-         <strong> Manager Name:</strong> {{job.UserId}} 
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         <strong>  Position : </strong> {{job.Position}}
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         <strong> Year Of Experience: </strong> {{job.YearOfExperience}}
-          <br/>
-
-        </p>
-        <p class="card-text">
-          <strong>Description:</strong> {{job.Description}}<br/>
-          <strong>Requirements:</strong> {{job.Requirements}}</p>
-        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </h3>  
+         Recruiters: (names)<br>
+         {{job.UserId}}
       </div>
       </div>
       </div>
   </div>
-</div>
-<!--  -->
+</div>  
+  
+
+
+
+
+
+
+
+
+ <!--update job  -->
 <div *ngIf="openFormToEditJob">
-   <form>
+   <form class="editJob">
     <div class="form-group">
       <label for="usr">Title:</label>
       <input type="text" class="form-control" id="usr"
@@ -77,8 +82,5 @@
       <label for="usr">Requirement:</label>
        <textarea [(ngModel)]="Requirement" name="requirement"></textarea> 
     </div>
-   
   </form>
-</div>
-
-  
+</div>  

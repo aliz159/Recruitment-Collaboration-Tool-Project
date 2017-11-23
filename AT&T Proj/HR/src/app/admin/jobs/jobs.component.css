@@ -1,0 +1,15 @@
+.Job{
+        margin-left: 21%;
+    margin-top: 8%;
+    width: 71%;
+    font-size: 28px;
+}
+.card-title{
+    text-align: center;
+}
+.descriptionJob{
+    margin-left: 8%;
+}
+.skillsList{
+    margin-left: 11%;
+}

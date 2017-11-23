@@ -51,6 +51,13 @@ export class JobService {
       return res.json();
     });
   }
+  GetSkillsetForJob(id:number){
+    let url = this.urlJobSkills+"/"+id;
+    debugger;
+    return this.http.get(url).map((res) => {
+      return res.json();
+    });
+  }
   addSkillsetForJob(id:number,ListSkillForJob:number[]){
      let url = this.urlJobSkills;
     // var skillset:number[] = [1,2];
@@ -69,9 +76,13 @@ export class JobService {
 
 
 
- //   job.Position = j.Position;
      
-          //   job.YearOfExperience = j.YearOfExperience;
+  GetOneJob(id: number) {
+    let url = this.url + "/" + id;
+    return this.http.get(url, this.headers).map((res) => {
+      return res.json()
+    });
+  }
   editJob(Id: number, userId: number,strUniqueID:string, name: string, 
     position:string,description: string, requirements: string, 
     isActive: boolean,YearOfExperience:number) {

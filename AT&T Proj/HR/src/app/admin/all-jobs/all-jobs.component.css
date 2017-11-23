@@ -1,9 +1,10 @@
-.col-sm-4{
-    width: 100%;
+.col-sm-6{
+    width: 120%;
 }
 .row{
-    margin-right: -15px;
-    margin-left: 20%;
+   margin-top: 3%;
+    display: inline-block;
+    margin-left: 17%;
 }
 h1{
     text-align: center;
@@ -17,8 +18,8 @@ h1{
 
 
 .btn{
-        float: right;
-    margin-right: 5%;
+    margin-left: 18%;
+    margin-bottom: 19%;
     font-size: 125%;
 }
 .glyphicon-pencil{
@@ -32,4 +33,12 @@ margin-right: 2.5%;
 label{
     font-size: 25px;
     margin-left: 26%;
+}
+
+    .col-sm-6[_ngcontent-c1] {
+        width: 186%;
+    margin-left: -252%;
+}
+.editjob{
+        margin-top: -16%;
 }

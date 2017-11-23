@@ -1,3 +1,23 @@
 <p>
-  jobs works!
+    jobs works!
 </p>
+
+
+<div class="card Job">
+    <div class="card-block">
+       <h1 class="card-title" id="title">#{{strUniqueID}}. {{Name}}</h1>
+         <p class="descriptionJob">
+             <strong>Recruiters: </strong>{{UserId}}<br>
+            <strong>  Position : </strong> {{Position}}<br/>
+            <strong> Year Of Experience: </strong> {{YearOfExperience}}<br/>
+            <strong> Skills: </strong><br>
+         </p>
+            <ul class="skillsList" *ngFor="let skill of SkillsForJob">
+                <li> {{skill.skill}}</li>
+            </ul>
+        <p class="descriptionJob">
+            <strong>Description:</strong> {{Description}}<br/>
+            <strong>Requirements:</strong> {{Requirements}}<br/><br/><br/>
+        </p>
+    </div>
+</div>
