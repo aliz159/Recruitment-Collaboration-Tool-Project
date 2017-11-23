@@ -26,19 +26,19 @@
         </div>
         <br/>
 
-
-
-<div class="DivBtn" *ngIf="showCalander || ShowStatusInterview">
+<p *ngIf="interviewDate != null">{{addSummaryMassage}}</p>
+<p *ngIf="ShowStatusInterview && interviewDate != null && IsLocked"></p>
+<div class="DivBtn" *ngIf="interviewDate != null && showAddSummary && ShowStatusInterview">
 <button class="btn btn-danger" (click)="Fail_Applicant()">Fail</button>
 <button class="btn btn-success" (click)="Pass_Applicant()">Pass</button>
 <button class="btn btn-primary" (click)="NotRelevant_Applicant()">Not Relevant</button>
 </div>
 
-<div *ngIf="ClickedPass">
+<div class="clickedPass" *ngIf="ClickedPass">
 <a class="mailto" href="mailto:name@rapidtables.com?subject=The%20subject%20of%20the%20mail">
    Please click to send an email to HR
 <i class="glyphicon glyphicon-send sendI" title="Response maile to__" aria-hidden="true"></i></a>
-<a href="#!AddSummary">Please click to add summary</a>
+<a class="AddSummary" href="#AddSummary">Please click to add summary</a>
 </div>
 
 

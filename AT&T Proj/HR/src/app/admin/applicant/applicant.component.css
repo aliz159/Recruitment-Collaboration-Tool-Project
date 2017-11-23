@@ -98,5 +98,13 @@ h3{
     margin-left: 3%
 }
 .DivBtn{
-        margin-top: -6%;
+        /* margin-top: -3%; */
+}
+    .clickedPass{
+            margin-top: 18px;
+    margin-left: 3%;
+    font-size: 20px;
+    }
+.AddSummary{
+           margin-left: 15%;
 }

@@ -42,8 +42,9 @@ export class ApplicantComponent implements OnInit {
   MatchingJobsList: any;
   showAddSummary = false;
   showCalander = false;
-  ShowStatusInterview = false;
+  ShowStatusInterview=false;
   ClickedPass = false;
+  addSummaryMassage:string;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -92,11 +93,12 @@ export class ApplicantComponent implements OnInit {
         this.YearOfExperience = this.applicantsObj.YearOfExperience;
         this.CV = this.applicantsObj.Cv;
         this.isPublished = this.applicantsObj.IsPublished;
+        debugger;
         this.IsLocked = this.applicantsObj.IsLocked;
         this.UserIdLockedBy = this.applicantsObj.UserIdLockedBy;
         this.nameWhoLocked = this.applicantsObj.NameWhoLocked;
         this.interviewDate = this.applicantsObj.InterviewDate;
-
+debugger;
         if (this.UserIdLockedBy == this.RecruitmentId) {
           this.showAddSummary = true;
         }
@@ -163,6 +165,7 @@ export class ApplicantComponent implements OnInit {
         this.SummaryObj = rsp.json();
         console.log("Summary Obj =>");
         console.log(this.SummaryObj);
+        this.Summary = "";
       }
       else { console.log("server responded error : " + rsp); }
     },
@@ -173,7 +176,6 @@ export class ApplicantComponent implements OnInit {
 
   //Updating the applicant's publication in the database
   Publish() {
-    debugger;
     let applicant = this.applicantsObj;
     this.applicantService.editApplicant(applicant.Id, applicant.Name, applicant.Title,
       applicant.Phone, applicant.Email, this.applicantsObj.YearOfExperience, applicant.Position, applicant.Cv,
@@ -189,17 +191,22 @@ export class ApplicantComponent implements OnInit {
       });
   }
 
+  objManager:any;
   // Adding the Interview Summary to the database
   addInterview() {
-    debugger;
     this.SummaryService.addInterviewSummary(
-      Number(this.RecruitmentId), Number(this.ApplicantId), this.Summary)
+      Number(this.RecruitmentId),this.recruiterObj.Name, Number(this.ApplicantId), this.Summary)
       .subscribe(rsp => {
         this.interviewObj = rsp;
         window.alert("Interview successfully added");
         this.ngOnInit();
         console.log("interview Obj: =>");
         console.log(this.interviewObj);
+        debugger;
+        if(this.addSummaryMassage = "if you already interview this applicant, plaease add summary on him"){
+          this.ShowStatusInterview = true;
+          this.addSummaryMassage = "peek status"
+        }   
       },
       (err) => {
         console.log("error : " + err);
@@ -207,18 +214,17 @@ export class ApplicantComponent implements OnInit {
   }
 
   LockApplicant() {
-    debugger;
     if (this.IsLocked != true) {
-      const req = this.applicantService.editApplicant(this.applicantsObj.Id,
+      this.applicantService.editApplicant(this.applicantsObj.Id,
         this.applicantsObj.Name, this.applicantsObj.Title, this.applicantsObj.Phone,
         this.applicantsObj.Email, this.applicantsObj.YearOfExperience, this.applicantsObj.Position,
         this.CV, true, this.RecruitmentId, this.recruiterObj.Name, this.applicantsObj.IsPublished,
         this.applicantsObj.IsActive, this.applicantsObj.InterviewDate,
-        this.applicantsObj.StatusAfterView);
-      req.subscribe(rsp => {
+        this.applicantsObj.StatusAfterView).subscribe(rsp => {
         window.alert("Applicant locked succssfully");
         console.log("Applicant locked succssfully");
         this.IsLocked = true;
+        this.GetOneApplicant(this.ApplicantId)
       },
         (err) => { console.log(err); }
       );
@@ -232,31 +238,40 @@ export class ApplicantComponent implements OnInit {
 
 
 
-  //update in db applicant IsActive==false
+  //update in db applicant status=Fail, IsActive=false,isLocked=false,userIdLockedBy=0
   Fail_Applicant() {
-     this.AddStatusInterview("Fail");
+     this.AddStatusInterview("Fail",false,false,0);
+     debugger;
+      this.GetOneApplicant(this.ApplicantId);
+      this.router.navigate(['/MyApplicants', this.RecruitmentId]);
+      
   }
 
   //send an email to HR + add Summary
+  //status=Pass, IsActive=true,isLocked=false,userIdLockedBy=0
   Pass_Applicant() {   
-    this.AddStatusInterview("Pass")
+    this.AddStatusInterview("Pass",true,false,0)
+    this.GetOneApplicant(this.ApplicantId);
     debugger;
     this.ClickedPass = true;
   }
 
-  //rolle down to add summary + add summary
+  //rolle down to add summary
+  //status=Not Relevant, IsActive=true,isLocked=false,userIdLockedBy=0
   NotRelevant_Applicant() {  
-    this.AddStatusInterview("Not Relevant")
+    this.AddStatusInterview("Not Relevant",true,false,0)
+    debugger;
+    this.GetOneApplicant(this.ApplicantId);
   }
 
-  AddStatusInterview(status:string) {
-this.applicantService.editApplicant(this.ApplicantId,
+  AddStatusInterview(status:string,isActive:boolean,isLocked:boolean,userIdLockedBy:number) {
+      this.applicantService.editApplicant(this.ApplicantId,
       this.applicantsObj.Name, this.applicantsObj.Title,
       this.applicantsObj.Phone, this.applicantsObj.Email,
       this.applicantsObj.Experience, this.applicantsObj.Position,
-      this.applicantsObj.Cv, true, this.applicantsObj.UserIdLockedBy,
-      this.applicantsObj.NameWhoLocked, true, false,
-      this.interviewDate, status)
+      this.applicantsObj.Cv, isLocked,userIdLockedBy,
+      this.applicantsObj.NameWhoLocked, true, isActive,
+      null, status)
       .subscribe(rsp => {
         window.alert("Your choice: "+status+" was accepted");
         console.log("");
@@ -287,15 +302,27 @@ bb = "yaffa2077@gmail.com";
       this.applicantsObj.YearOfExperience,this.applicantsObj.Position,
       this.applicantsObj.Cv, this.applicantsObj.IsLocked, 
       this.applicantsObj.UserIdLockedBy,
-      this.applicantsObj.NameWhoLocked, true, false,
+      this.applicantsObj.NameWhoLocked, true, true,
       this.interviewDate, "")
       .subscribe(rsp => {
-        window.alert("You Set an interview date");
-        //console.log("Applicant locked succssfully");
-        this.ShowStatusInterview = true;
-        //else { console.log("server responded error : " + rsp); }
+        debugger;
+        window.alert("You Set an interview date"); 
+        this.addSummaryMassage = "if you already interview this applicant, plaease add summary on him"   
+        //this.ShowStatusInterview = true;
       },
       (err) => { console.log(err); }
       );
   }
+
+
+
+  ////get manager name for summary
+  // getManagerNameForSummary(userId:number){
+  //   debugger;
+  //   this.userService.GetOneUser(userId).subscribe(rsp => {
+  //          debugger; this.objManager =rsp.json();
+  //     },
+  //     (err) => { console.log(err); }
+  //     );
+  // }
 }

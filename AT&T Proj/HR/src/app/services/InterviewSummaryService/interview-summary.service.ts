@@ -21,10 +21,9 @@ export class InterviewSummaryService {
     let url = this.url +"/"+ Id;
     return this.http.get(url);
   }
-  addInterviewSummary(userId: number, applicantId: number, summary: string) {
-
+  addInterviewSummary(userId: number,name:string, applicantId: number, summary: string) {
     let url = this.url;
-    let body = { UserId: userId, ApplicantId: applicantId, Summary: summary };
+    let body = { UserId: userId,RecruiterName:name, ApplicantId: applicantId, Summary: summary };
 
     return this.http.post(url, body, this.headers).map((res) => {
       return res.json();
