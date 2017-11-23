@@ -41,6 +41,7 @@ export class ApplicantComponent implements OnInit {
   SummaryRecruitment: boolean;
   MatchingJobsList: any;
   showAddSummary = false;
+  showCalander = false;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -231,4 +232,8 @@ export class ApplicantComponent implements OnInit {
     this.router.navigate(['/EditApplicant', this.applicantsObj.Id]);
     window.alert("editAPP");
   }
+
+  SetInterviewDate(){  
+    this.showCalander = !this.showCalander;
+   }
 }

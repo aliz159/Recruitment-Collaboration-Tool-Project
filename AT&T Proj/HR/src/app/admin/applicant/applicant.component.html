@@ -6,10 +6,20 @@
 
     <div class="card-body">
         <h1 class="card-title" id="title">{{Name}}</h1>
-        <button class="interviewBtn" (click)="SetInterviewDate()" *ngIf="IsLocked == true && showAddSummary == true && interviewDate == null">
-        Add interview date</button>
+        <button class="interviewBtn" (click)="showCalander = !showCalander" *ngIf="IsLocked == true && showAddSummary == true && interviewDate == null">
+        <strong><span *ngIf="IsLocked == true && showAddSummary == true && interviewDate == null"
+        class="glyphicon glyphicon-calendar"></span> Add an interview date</strong></button>
+       
+        <div *ngIf="showCalander">
+            <input type="date" id="Date" [(ngModel)]="interviewDate" #trvDate="ngModel" name="Date" required data-toggle="tooltip" data-placement="bottom"
+                title="Select Interview Date">
+            <div *ngIf="trvDate.errors && (trvDate.dirty)" class="alert alert-danger alertError">
+                <div [hidden]="!trvDate.hasError('required')">Interview date is required</div>
+            </div>
+        </div>
+        <br/>
 
-        <button class="publishBtn" (click)="Publish()" *ngIf="isPublished == false">Publish</button>
+        <button class="publishBtn" (click)="Publish()" *ngIf="isPublished == false && showAddSummary == false">Publish</button>
 
         <span id="lockIcon" *ngIf="IsLocked == true" class="glyphicon glyphicon-lock" (click)="LockApplicant()" data-toggle="tooltip"
             title="Locked by {{nameWhoLocked}}"></span>
@@ -18,7 +28,8 @@
 
         <span id="deleteIcon" class="glyphicon glyphicon-trash" *ngIf="!SummaryRecruitment" data-toggle="tooltip" title="Delete Applicant!"></span>
 
-        <span id="pencilIcon" class="glyphicon glyphicon-pencil" (click)="EditApplicant()" data-toggle="tooltip" title="Edit Applicant!"></span>
+        <span id="pencilIcon" class="glyphicon glyphicon-pencil" *ngIf="!SummaryRecruitment" (click)="EditApplicant()" data-toggle="tooltip"
+            title="Edit Applicant!"></span>
 
 
         <p class="card-text" id="text">
@@ -63,7 +74,7 @@
         <label class="labelSummary">Summaries of the applicant's interviews</label>
         <div class="card SummaryCard">
             <div class="card-block" *ngFor="let summary of SummaryObj">
-                <h4 class="card-title">{{summary.Date}},   by recruiter : {{summary.RecruiterName}}</h4>
+                <h4 class="card-title">{{summary.Date}}, by recruiter : {{summary.RecruiterName}}</h4>
                 <p class="card-text"><i>{{summary.Summary}}</i></p>
             </div>
         </div><br/>
