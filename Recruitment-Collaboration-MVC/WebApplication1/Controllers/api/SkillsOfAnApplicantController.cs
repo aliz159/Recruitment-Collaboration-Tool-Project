@@ -56,7 +56,7 @@ namespace WebApplication1.Controllers.api
                 m_db.SaveChanges();
             }
 
-            int counter = 0;
+            float counter = 0;
             float MatchPassingScore = 0;
             IEnumerable<SkillsForTheJob> OneJobSkillset;
             var appSkills = m_db.SkillsOfAnApplicant.Where(a => a.ApplicantId == allskills.Id).ToList();
@@ -79,19 +79,17 @@ namespace WebApplication1.Controllers.api
                     }
                 }
 
-                if (counter > MatchPassingScore)
-                {
-                    Job Job = m_db.Jobs.SingleOrDefault(j => j.Id == job);
-                    User user = m_db.AllUsers.SingleOrDefault(u => u.Id == Job.UserId);
+                counter = (counter * 100) / OneJobSkillset.Count();
 
-                    jobToApplicantObj.UserId = user.Id;
-                    jobToApplicantObj.JobId = job;
-                    jobToApplicantObj.ApplicantId = allskills.Id;
-                    m_db.JobToApplicant.Add(jobToApplicantObj);
-                    m_db.SaveChanges();
+                Job Job = m_db.Jobs.SingleOrDefault(j => j.Id == job);
+                User user = m_db.AllUsers.SingleOrDefault(u => u.Id == Job.UserId);
 
-                    counter = 0;
-                }
+                jobToApplicantObj.UserId = user.Id;
+                jobToApplicantObj.JobId = job;
+                jobToApplicantObj.ApplicantId = allskills.Id;
+                jobToApplicantObj.MatchPercent = counter;
+                m_db.JobToApplicant.Add(jobToApplicantObj);
+                m_db.SaveChanges();
             }
 
             return Request.CreateResponse(HttpStatusCode.OK, "Applicant skills added successfully");
