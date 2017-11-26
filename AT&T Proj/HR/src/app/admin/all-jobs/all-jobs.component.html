@@ -1,4 +1,38 @@
+<nav style="background:#f8f8f8;width:14%;height:100%;position:fixed" class="col-xs-6 col-sm-3 sidebar-offcanvas">
+    <div style="background:#f8f8f8;height:100%;" class="navbar-fixed-left" >
+        <!-- <div style="background:#f8f8f8;width:15%;"  class="col-xs-6 col-sm-3 sidebar-offcanvas" role="navigation"> -->
+            <div class="sidebar-nav">
+                <ul class="nav">
+                    <li id="starter" class="nav-divider"></li>
+                    <li><a class="Category" routerLink="/AllJobs">Jobs<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-tags"></span></a></li>
+                   <li><a class="Category" routerLink="/AllApplicants">Applicants<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-user-circle"></span></a></li>
+                    <li class="nav-divider"></li>
+                    <li><a routerLink="/AllJobs">Jobs<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-tags"></span></a></li>
+                   <li><a routerLink="/AllApplicants">Applicants<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-user-circle"></span></a></li>
+                    <li class="nav-divider"></li>
+                    <li><a routerLink="/AllJobs">Jobs<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-tags"></span></a></li>
+                   <li><a routerLink="/AllApplicants">Applicants<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-user-circle"></span></a></li>
+                </ul>
+        <!-- <input type="text" [(ngModel)]="userFilter.name" placeholder="name">
+        <ul>
+          <li *ngFor="let job of allJobs | filterBy: userFilter">{{ user.name }}</li>
+          
+          <li *ngIf="(Jobs | filterBy: stringFilter).length === 0">No matching elements</li>
+        </ul> -->
+            </div>
+<!-- 
+        <div class="col-xs-12 col-sm-9">
+        </div> -->
 
+
+
+    </div>
+    <!--/row-->
+
+
+<!--/.container-->
+</nav>
+<br><br><br>
  <a class="AddJob" routerLink="/AddJob">
 <button type="button" class="btn btn-primary">Add New Job</button>
 </a> 

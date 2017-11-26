@@ -24,7 +24,7 @@ button{
 /* .row {
     margin-left: 61px;
 }*/
- div{
+ .card{
         display: inline-block;
     border: 1px solid gray;
     margin-left: 12%;
