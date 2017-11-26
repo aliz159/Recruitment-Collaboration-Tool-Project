@@ -86,7 +86,7 @@ namespace WebApplication1.Controllers.api
             job.Position = j.Position;
             job.strUniqueID = j.strUniqueID;
             job.UserId = j.UserId;
-            job.IsActive = false;
+            job.IsActive = j.IsActive;
             job.Description = j.Description;
             job.Requirements = j.Requirements;
             job.YearOfExperience = j.YearOfExperience;
