@@ -1,0 +1,52 @@
+.divForm{
+    width: 72%;
+    margin-left: 21%;
+    margin-top: 7%;
+    border: 1px solid rgb(230,230,230);
+}
+.form-control{
+   width: 90%;
+   margin-left: 5%;
+}
+label{
+   margin-left: 5%;
+   font-size: 25px;
+}
+form{
+   margin-top: 4%;
+}
+textarea{
+    height: 100px;
+}
+button{
+    border: 1px solid deepskyblue;
+    margin-left: 6%;
+    font-size: 18px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 5px;
+}
+.listSkillsJob{
+    display: inline-block;
+}
+ul.listSkillsJob{
+    list-style-type: none;
+    margin-left: 5%;
+    font-size: 20px;
+}
+p.skillsList{
+        margin: 0 0 10px;
+    display: inline-block;
+    margin-left: 9%;
+    font-size: 20px;
+}
+.plusIcon{
+    float: right;
+    font-size: 33px;
+    margin-right: 2%;
+    margin-top: 2%;
+}
+span.Recruiters{
+    margin-left: 5%;
+    font-size: 20px;
+}

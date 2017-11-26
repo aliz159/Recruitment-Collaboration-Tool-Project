@@ -1,44 +1,37 @@
-.col-sm-6{
-    width: 120%;
-}
-.row{
-   margin-top: 3%;
-    display: inline-block;
+ .row{
+   /* margin-top: 3%; */
+     /* display: inline-block;  */
     margin-left: 17%;
-}
+} 
 h1{
     text-align: center;
+}
+.btn{
+    margin-top: 10%;
+    margin-left: 18%;
+    margin-bottom: 2%;
+    font-size: 125%;
 }
 .glyphicon-remove-circle{
     float: right;
     margin-right: 2%;
 }
-
-
-
-
-.btn{
-    margin-left: 18%;
-    margin-bottom: 19%;
-    font-size: 125%;
-}
 .glyphicon-pencil{
 float: right;
 margin-right: 2.5%;
 }
-.form-control{
-    width: 50%;
-    margin-left: 26%;
-}
-label{
-    font-size: 25px;
-    margin-left: 26%;
-}
 
-    .col-sm-6[_ngcontent-c1] {
-        width: 186%;
-    margin-left: -252%;
+
+
+
+.col-sm-6{
+     width: 100%;
+    /* margin-left: -134%;  */
+ }
+.Job{
+    width: 50%;
 }
-.editjob{
-        margin-top: -16%;
+.card{
+        width: 284%;
 }
+  

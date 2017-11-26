@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { JobService } from "../../services/JobService/job.service";
 import { Http } from '@angular/http';
 import { Router } from "@angular/router";
+import { UserService } from "../../services/UsersService/user.service";
 
 @Component({
   selector: 'app-all-jobs',
@@ -21,7 +22,7 @@ export class AllJobsComponent {
 
 
   constructor(public jobService: JobService,
-  private router: Router) {
+    private router: Router, private userService: UserService) {
 
   }
 
@@ -42,11 +43,28 @@ export class AllJobsComponent {
       });
   }
 
-
+allUsersObj:any;
   getAllJobs() {
     this.jobService.Get().subscribe(rsp => {
       if (rsp.status == 200) {
         this.allJobs = rsp.json();
+        let UserName = this.allJobs.UserId;
+        debugger;
+
+        for (var i = 0; i < this.allJobs.length; i++) {
+          this.userService.Get().subscribe(rsp => {
+            debugger;
+            if (rsp.status == 200) {
+              this.allUsersObj = rsp.json();
+            //  name.Name
+            }
+           else { console.log("server responded error : " + rsp); }
+          },
+            (err) => {debugger;
+              console.log("error : " + err);
+            });
+        }
+
         console.log("all the jobs:");
         console.log(this.allJobs);
       }
@@ -84,31 +102,14 @@ export class AllJobsComponent {
 
 
 
-
-
- 
-  EditJob(job: any) {
-  window.alert("edit")
+  SeeJob(id: number) {
     debugger;
-    console.log(job)
-    this.openFormToEditJob = true;
-    this.Title = job.Name;
-    this.UniqueID = job.strUniqueID;
-    this.MinimumYearsOfExperience = job.YearOfExperience;
-    this.Description = job.Description;
-    this.Requirements = job.Requirements;
-    
-  }
-
-
-  SeeJob(id:number) {
-    if(this.openFormToEditJob != true){
-      debugger;
     this.router.navigate(['/Job', id]);
-    }
-    
   }
 
-
+  EditJob(jobId: any) {
+    debugger;
+    this.router.navigate(['/EditJob', jobId]);
+  }
 
 }

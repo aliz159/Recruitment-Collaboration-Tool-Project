@@ -76,7 +76,12 @@
       <button (click)="addSkill()"> 
       <span class="glyphicon glyphicon-plus"></span> Add
       </button> </p>
-    
+   
+    <div *ngIf = "AddSkillInput" >
+    <input class="form-control" type="text" [(ngModel)]="newSkill" 
+    name="newSkill" placeholder="Add New Skill">
+    <button (click)="addNewSkill()"> Add Skill</button>
+    </div>
 
   <p *ngFor="let skill of Skills">
     <input type="checkbox"  name="skill" required

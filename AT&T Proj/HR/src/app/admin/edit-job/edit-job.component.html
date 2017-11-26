@@ -1,3 +1,78 @@
-<p>
-  edit-job works!
-</p>
+ <!--update job  -->
+<div class="divForm">
+  <span class="plusIcon glyphicon glyphicon-floppy-saved"
+  (click)="SaveDatilesJob()"></span>
+
+
+
+   <form class="editJob">
+    <div class="form-group">
+      <label for="usr">Title:</label>
+      <input type="text" class="form-control" id="usr"
+       [(ngModel)]="Name" name="title">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Unique ID:</label>
+      <input type="password" class="form-control" id="pwd"
+       [(ngModel)]="strUniqueID" name="uniqueID">
+    </div>
+
+
+    <label>Recruiters: </label> 
+    <br><span class="Recruiters">{{UserName}}</span>
+    <!-- <div class="form-group">
+      <label for="userId">User Id:</label>
+      <input type="text" class="form-control" id="userId"
+       [(ngModel)]="UserId" name="userId">
+    </div> -->
+
+
+    <div class="form-group">
+      <label for="position">Position:</label>
+      <input type="text" class="form-control" id="position"
+       [(ngModel)]="Position" name="position">
+    </div>
+
+    <div class="form-group">
+      <label for="usr">Minimum years of experience:</label>
+      <input type="number" class="form-control" id="usr"
+      [(ngModel)]="YearOfExperience" name="yearsExperience">
+    </div>
+
+   <label>skills:</label><br>
+    <ul class="listSkillsJob" *ngFor="let skill of SkillsForJob">
+      <li>{{skill.skill}}</li>
+    </ul>
+
+     <div class="form-group">
+      <label for="usr">Skillset </label>
+      <button (click)="addSkill()"> 
+      <span class="glyphicon glyphicon-plus"></span> Add
+      </button> 
+    <br><br>
+    
+ 
+    <div *ngIf = "AddSkillInput" >
+    <input class="form-control" type="text" [(ngModel)]="newSkill" 
+    name="newSkill" placeholder="Add New Skill">
+    <button (click)="addNewSkillForJob()"> Add Skill</button>
+    </div>
+
+    <p class="skillsList" *ngFor="let skill of AllSkills">
+    <input type="checkbox"  name="skill" 
+    [(ngModel)]="skill.selected"
+    (change)="SkillsetArray(skill)"
+    [value]="skill.value"> {{skill.skill}}
+    </p>
+    </div>
+
+     <div class="form-group">
+      <label for="usr">Description:</label>
+       <textarea class="form-control" [(ngModel)]="Description" name="description"></textarea> 
+    </div>
+      <div class="form-group">
+      <label for="usr">Requirements:</label>
+       <textarea class="form-control" [(ngModel)]="Requirements" name="requirement"></textarea> 
+    </div>
+  </form>
+</div>  
