@@ -64,7 +64,7 @@ private router: Router) { }
       console.log("Applicant obj is : ");
       console.log(this.ApplicantObj);
       this.addSkills(this.ApplicantObj.Id);
-      this.routeToAllApplicants();
+      this.router.navigate(['/AllApplicants']);
     },
       (err) => {
         console.log("error : " + err);
@@ -72,9 +72,6 @@ private router: Router) { }
     );
   }
 
-    routeToAllApplicants() {
-    this.router.navigate(['/AllApplicants']);
-  }
 
   ShowaddSkill() {
     this.AddSkillInput = !this.AddSkillInput;

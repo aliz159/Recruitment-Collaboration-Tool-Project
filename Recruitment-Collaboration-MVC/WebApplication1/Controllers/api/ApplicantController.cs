@@ -19,12 +19,6 @@ namespace WebApplication1.Controllers.api
             return m_db.Applicants.Where(a => a.IsActive == true).AsEnumerable();
         }
 
-        //[HttpGet]
-        //public IEnumerable<Applicant> GetApplicantInArchives()
-        //{
-        //    return m_db.Applicants.Where(a => a.IsActive == false).AsEnumerable();
-        //}
-
         [HttpGet]
         // GET /api/Applicant/1
         public IHttpActionResult GetApplicant(long id)

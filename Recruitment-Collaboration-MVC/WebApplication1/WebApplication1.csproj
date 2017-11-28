@@ -208,6 +208,7 @@
     <Compile Include="Classes\Encryption.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\api\ApplicantController.cs" />
+    <Compile Include="Controllers\api\ArchivesController.cs" />
     <Compile Include="Controllers\api\InterviewSummaryController.cs" />
     <Compile Include="Controllers\api\JobController.cs" />
     <Compile Include="Controllers\api\JobSkillsController.cs" />

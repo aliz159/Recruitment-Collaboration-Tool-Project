@@ -55,7 +55,8 @@ export class AllApplicantsComponent implements OnInit {
       applicant.Phone, applicant.Email, applicant.YearOfExperience, applicant.Position, applicant.Cv,
       applicant.IsLocked, applicant.UserIdLockedBy, applicant.NameWhoLocked, true,
       applicant.IsActive, applicant.InterviewDate, applicant.StatusAfterInterview).subscribe(rsp => {
-        console.log(rsp.json());
+        console.log(rsp);
+        this.ngOnInit();
       },
       (err) => {
         console.log("error : " + err);
@@ -106,12 +107,13 @@ export class AllApplicantsComponent implements OnInit {
       this.applicantObj.Phone, this.applicantObj.Email, this.applicantObj.YearOfExperience, this.applicantObj.Position, this.applicantObj.Cv,
       this.applicantObj.IsLocked, this.applicantObj.UserIdLockedBy, this.applicantObj.NameWhoLocked, false,
       false, this.applicantObj.InterviewDate, this.applicantObj.StatusAfterInterview).subscribe(rsp => {
-        console.log(rsp.json());
-        window.alert('Applicant deleted successfully');
+        console.log(rsp);
+        window.alert('Applicant inactivated successfully');
 
-        let index = this.allApplicant.indexOf(this.applicantObj);
-        this.allApplicant.splice(index, 1);
-        console.log(this.allApplicant);
+        // let index = this.allApplicant.indexOf(this.applicantObj);
+        // this.allApplicant.splice(index, 1);
+        // console.log(this.allApplicant);
+        this.ngOnInit();
       },
       (err) => {
         console.log("error : " + err);

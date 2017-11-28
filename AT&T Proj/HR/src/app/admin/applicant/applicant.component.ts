@@ -329,8 +329,8 @@ GetApplicantToDelete() {
 
     this.applicantService.editApplicant(this.ApplicantObj.Id, this.ApplicantObj.Name, this.ApplicantObj.Title,
       this.ApplicantObj.Phone, this.ApplicantObj.Email, this.ApplicantObj.YearOfExperience, this.ApplicantObj.Position, this.ApplicantObj.Cv,
-      this.ApplicantObj.IsLocked, this.ApplicantObj.UserIdLockedBy, this.ApplicantObj.NameWhoLocked, false,
-      false, this.ApplicantObj.InterviewDate, this.ApplicantObj.StatusAfterInterview).subscribe(rsp => {
+      false, -1, null, false,false, this.ApplicantObj.InterviewDate, 
+      this.ApplicantObj.StatusAfterInterview).subscribe(rsp => {
         console.log(rsp.json());
         window.alert('Applicant deleted successfully');
       },

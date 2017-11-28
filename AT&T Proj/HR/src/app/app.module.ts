@@ -30,6 +30,8 @@ import { NavbarService } from "./services/navBarService/navbar.service";
 import { CookiesService } from "./services/CookiesService/cookies.service";
 import { MyJobsComponent } from './Recruiter/my-jobs/my-jobs.component';
 import { PipePipe } from './pipe.pipe';
+import { AllArchivedJobsComponent } from './admin/all-archived-jobs/all-archived-jobs.component';
+import { AllArchivedApplicantsComponent } from './admin/all-archived-applicants/all-archived-applicants.component';
 
 
 const appRoutes: Routes = [
@@ -41,7 +43,9 @@ const appRoutes: Routes = [
   { path: 'Applicant/:id', component: ApplicantComponent },
   { path: 'Applicant/:id/:RecruitmentId', component: ApplicantComponent },
   { path: 'AllJobs', component: AllJobsComponent },
+  { path: 'AllArchiveJobs', component: AllArchivedJobsComponent },
   { path: 'AllApplicants', component: AllApplicantsComponent },
+  { path: 'AllArchiveApplicants', component: AllArchivedApplicantsComponent },
   { path: 'AddJob', component: AddJobComponent },
   { path: 'AddApplicant', component: AddApplicantComponent },
   { path: 'EditJob/:id', component: EditJobComponent },
@@ -64,7 +68,9 @@ const appRoutes: Routes = [
     EditApplicantComponent,
     MyApplicantsComponent,
     MyJobsComponent,
-    PipePipe
+    PipePipe,
+    AllArchivedJobsComponent,
+    AllArchivedApplicantsComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes),

@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ApplicantService {
   private url: string;
+  private urlArchives: string;
   private urlSkillApplicant: string;
   private urlInterviewSummary: string;
   private urlSkillset: string;
@@ -15,6 +16,7 @@ export class ApplicantService {
 
   constructor( @Inject(Http) private http: Http) {
     this.url = "http://localhost:55187/api/Applicant";
+    this.urlArchives = "http://localhost:55187/api/Archives"; //DB Archives
     this.urlSkillApplicant = "http://localhost:55187/api/SkillsOfAnApplicant";
     this.urlInterviewSummary = "http://localhost:55187/api/InterviewSummary";
     this.urlSkillset = "http://localhost:55187/api/Skillsets";
@@ -22,25 +24,31 @@ export class ApplicantService {
   }
 
 
-  GetApplicantSkills(id: number) {
-    let url = this.urlSkillApplicant + "/" + id;
-    return this.http.get(url);
-  }
-
-
   Get() {
     return this.http.get(this.url);
   }
+
+  GetArchivedApplicants() {
+    return this.http.patch(this.urlArchives, this.headers);
+  }
+
   GetOneApplicant(id: number) {
     let url = this.url + "/" + id;
+    return this.http.get(url);
+  }
+
+  GetApplicantSkills(id: number) {
+    let url = this.urlSkillApplicant + "/" + id;
     return this.http.get(url);
   }
 
   GetRecruiterApplicants(id: number, name: string, email: string,
     password: string, userType: string) {
     let url = this.url;
-    let body = { Id: id, Name: name, Email: email, Password: password,
-                  UserType: userType };
+    let body = {
+      Id: id, Name: name, Email: email, Password: password,
+      UserType: userType
+    };
     return this.http.patch(url, body, this.headers).map((res) => {
       return res.json();
     });
@@ -67,8 +75,8 @@ export class ApplicantService {
 
   editApplicant(Id: number, name: string, title: string, phone: string,
     email: string, experience: number, position: string, cv: string,
-    isLocked: boolean, userIdLockedBy: number, nameWhoLocked:string, 
-    isPublished: boolean, isActive: boolean, interviewDate: string, 
+    isLocked: boolean, userIdLockedBy: number, nameWhoLocked: string,
+    isPublished: boolean, isActive: boolean, interviewDate: string,
     statusAfterInterview: string) {
 
     let url = this.url + "/" + Id;

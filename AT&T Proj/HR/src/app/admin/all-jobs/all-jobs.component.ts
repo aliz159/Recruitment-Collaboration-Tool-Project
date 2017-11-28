@@ -105,8 +105,8 @@ allUsersObj:any;
     this.jobService.editJob(this.jobObj.Id, this.jobObj.UserId, this.jobObj.StrUniqueID,
       this.jobObj.Name, this.jobObj.Position, this.jobObj.Description, this.jobObj.Requirements,
       false, this.jobObj.YearOfExperience).subscribe(rsp => {
-        console.log(rsp.json());
-        window.alert('job deleted successfully');
+        console.log(rsp);
+        window.alert('job inactivated successfully');
 
         let index = this.allJobs.indexOf(this.jobObj);
         this.allJobs.splice(index, 1);

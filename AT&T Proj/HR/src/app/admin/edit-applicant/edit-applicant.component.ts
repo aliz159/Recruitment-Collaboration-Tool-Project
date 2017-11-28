@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ApplicantService } from "../../services/ApplicantService/applicant.service";
 import { JobToApplicantService } from "../../services/JobToApplicantService/job-to-applicant.service";
-import { Router } from "@angular/router";
-import { ActivatedRoute } from "@angular/router";
+import { Router, ActivatedRoute} from "@angular/router";
 import { UserService } from "../../services/UsersService/user.service";
 import { Http, RequestOptions, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { JobService } from "../../services/JobService/job.service";
-
-
-
 
 @Component({
   selector: 'app-edit-applicant',
@@ -49,7 +45,8 @@ export class EditApplicantComponent implements OnInit {
 
 
   constructor(private route: ActivatedRoute, private userService: UserService,
-    private applicantService: ApplicantService, private http: Http, private jobService: JobService) {
+    private applicantService: ApplicantService, private http: Http, 
+    private router: Router, private jobService: JobService) {
     this.id = route.snapshot.params['id'];
     this.applicantService.GetOneApplicant(this.id).subscribe(rsp => {
       this.applicantsObj = rsp.json();
@@ -125,11 +122,12 @@ export class EditApplicantComponent implements OnInit {
       this.Email, this.experience, this.Position, this.CV, this.isLocked, this.userIdLockedBy,
       this.nameWhoLocked, this.isPublished, this.isActive, this.interviewDate, this.statusAfterView);
     req.subscribe(rsp => {
-      //this.AddCV();
-      //this.ApplicantObjEdit = rsp;
+      this.AddCV();
+      this.ApplicantObjEdit = rsp;
       this.addSkills(this.id);
       console.log("Edited succssfully ")
       console.log("### ", rsp);
+      this.router.navigate(['/AllApplicants']); 
     },
       (err) => { console.log(err); }
     );

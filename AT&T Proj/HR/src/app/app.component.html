@@ -17,13 +17,24 @@
                 </li>
             </ul>
             <ul style="height:100px" class="nav navbar-nav">
+
                 <li class="head" *ngIf="HRIsLoggedIn"><a class="tabs" routerLink="/AllJobs">
                     Jobs<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-tags"></span></a></li>
+
                 <li class="head" *ngIf="HRIsLoggedIn"><a class="tabs" routerLink="/AllApplicants">
                  Applicants<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-user-circle"></span></a></li>
 
+                <li class="head" *ngIf="HRIsLoggedIn"><a class="tabs" routerLink="/AllArchiveJobs">
+                    Archived Jobs<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-tags"></span></a></li>
+
+                <li class="head" *ngIf="HRIsLoggedIn"><a class="tabs" routerLink="/AllArchiveApplicants">
+                 Archived Applicants<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-user-circle"></span></a></li>
+
+                 
+
                 <li class="head" *ngIf="!HRIsLoggedIn"><a class="tabs" routerLink="/MyJobs/{{userID}}">
                     Jobs<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-user-circle"></span></a></li>
+
                 <li class="head" *ngIf="!HRIsLoggedIn"><a class="tabs" routerLink="/MyApplicants/{{userID}}">
                     Applicants<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-user-circle"></span></a></li>
             </ul>

@@ -1,0 +1,94 @@
+button{
+    margin-top: 3%;
+    border: 1px solid gray;
+    margin-left: 6%;
+    font-size: 18px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 5px;
+        width: 6%;
+    height: 36px;
+    margin-top: 10%;
+    margin-left: 15%;
+}
+.activateBtn{
+    width: 40%;
+    height: 40px;
+    margin-top: -20%;
+    margin-left: -2%;
+}
+.card{
+     display: inline-block;
+    border: 1px solid gray;
+    margin-left: 4%;
+    margin-top: 5%;
+    padding: 1%;
+    width: 26%;
+    height: 128px;
+}
+h4, p{
+     font-size: 17px;
+}
+.glyphicon {
+font-size: 22px;
+    float: right;
+    margin-right: 2%;
+}
+.glyphicon-trash{
+     margin-right: 3%;
+     
+}
+.glyphicon-pencil{
+ margin-right: 3%;
+}
+.sideBarNav{
+        width: 18%;
+        background:#f8f8f8;
+        height:100%;
+        position:fixed;
+}
+.searchIcon{
+    position: absolute;
+    margin-left: 85%;    
+    margin-top: 5%;
+    font-size: 119%;
+    color: gray;
+    }
+.searchApp{
+width: 102%;
+    margin-left: -4%;
+    font-size: 106%;
+    height: 35px;
+    margin-top: -5%;
+    border: 1px solid lightgrey;
+}
+.skillCheckBox{
+    margin-top: 5%;
+}
+.searchLabel{
+        font-size: 109%;
+    margin-top: 39%;
+}
+.addApplicantBtn{
+    margin-top: 3%;
+ margin-left: 23%;    
+    margin-bottom: 4%;    
+    font-size: 125%;
+    display: block;
+    width: 17%;
+}
+.plusIcon{
+margin-left: 0%;
+}
+.allCards{
+      margin-left: 19%;
+    margin-top: 0%;
+}
+.modelBtns{
+    border: 1px solid gray;
+    font-size: 18px;
+    border-radius: 5px;
+    width: 16%;    
+    height: 36px;
+    margin-right: 1%;
+}

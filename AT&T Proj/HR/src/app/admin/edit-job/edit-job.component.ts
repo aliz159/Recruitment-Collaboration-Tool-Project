@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
 import { JobService } from "../../services/JobService/job.service";
 import { ApplicantService } from "../../services/ApplicantService/applicant.service";
 import { UserService } from "../../services/UsersService/user.service";
+import { Router, ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-edit-job',
@@ -33,6 +33,7 @@ export class EditJobComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private jobService: JobService,
     private ApplicantService: ApplicantService,
+    private router: Router, 
     private userService: UserService) {
 
     this.JobId = route.snapshot.params['id'];
@@ -112,7 +113,6 @@ export class EditJobComponent implements OnInit {
      debugger;
      let User = rsp.json();
       this.UserName = User.Name;
-     //window.alert(UserName);
       console.log("Skills For Job"); console.log(this.SkillsForJob);
     },
       (err) => {
@@ -131,16 +131,14 @@ export class EditJobComponent implements OnInit {
         console.log("job Obj =>");
         console.log(this.jobObj);
         debugger;
-
-
         //add only the new skills to write in DB
         this.jobService.addSkillsetForJob(Number(this.JobId), this.MoreSkillsForJob).subscribe(rsp => {
-          // debugger; 
           let skillObj = rsp;
            console.log("skill Added successfully=>>>>>>>>>>");
             console.log(skillObj);
            window.alert("the job has Successfully Update")
            this.ngOnInit();
+           this.router.navigate(['/AllJobs']);
         },
           (err) => { debugger; console.log("error : " + err); });
       },
@@ -174,9 +172,4 @@ export class EditJobComponent implements OnInit {
       console.log("ERROR: " + err);
     });
   }
-
-
-
-
-
 }

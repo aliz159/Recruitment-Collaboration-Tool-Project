@@ -71,7 +71,8 @@ export class MyApplicantsComponent implements OnInit {
         this.recruiterObj.Name, applicant.IsPublished, applicant.IsActive, applicant.InterviewDate, applicant.StatusAfterView);
       req.subscribe(rsp => {
         window.alert("Applicant locked succssfully");
-        console.log("Applicant locked succssfully")
+        console.log("Applicant locked succssfully");
+        this.GetRecruiterApplicants();
       },
         (err) => { console.log(err); }
       );

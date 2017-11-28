@@ -1,0 +1,61 @@
+<nav class="col-xs-6 col-sm-3 sidebar-offcanvas sideBarNav">
+    <div style="background:#f8f8f8;height:100%;" class="navbar-fixed-left">
+        <!-- <div style="background:#f8f8f8;width:15%;"  class="col-xs-6 col-sm-3 sidebar-offcanvas" role="navigation"> -->
+        <div class="sidebar-nav">
+            <ul class="nav">
+                <li id="starter" class="nav-divider"></li><br>
+                <strong><label class="searchLabel"> Search : </label></strong> <br><br>
+                <li><input type="text" class="searchApp" name="search" [(ngModel)]="search" placeholder="search text goes here">
+                    <span
+                        class="glyphicon glyphicon-search searchIcon"></span>
+                </li>
+                <li class="nav-divider"></li><br><br>
+                <strong> Skillset : </strong> <br><br>
+                <li *ngFor="let skill of Skills">
+                    <input type="checkbox" class="skillCheckBox" name="skill" 
+                    [(ngModel)]="skill.selected" 
+                    (change)="filterBySkills(skill)" 
+                    [value]="skill.value">                    
+                    {{skill.skill}}
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<br><br><br><br><br><br>
+
+<div class="allCards">
+<div class="card" *ngFor="let applicant of allApplicant | filter:search">
+    <h4 class="card-title" (click)="SeeApplicant(applicant.Id)"><strong>{{applicant.Name}}</strong></h4>
+    <p class="card-text">{{applicant.Title}}
+        <span class="glyphicon glyphicon-remove-circle" (click)="GetApplicantToDelete(applicant)" data-toggle="modal" data-target="#myModal"></span>
+        <span class="glyphicon glyphicon-pencil" (click)="EditApplicant(applicant.Id)" data-toggle="tooltip" title="Edit Applicant!"></span>
+    </p>
+    <button class="activateBtn" (click)="Activate(applicant)" data-toggle="tooltip" title="Activate Applicant and go back to all active applicants">Activate</button>
+</div>
+</div>
+
+
+
+<div class="container">
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close modelBtns" data-dismiss="modal">&times;</button>
+          <h3 class="modal-title">DELETE</h3>
+        </div>
+        <div class="modal-body">
+          <p [style.font-size]="'22px'">Are you sure you want to permanently delete this applicant?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default modelBtns" (click)="DeleteApplicantHandler()" data-dismiss="modal">Yes</button>
+          <button type="button" class="btn btn-default modelBtns" data-dismiss="modal">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class JobService {
   private url: string;
+  private urlArchives: string;
   private urlSkillSet:string;
   private urlReccruitersManager:string;
   private urlJobSkills:string
@@ -14,6 +15,7 @@ export class JobService {
 
   constructor( @Inject(Http) private http: Http) {
     this.url = "http://localhost:55187/api/Job"; //DB Job
+    this.urlArchives = "http://localhost:55187/api/Archives"; //DB Archives
     this.urlSkillSet = "http://localhost:55187/api/Skillsets";//DB skills
     this.urlReccruitersManager = "http://localhost:55187/api/User";//DB Managers
     this.urlJobSkills = "http://localhost:55187/api/JobSkills";//DB skillsForJob
@@ -23,6 +25,9 @@ export class JobService {
 
   Get() {
     return this.http.get(this.url);
+  }
+    GetArchivedJobs() {
+    return this.http.get(this.urlArchives);
   }
   GetSkillSet() {
     return this.http.get(this.urlSkillSet);

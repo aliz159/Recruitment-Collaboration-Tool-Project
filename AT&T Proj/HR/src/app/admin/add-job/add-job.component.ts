@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JobService } from "../../services/JobService/job.service";
 import { ApplicantService } from "../../services/ApplicantService/applicant.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-add-job',
@@ -9,10 +10,25 @@ import { ApplicantService } from "../../services/ApplicantService/applicant.serv
 })
 export class AddJobComponent implements OnInit {
 
-  AddSkillInput:boolean=false;
-  newSkill:string;
-  constructor(private jobService: JobService,
-  private ApplicantService: ApplicantService) { }
+  AddSkillInput: boolean = false;
+  newSkill: string;
+  Title: string;
+  uniqueID: string;
+  position = "Developer";
+  YearsExperience: number;
+  Description: string;
+  Skills: string[];
+  Managers: string[];
+  Requirements: string;
+  ListSkillForJob: number[] = [];
+  ArrayManagers: any[] = [];
+  AddManager: boolean = false;
+  isActive: boolean = false;
+  jobObj: any;
+  skillObj: any;
+
+  constructor(private jobService: JobService,private router: Router, 
+    private ApplicantService: ApplicantService) { }
 
   ngOnInit() {
     this.jobService.GetSkillSet().subscribe(rsp => {
@@ -29,7 +45,6 @@ export class AddJobComponent implements OnInit {
       });
 
 
-
     this.jobService.GetReccruitersManager().subscribe(rsp => {
       if (rsp.status == 200) {
         //debugger;
@@ -44,29 +59,12 @@ export class AddJobComponent implements OnInit {
       });
   }
 
-  Title: string;
-  uniqueID: string;
-  position = "Developer";
-  YearsExperience: number;
-  Description: string;
-  Skills: string[];
-  Managers: string[];
-  Requirements: string;
-  ListSkillForJob: number[] = [];
-  // ArraySkills: string[] = [];
-  ArrayManagers: any[] = [];
-  AddManager: boolean = false;
-  isActive: boolean = false;
-  jobObj: any;
-  skillObj: any;
 
   SaveDatilesJob() {
-
-    debugger;
     this.jobService.addJob(this.ArrayManagers[0], this.uniqueID, this.Title, this.position,
       this.Description, this.YearsExperience, this.Requirements, this.isActive)
       .subscribe(rsp => {
-      this.jobObj = rsp;
+        this.jobObj = rsp;
         console.log("job Obj=>>>>>>>>>>>>");
         console.log(this.jobObj);
         debugger;
@@ -86,25 +84,23 @@ export class AddJobComponent implements OnInit {
             this.ListSkillForJob = [];
             this.ArrayManagers = [];
             this.ngOnInit();
+            this.router.navigate(['/AllJobs']);
           },
           (err) => { debugger; console.log("error : " + err); });
       },
 
       (err) => { debugger; console.log("error : " + err); });
 
-    console.log(
-      this.ArrayManagers[0], this.Title,
-      this.Description, this.ListSkillForJob,
-      this.Requirements, this.isActive)
+    console.log(this.ArrayManagers[0], this.Title,
+                this.Description, this.ListSkillForJob,
+                this.Requirements, this.isActive)
   }
-
 
 
 
   RecruitingMangersList() {
     this.AddManager = true;
   }
-
 
 
 
@@ -135,7 +131,7 @@ export class AddJobComponent implements OnInit {
     this.AddSkillInput = !this.AddSkillInput;
   }
 
-   addNewSkill() {
+  addNewSkill() {
     this.ApplicantService.addSkillset(this.newSkill).subscribe(rsp => {
       console.log("New Skill Added Succeessfully");
       this.newSkill = null;
@@ -143,6 +139,4 @@ export class AddJobComponent implements OnInit {
       console.log("ERROR: " + err);
     });
   }
-
-
 }
