@@ -55,6 +55,15 @@
 
 
 
+<div *ngIf="isPublished">
+         <a class="mailBtn" href="mailto:{{recruitersEmail1}}?Subject=New%20Applicant&body={{massage}}">
+        Please click to send an email to recruiters
+        <i class="glyphicon glyphicon-send sendI" title="Response maile to__" aria-hidden="true"></i>
+     </a>
+    </div>
+
+
+
         <button class="publishBtn" (click)="Publish()" *ngIf="isPublished == false && showAddSummary == false">Publish</button>
 
         <span id="deleteIcon" class="glyphicon glyphicon-remove-circle" (click)="GetApplicantToDelete()" *ngIf="!SummaryRecruitment"
