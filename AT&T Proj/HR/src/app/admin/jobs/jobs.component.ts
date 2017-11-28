@@ -23,8 +23,11 @@ export class JobComponent implements OnInit {
   Requirements: string;
   Description: string;
   YearOfExperience: number;
+  jobObj: any;
 
   SkillsForJob: any;
+  categoryArr = ["General","Skillset","CV","Interview Summery"];
+
   constructor(private jobService: JobService,
     private route: ActivatedRoute,
     private router: Router,private userService: UserService) {
@@ -90,31 +93,27 @@ export class JobComponent implements OnInit {
       });
   }
 
+  GetJobToDelete() {
+    window.alert("del");
+    this.jobObj = this.JobObj;
+  }
 
+  //Delete the user
+  DeleteJobHandler() {
+    console.log("job Obj before deleting");
+    console.log(this.jobObj);
 
-
-
-
-
-
-  MarkJobAsInActive(job: any) {
-    console.log("job obj =>>>>>>>>");
-    console.log(job);
-    this.jobService.editJob(job.Id, job.UserId, job.strUniqueID,
-      job.Name, job.Position, job.Description, job.Requirements,
-      job.IsActive, job.YearOfExperience).subscribe(rsp => {
-        if (rsp == 204) {
-          window.alert("the job has been removed")
-          this.GetOneJob(Number(this.JobId));
-        }
-        else { console.log("server responded error : " + rsp); }
+    this.jobService.editJob(this.jobObj.Id, this.jobObj.UserId, this.jobObj.StrUniqueID,
+      this.jobObj.Name, this.jobObj.Position, this.jobObj.Description, this.jobObj.Requirements,
+      false, this.jobObj.YearOfExperience).subscribe(rsp => {
+        console.log(rsp.json());
+        window.alert('job deleted successfully');
       },
       (err) => {
         console.log("error : " + err);
+        window.alert(JSON.stringify(err));
       });
   }
-
-
 
   EditJob() {
     debugger;

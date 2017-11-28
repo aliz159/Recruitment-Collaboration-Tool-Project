@@ -55,7 +55,7 @@ namespace WebApplication1.Controllers.api
         {
             return !string.IsNullOrEmpty(applicant.Name) && !string.IsNullOrEmpty(applicant.Title) &&
                  !string.IsNullOrEmpty(applicant.Cv) && !string.IsNullOrEmpty(applicant.Position) &&
-                 !string.IsNullOrEmpty(applicant.Phone) && !string.IsNullOrEmpty(applicant.NameWhoLocked);
+                 !string.IsNullOrEmpty(applicant.Phone);
         }
 
         // POST /api/Applicant

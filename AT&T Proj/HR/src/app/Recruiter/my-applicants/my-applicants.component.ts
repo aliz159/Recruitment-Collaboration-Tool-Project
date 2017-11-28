@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import { Router, ActivatedRoute } from "@angular/router";
 import { ApplicantService } from "../../services/ApplicantService/applicant.service";
 import { UserService } from "../../services/UsersService/user.service";
+import { JobService } from "../../services/JobService/job.service";
 
 @Component({
   selector: 'app-my-applicants',
@@ -14,10 +15,25 @@ export class MyApplicantsComponent implements OnInit {
   recruiterApplicants: any;
   recruiterID: number;
   recruiterObj: any;
+    Skills: any[];
 
-  ngOnInit() { }
 
-  constructor(public jobToApplicantService: JobToApplicantService,
+  ngOnInit() { 
+        this.jobService.GetSkillSet().subscribe(rsp => {
+      if (rsp.status == 200) {
+        this.Skills = rsp.json();
+
+        console.log("Array Skiils From DB");
+        console.log(this.Skills);
+      }
+      else { console.log("server responded error : " + rsp); }
+    },
+      (err) => {
+        console.log("error : " + err);
+      });
+  }
+
+  constructor(public jobService: JobService, public jobToApplicantService: JobToApplicantService,
     public ApplicantService: ApplicantService, private router: Router,
     route: ActivatedRoute, public userService: UserService) {
     this.recruiterID = route.snapshot.params['id'];
@@ -68,8 +84,7 @@ export class MyApplicantsComponent implements OnInit {
   SeeApplicant(applicant: any) {
     this.router.navigate(['/Applicant', applicant.Id, this.recruiterID]);
   }
-  EditApplicant(applicantId: any) {
-    this.router.navigate(['/EditApplicant', applicantId]);
-    window.alert("editAPP");
+  filterBySkills(skill) {
+
   }
 }

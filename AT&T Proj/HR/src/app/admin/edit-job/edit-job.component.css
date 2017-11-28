@@ -34,11 +34,10 @@ ul.listSkillsJob{
     margin-left: 5%;
     font-size: 20px;
 }
-p.skillsList{
-        margin: 0 0 10px;
-    display: inline-block;
-    margin-left: 9%;
-    font-size: 20px;
+.skillsList{
+     font-size: 20px;
+    margin-left: 5%;
+    list-style-type: none;
 }
 .plusIcon{
     float: right;
@@ -49,4 +48,7 @@ p.skillsList{
 span.Recruiters{
     margin-left: 5%;
     font-size: 20px;
+}
+.skillsetTitle{
+    margin-bottom: -3%;
 }

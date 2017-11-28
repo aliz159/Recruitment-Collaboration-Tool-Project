@@ -58,7 +58,21 @@ h1{
 input[type="radio"]{
     font-size: 20px;
 }
-/* #InputSkill{
-    font-size: 20px;
-} */
-
+.alert-danger{
+    width:100%;
+    height: 50px;
+    margin-left: 0%;
+}.error{
+    margin-top: -1%;
+}
+#saved{
+    font-size: 30px;
+  
+}
+#savedButtone{
+    margin-left: 95%;
+}
+#savedButtone:disabled{
+    margin-left: 95%;
+    cursor: not-allowed;
+}

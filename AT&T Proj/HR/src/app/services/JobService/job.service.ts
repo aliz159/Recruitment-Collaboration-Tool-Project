@@ -51,6 +51,7 @@ export class JobService {
       return res.json();
     });
   }
+
   GetSkillsetForJob(id:number){
     let url = this.urlJobSkills+"/"+id;
     debugger;
@@ -67,14 +68,6 @@ export class JobService {
       return res.json();
     });
   }
-
-
-  
-  
-
- 
-
-
 
      
   GetOneJob(id: number) {

@@ -20,12 +20,6 @@
 
     <label>Recruiters: </label> 
     <br><span class="Recruiters">{{UserName}}</span>
-    <!-- <div class="form-group">
-      <label for="userId">User Id:</label>
-      <input type="text" class="form-control" id="userId"
-       [(ngModel)]="UserId" name="userId">
-    </div> -->
-
 
     <div class="form-group">
       <label for="position">Position:</label>
@@ -45,7 +39,7 @@
     </ul>
 
      <div class="form-group">
-      <label for="usr">Skillset </label>
+      <label for="usr" class="skillsetTitle">Skillset </label>
       <button (click)="addSkill()"> 
       <span class="glyphicon glyphicon-plus"></span> Add
       </button> 
@@ -58,12 +52,14 @@
     <button (click)="addNewSkillForJob()"> Add Skill</button>
     </div>
 
-    <p class="skillsList" *ngFor="let skill of AllSkills">
+    <ul>
+    <li class="skillsList" *ngFor="let skill of AllSkills">
     <input type="checkbox"  name="skill" 
     [(ngModel)]="skill.selected"
     (change)="SkillsetArray(skill)"
     [value]="skill.value"> {{skill.skill}}
-    </p>
+    </li><br>
+    </ul>
     </div>
 
      <div class="form-group">

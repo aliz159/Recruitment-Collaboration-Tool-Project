@@ -45,6 +45,8 @@ export class ApplicantComponent implements OnInit {
   ShowStatusInterview=false;
   ClickedPass = false;
   addSummaryMassage:string;
+  categoryArr = ["General","Skillset","CV","Interview Summery"];
+  ApplicantObj: any;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -315,14 +317,26 @@ bb = "yaffa2077@gmail.com";
   }
 
 
+GetApplicantToDelete() {
+    window.alert("del");
+    this.ApplicantObj = this.applicantsObj;
+  }
 
-  ////get manager name for summary
-  // getManagerNameForSummary(userId:number){
-  //   debugger;
-  //   this.userService.GetOneUser(userId).subscribe(rsp => {
-  //          debugger; this.objManager =rsp.json();
-  //     },
-  //     (err) => { console.log(err); }
-  //     );
-  // }
+  //Delete the user
+  DeleteApplicantHandler() {
+    console.log("applicant Obj before deleting");
+    console.log(this.ApplicantObj);
+
+    this.applicantService.editApplicant(this.ApplicantObj.Id, this.ApplicantObj.Name, this.ApplicantObj.Title,
+      this.ApplicantObj.Phone, this.ApplicantObj.Email, this.ApplicantObj.YearOfExperience, this.ApplicantObj.Position, this.ApplicantObj.Cv,
+      this.ApplicantObj.IsLocked, this.ApplicantObj.UserIdLockedBy, this.ApplicantObj.NameWhoLocked, false,
+      false, this.ApplicantObj.InterviewDate, this.ApplicantObj.StatusAfterInterview).subscribe(rsp => {
+        console.log(rsp.json());
+        window.alert('Applicant deleted successfully');
+      },
+      (err) => {
+        console.log("error : " + err);
+        window.alert(JSON.stringify(err));
+      });
+  }
 }

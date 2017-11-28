@@ -1,27 +1,41 @@
-<h1>
-    all-applicant for recruiter !
-</h1><br><br><br>
-  
-<button href="#" data-toggle="tooltip" title="Add Aplicant!" style="margin-left:20%;"> 
-<span class="glyphicon glyphicon-plus"></span>Add
-</button> 
+<nav class="col-xs-6 col-sm-3 sidebar-offcanvas sideBarNav">
+  <div style="background:#f8f8f8;height:100%;" class="navbar-fixed-left">
+    <div class="sidebar-nav">
+      <ul class="nav">
+        <li id="starter" class="nav-divider"></li><br>
+        <strong><label class="searchLabel"> Search : </label></strong> <br><br>
+        <li><input type="text" class="searchApp" name="search" [(ngModel)]="search" placeholder="search text goes here">
+          <span class="glyphicon glyphicon-search searchIcon"></span>
+        </li>
+        <li class="nav-divider"></li><br><br>
+        <strong> Skillset : </strong> <br><br>
+        <li *ngFor="let skill of Skills">
+          <input type="checkbox" class="skillCheckBox" name="skill" [(ngModel)]="skill.selected" (change)="filterBySkills(skill)" [value]="skill.value">          {{skill.skill}}
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<br><br><br><br><br><br>
+
+<button class="btn btn-primary addApplicantBtn" data-toggle="tooltip" title="Add Aplicant!"> 
+<span class="glyphicon glyphicon-plus plusIcon"></span>Add New Applicant
+</button>
 <br>
 
+<div class="allCards">
+  <div class="card" *ngFor="let applicant of recruiterApplicants  | filter:search" (click)="SeeApplicant(applicant)">
+    <h4 class="card-title"><strong>{{applicant.Name}}</strong>
 
-<div class="card" *ngFor="let applicant of recruiterApplicants"
- style="width: 25rem; margin-left:20%;" (click)="SeeApplicant(applicant)">
-    <h4 class="card-title">{{applicant.Name}}
+      <span *ngIf="applicant.IsLocked == true" class="glyphicon glyphicon-lock" (click)="LockApplicant(applicant)" data-toggle="tooltip"
+        title="Locked by {{applicant.NameWhoLocked}}"></span>
 
-            <span *ngIf="applicant.IsLocked == true" class="glyphicon glyphicon-lock" (click)="LockApplicant(applicant)" 
-    data-toggle="tooltip" title="Locked by {{applicant.NameWhoLocked}}"></span>
-
-      <span *ngIf="applicant.IsLocked == false" class="fa fa-unlock-alt" (click)="LockApplicant(applicant)" 
-      data-toggle="tooltip" title="Lock Applicant"></span>
+      <span *ngIf="applicant.IsLocked == false" class="fa fa-unlock-alt" (click)="LockApplicant(applicant)" data-toggle="tooltip"
+        title="Lock Applicant"></span>
     </h4>
-    <p class="card-text">{{applicant.Title}} 
-      <span class="glyphicon glyphicon-pencil"
-      (click)="EditApplicant(applicant.Id)" data-toggle="tooltip" title="Edit Applicant!"></span>
+    <p class="card-text"><strong>{{applicant.Title}}</strong>
     </p>
-    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+  </div>
 </div>
- 

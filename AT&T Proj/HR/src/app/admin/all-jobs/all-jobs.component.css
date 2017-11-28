@@ -1,16 +1,13 @@
- .row{
-   /* margin-top: 3%; */
-     /* display: inline-block;  */
-    margin-left: 17%;
-} 
 h1{
     text-align: center;
 }
-.btn{
-    margin-top: 10%;
-    margin-left: 18%;
+.addJobBtn{
+        margin-top: 10%;
+    margin-left: 23%;
     margin-bottom: 2%;
     font-size: 125%;
+    display: block;
+
 }
 .glyphicon-remove-circle{
     float: right;
@@ -21,8 +18,27 @@ float: right;
 margin-right: 2.5%;
 }
 
-
-
+.searchIcon{
+    position: absolute;
+    margin-left: 85%;    
+    margin-top: 5%;
+    font-size: 119%;
+    color: gray;
+    }
+.searchjob{
+width: 102%;
+    margin-left: -4%;
+    font-size: 106%;
+    height: 35px;
+    margin-top: -5%;
+    border: 1px solid lightgrey;
+}
+.sideBarNav{
+        width: 18%;
+        background:#f8f8f8;
+        height:100%;
+        position:fixed;
+}
 
 .col-sm-6{
      width: 100%;
@@ -32,6 +48,30 @@ margin-right: 2.5%;
     width: 50%;
 }
 .card{
-        width: 284%;
+    display: inline-block;
+    border: 1px solid gray;
+    margin-left: 3%;
+    margin-top: 8%;
+    padding: 1%;
+    width: 26%;
+}
+.allCards{
+        padding-left: 19%;
+    margin-top: -3%;
+}
+.skillCheckBox{
+    margin-top: 5%;
+}
+.searchLabel{
+        font-size: 109%;
+    margin-top: 39%;
+}
+.modelBtns{
+    border: 1px solid gray;
+    font-size: 18px;
+    border-radius: 5px;
+    width: 16%;    
+    height: 36px;
+    margin-right: 1%;
 }
   

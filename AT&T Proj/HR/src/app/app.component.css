@@ -25,6 +25,7 @@ body, html {
     -moz-user-select: none;
     -webkit-user-select: none;
     user-select: none;
+    padding: 10px 16px 30px;
 }
 
 

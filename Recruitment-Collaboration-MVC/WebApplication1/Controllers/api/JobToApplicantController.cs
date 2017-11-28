@@ -24,9 +24,17 @@ namespace WebApplication1.Controllers.api
         {
             var MatchingJob = from JToA in m_db.JobToApplicant
                               from job in m_db.Jobs
-                              where JToA.ApplicantId == id && job.Id == JToA.JobId &&
+                              where JToA.ApplicantId == id && 
+                              JToA.JobId == job.Id &&
                               JToA.MatchPercent > 60
                               select job;
+
+            //var MatchingJob2 = from JToA in m_db.JobToApplicant
+            //                   join job in m_db.Jobs on JToA.ApplicantId equals id into jobGroup
+            //                   from job2 in jobGroup
+            //                   where job2.MatchPercent > 60
+            //                   select job2;
+
             return MatchingJob.AsQueryable();
         }
 

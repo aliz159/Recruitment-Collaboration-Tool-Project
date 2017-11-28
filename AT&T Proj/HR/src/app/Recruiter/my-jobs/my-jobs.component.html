@@ -1,0 +1,37 @@
+<nav class="col-xs-6 col-sm-3 sidebar-offcanvas sideBarNav">
+    <div style="background:#f8f8f8;height:100%;" class="navbar-fixed-left">
+        <div class="sidebar-nav">
+            <ul class="nav">
+                <li id="starter" class="nav-divider"></li><br>
+                <strong><label class="searchLabel"> Search : </label></strong> <br><br>
+                <li><input type="text" class="searchjob" name="searchjob" [(ngModel)]="searchjob" placeholder="search text goes here">
+                    <span class="glyphicon glyphicon-search searchIcon"></span></li>
+                <li class="nav-divider"></li><br><br>
+                <strong> Skillset : </strong> <br><br>
+                <li *ngFor="let skill of Skills">
+                    <input type="checkbox" class="skillCheckBox" name="skill" 
+                    [(ngModel)]="skill.selected" 
+                    (change)="filterBySkills(skill)" 
+                    [value]="skill.value">                    
+                    {{skill.skill}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br><br>
+
+
+<!--all jobs shortly-->
+<div class="allCards">
+    <div class="card" *ngFor="let job of recruiterJobs | filter:searchjob" (click)="SeeJob(job.Id)">
+        <div>
+            <h3 class="card-title">{{job.Name}}
+                <span class="glyphicon glyphicon-pencil" (click)="EditJob(job.Id)"></span>
+            </h3>
+              <p class="card-text textCard">
+                  {{job.Description}}
+              </p>
+        </div>
+    </div>
+</div>

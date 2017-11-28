@@ -13,6 +13,7 @@ import { JobComponent } from './admin/jobs/jobs.component';
 import { AllJobsComponent } from './admin/all-jobs/all-jobs.component';
 import { AddJobComponent } from './admin/add-job/add-job.component';
 import { EditJobComponent } from './admin/edit-job/edit-job.component';
+
 //Applicants
 import { ApplicantComponent } from './admin/applicant/applicant.component';
 import { AllApplicantsComponent } from './admin/all-applicants/all-applicants.component';
@@ -27,11 +28,14 @@ import { JobToApplicantService } from "./services/JobToApplicantService/job-to-a
 import { UserService } from "./services/UsersService/user.service";
 import { NavbarService } from "./services/navBarService/navbar.service";
 import { CookiesService } from "./services/CookiesService/cookies.service";
+import { MyJobsComponent } from './Recruiter/my-jobs/my-jobs.component';
+import { PipePipe } from './pipe.pipe';
+
 
 const appRoutes: Routes = [
   // { path: '', pathMatch: 'full', redirectTo: 'Home' },
   { path: 'Lock', component: LockComponent },
-  { path: 'b', component: AppComponent },
+  { path: 'App', component: AppComponent },
   { path: 'Job/:id', component: JobComponent },
   { path: 'Job/:id/:RecruitmentId', component: JobComponent },
   { path: 'Applicant/:id', component: ApplicantComponent },
@@ -43,7 +47,7 @@ const appRoutes: Routes = [
   { path: 'EditJob/:id', component: EditJobComponent },
   { path: 'EditApplicant/:id', component: EditApplicantComponent },
   { path: 'MyApplicants/:id', component: MyApplicantsComponent },
-  
+  { path: 'MyJobs/:id', component: MyJobsComponent },
 ];
 
 @NgModule({
@@ -58,7 +62,9 @@ const appRoutes: Routes = [
     AddApplicantComponent,
     AllApplicantsComponent,
     EditApplicantComponent,
-    MyApplicantsComponent
+    MyApplicantsComponent,
+    MyJobsComponent,
+    PipePipe
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes),

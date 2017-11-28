@@ -42,15 +42,15 @@ namespace WebApplication1.Controllers.api
         bool validationIsOk(Job job)
         {
             var ValidationIsOk = !string.IsNullOrEmpty(job.Name) && !string.IsNullOrEmpty(job.Description)
-                && !string.IsNullOrEmpty(job.Requirements) && !string.IsNullOrEmpty(job.strUniqueID)
-                && !string.IsNullOrEmpty(job.Position);
+                && !string.IsNullOrEmpty(job.Requirements) && !string.IsNullOrEmpty(job.Position);
             return ValidationIsOk;
         }
 
         [HttpPatch]
         public IEnumerable<Job> GetRecruiterJobs(User user)
         {
-            return m_db.Jobs.Where(job => job.UserId == user.Id && job.IsActive == true).AsEnumerable();
+            var jobs = m_db.Jobs.Where(job => job.UserId == user.Id && job.IsActive == true).AsEnumerable();
+            return jobs.AsEnumerable();
         }
 
         //POST /api/Job

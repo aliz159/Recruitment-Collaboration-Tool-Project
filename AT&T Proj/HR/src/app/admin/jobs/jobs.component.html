@@ -1,13 +1,28 @@
-<p>
-    jobs works!
-</p>
-
+<nav class="col-xs-6 col-sm-3 sidebar-offcanvas sideBarNav">
+    <div style="background:#f8f8f8;height:100%;" class="navbar-fixed-left">
+        <div class="sidebar-nav">
+            <ul class="nav">
+                <li id="starter" class="nav-divider"></li><br>
+                <strong><label class="searchLabel"> Find in job: </label></strong> <br><br>
+                <li><input type="text" class="searchInJob" name="searchJob" [(ngModel)]="searchjob" placeholder="search text goes here">
+                    <span class="glyphicon glyphicon-search searchIcon"></span></li>
+                <li class="nav-divider"></li><br><br>
+                <li>
+                    <select class="selectCategory" name="category" title="Area">
+                    <option *ngFor="let category of categoryArr" [value]="category">
+                    {{category}}</option></select>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br><br><br>
 
 <div class="card Job">
     <div class="card-block">
        <h1 class="card-title" id="title">#{{strUniqueID}}. {{Name}}</h1>
         
-       <span class="glyphicon glyphicon-remove-circle" (click)="MarkJobAsInActive(job)"></span>
+       <span class="glyphicon glyphicon-remove-circle" (click)="GetJobToDelete()" data-toggle="modal" data-target="#myModal"></span>
        <span class="glyphicon glyphicon-pencil pencil" (click)="EditJob()"></span>
 
          <p class="descriptionJob">
@@ -24,4 +39,25 @@
             <strong>Requirements:</strong> {{Requirements}}<br/><br/><br/>
         </p>
     </div>
+</div>
+
+
+<div class="container">
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close modelBtns" data-dismiss="modal">&times;</button>
+          <h3 class="modal-title">DELETE</h3>
+        </div>
+        <div class="modal-body">
+          <p [style.font-size]="'22px'">Are you sure you want to delete this job?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default modelBtns" (click)="DeleteJobHandler()" data-dismiss="modal">Yes</button>
+          <button type="button" class="btn btn-default modelBtns" data-dismiss="modal">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

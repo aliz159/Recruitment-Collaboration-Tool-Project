@@ -1,53 +1,43 @@
 <div *ngIf="nav.menuVisible" class="navbar navbar-fixed-top navbar-default" role="navigation">
     <div class="container-fluid">
         <div style="background:#3c3c3c;height:100px;width:18%;display:flex;align-items:center;justify-content:center" class="navbar-header">
-            <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button> -->
             <a style="height:100px;display:flex;align-items:center;justify-content:center" class="navbar-brand" style="color:white">AT&T Collaboration Tool <br> Hi, {{userObj.Name}} ({{userObj.UserType}})</a>
         </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right" style="height:100px">
-                        <li class="tabs" >
-    <button style="display:flex;align-items:center;justify-content:center;" class="btn btn-lg btn-primary" *ngIf="nav.menuVisible" (click)="nav.hideMenu()">
-        <a style="color:white;text-decoration:none;" (click)="nav.hideLoginForm()" routerLink="/b">Logout</a></button>
-                        </li>
-    <li class="tabs">
-    <a role="button" href="https://www.att.com/">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right" style="height:100px">
+                <li class="tabs">
+                    <button style="display:flex;align-items:center;justify-content:center;" class="btn btn-lg btn-primary" *ngIf="nav.menuVisible"
+                        (click)="Logout()">
+        <a style="color:white;text-decoration:none;" (click)="nav.hideLoginForm()">Logout</a></button>
+                </li>
+                <li class="tabs">
+                    <a role="button" href="https://www.att.com/">
     <img id="logo-img" class="profile-img-card" src="../../assets/images/p-trans.gif" />
     </a>
-    </li>
-                    </ul>
-<!-- </div> -->
-        <!-- <div class="collapse navbar-collapse"> -->
+                </li>
+            </ul>
             <ul style="height:100px" class="nav navbar-nav">
-                <li class="head"><a class="tabs"
-                    routerLink="/AllJobs">Jobs<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-tags"></span></a></li>
-                <li class="head" *ngIf="HRIsLoggedIn"><a class="tabs"
-                    routerLink="/AllApplicants">
+                <li class="head" *ngIf="HRIsLoggedIn"><a class="tabs" routerLink="/AllJobs">
+                    Jobs<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-tags"></span></a></li>
+                <li class="head" *ngIf="HRIsLoggedIn"><a class="tabs" routerLink="/AllApplicants">
                  Applicants<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-user-circle"></span></a></li>
-                    <li class="head" *ngIf="!HRIsLoggedIn"><a class="tabs"
-                    routerLink="/MyApplicants/{{userObj.Id}}">
+
+                <li class="head" *ngIf="!HRIsLoggedIn"><a class="tabs" routerLink="/MyJobs/{{userID}}">
+                    Jobs<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-user-circle"></span></a></li>
+                <li class="head" *ngIf="!HRIsLoggedIn"><a class="tabs" routerLink="/MyApplicants/{{userID}}">
                     Applicants<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-user-circle"></span></a></li>
             </ul>
         </div>
-        <!-- /.nav-collapse -->
     </div>
-    <!-- /.container -->
 </div>
-<!-- /.navbar -->
 
-
-<router-outlet></router-outlet>
 
 <div class="container">
     <div class="card card-container" *ngIf="nav.loginVisible">
         <img id="profile-img" class="profile-img-card" src="../../assets/images/p-trans.gif" />
         <p id="profile-name" class="profile-name-card"></p>
-        
-        
+
+
         <form class="form-signin" #trvForm="ngForm" (ngSubmit)="Login()">
 
             <input type="email" placeholder="Enter email address" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [(ngModel)]="Email"
@@ -71,29 +61,4 @@
     </div>
 </div>
 
-
-
-<!-- <nav class="navbar navbar-default sidebar" role="navigation">
-    <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>      
-    </div>
-    <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuarios <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a>
-          <ul class="dropdown-menu forAnimate" role="menu">
-          </ul>
-        </li>          
-        <li ><a href="/AllApplicants">Applicant<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a></li>        
-        <li ><a routerLink="/AllJobs">Jobs<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tags"></span></a></li>
-      </ul>
-    </div>
-  </div>
-</nav> -->
+<router-outlet></router-outlet>

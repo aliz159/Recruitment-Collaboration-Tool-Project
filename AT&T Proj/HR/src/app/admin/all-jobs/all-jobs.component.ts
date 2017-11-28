@@ -20,6 +20,8 @@ export class AllJobsComponent {
   Description: string;
   Requirements: string;
 
+  jobObj: any;
+
 
   constructor(public jobService: JobService,
     private router: Router, private userService: UserService) {
@@ -75,32 +77,10 @@ allUsersObj:any;
       });
   }
 
+    filterBySkills(skill)
+    {
 
-  //jobEditObj: any;
-  MarkJobAsInActive(job: any) {
-    debugger;
-    console.log("job obj =>>>>>>>>");
-    console.log(job);
-    this.jobService.editJob(job.Id, job.UserId, job.strUniqueID,
-      job.Name, job.Position, job.Description, job.Requirements,
-      job.IsActive, job.YearOfExperience).subscribe(rsp => {
-        debugger;
-        if (rsp == 204) {
-          debugger;
-          // this.jobEditObj = rsp.json();
-          window.alert("the job has been removed")
-          this.getAllJobs();
-        }
-        else { console.log("server responded error : " + rsp); }
-      },
-      (err) => {
-        console.log("error : " + err);
-      });
-  }
-
-
-
-
+    }
 
   SeeJob(id: number) {
     debugger;
@@ -110,6 +90,32 @@ allUsersObj:any;
   EditJob(jobId: any) {
     debugger;
     this.router.navigate(['/EditJob', jobId]);
+  }
+
+  GetJobToDelete(job: any) {
+    window.alert("del");
+    this.jobObj = job;
+  }
+
+  //Delete the user
+  DeleteJobHandler() {
+    console.log("job Obj before deleting");
+    console.log(this.jobObj);
+
+    this.jobService.editJob(this.jobObj.Id, this.jobObj.UserId, this.jobObj.StrUniqueID,
+      this.jobObj.Name, this.jobObj.Position, this.jobObj.Description, this.jobObj.Requirements,
+      false, this.jobObj.YearOfExperience).subscribe(rsp => {
+        console.log(rsp.json());
+        window.alert('job deleted successfully');
+
+        let index = this.allJobs.indexOf(this.jobObj);
+        this.allJobs.splice(index, 1);
+        console.log(this.allJobs);
+      },
+      (err) => {
+        console.log("error : " + err);
+        window.alert(JSON.stringify(err));
+      });
   }
 
 }

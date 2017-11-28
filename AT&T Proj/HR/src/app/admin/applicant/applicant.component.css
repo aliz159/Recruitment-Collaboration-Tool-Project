@@ -31,13 +31,27 @@
     margin-left: 79%;
 }
 
-#lockIcon, #unlockIcon, #deleteIcon, #pencilIcon{
+#lockIcon, #unlockIcon{
 padding-right: 4%;
     font-size: 227%;
     margin-top: -5%;
     color: black;
-    float: right;
+        margin-left: 87%;
 }
+#deleteIcon{
+        float: right;
+            margin-top: -4%;
+                font-size: 227%;
+                    color: black;
+
+
+}
+        #pencilIcon{
+    margin-left: 92%;
+    font-size: 227%;
+    color: black;
+    margin-top: -4%;
+        }
 p{
     color: black;
     margin-left: 6%;
@@ -107,4 +121,44 @@ h3{
     }
 .AddSummary{
            margin-left: 15%;
+}
+        .searchIcon{
+    position: absolute;
+    margin-left: 85%;    
+    margin-top: 5%;
+    font-size: 119%;
+    color: gray;
+    }
+.searchInApplicant{
+width: 102%;
+    margin-left: -4%;
+    font-size: 106%;
+    height: 35px;
+    margin-top: -5%;
+    border: 1px solid lightgrey;
+}
+.sideBarNav{
+        width: 18%;
+        background:#f8f8f8;
+        height:100%;
+        position:fixed
+}
+    .searchLabel{
+        font-size: 109%;
+    margin-top: 39%;
+}
+.selectCategory{
+    height: 38px;
+    margin-left: -4%;
+    width: 102%;
+    font-size: 118%;
+}
+
+.modelBtns{
+    border: 1px solid gray;
+    font-size: 18px;
+    border-radius: 5px;
+    width: 18%;
+    height: 36px;
+    margin-right: 2%;
 }

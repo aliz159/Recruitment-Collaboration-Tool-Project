@@ -180,17 +180,3 @@ export class EditApplicantComponent implements OnInit {
     });
   }
 }
-      //debugger
-//             for (var j = 0; j < this.Skills.length; j++)   {
-
-//     for (var i = 0; i <   this.skillsObj.length; i++){
-//     this.index = this.Skills.indexOf(this.Skills[j]);
-//     console.log(this.index);
-//     if(this.Skills[j].Id = this.skillsObj[i].SkillsetsId ){
-//    this.Skills.splice(1,this.index);
-//      console.log(this.Skills);
-//     }
-
-//   }
-
-//  }

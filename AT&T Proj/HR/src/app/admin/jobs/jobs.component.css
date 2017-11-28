@@ -21,3 +21,45 @@
 .pencil{
     margin-right: 6%;
 }
+
+        .searchIcon{
+    position: absolute;
+    margin-left: 85%;    
+    margin-top: 5%;
+    font-size: 119%;
+    color: gray;
+    }
+.searchInJob{
+width: 102%;
+    margin-left: -4%;
+    font-size: 106%;
+    height: 35px;
+    margin-top: -5%;
+    border: 1px solid lightgrey;
+}
+.sideBarNav{
+        width: 18%;
+        background:#f8f8f8;
+        height:100%;
+        position:fixed
+}
+    .searchLabel{
+        font-size: 109%;
+    margin-top: 39%;
+}
+.selectCategory{
+    height: 38px;
+    margin-left: -4%;
+    width: 102%;
+    font-size: 118%;
+}
+
+.modelBtns{
+    border: 1px solid gray;
+    font-size: 18px;
+    border-radius: 5px;
+    width: 16%;    
+    height: 36px;
+    margin-right: 1%;
+}
+
