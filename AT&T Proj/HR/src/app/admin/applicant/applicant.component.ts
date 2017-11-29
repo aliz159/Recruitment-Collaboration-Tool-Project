@@ -179,6 +179,7 @@ successPublished=false;
   }
 
   recruitersEmail = [];
+  recruitersEmail1 = [];
   Subject: string;
   //Updating the applicant's publication in the database
   Publish() {
@@ -188,7 +189,8 @@ successPublished=false;
       applicant.IsLocked, applicant.UserIdLockedBy, applicant.NameWhoLocked, true,
       applicant.IsActive, applicant.InterviewDate, applicant.StatusAfterInterview).subscribe(rsp => {
         console.log(rsp);
-        this.massage = "Notice of a new candidate who is suitable for the job you are recruiting!!<br>Applicant name: " + this.Name +
+        this.isPublished = true;
+        this.massage = "Notice of a new candidate who is suitable for the job you are recruiting!! Applicant name: " + this.Name +
           "Email: " + this.Email + "phone: " + this.Phone;
 
         //Publication of the applicant for the relevant recruiters by email
@@ -200,9 +202,9 @@ successPublished=false;
               let ObjRecruiter = rsp.json();
               console.log("recruiter Object =>");
               console.log(ObjRecruiter);
-              this.recruitersEmail.push(ObjRecruiter.Email);
+              this.recruitersEmail1.push(ObjRecruiter.Email);
               console.log("Recruiters Email =>");
-              console.log(this.recruitersEmail);
+              console.log(this.recruitersEmail1);
             }
             else { console.log("server responded error : " + rsp); 
                                 this.successPublished = false;}
