@@ -23,7 +23,6 @@ button{
 #SkillId{
     font-size: 30px;
     font-weight: bolder;
-       font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 #divForm{
     width: 100%;
@@ -31,7 +30,6 @@ button{
 }
 .FormInput{
     font-size: 20px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     border:none;
 }
 #firstpart{
@@ -50,7 +48,6 @@ margin-bottom: 3%;
   margin: 10% 0 0 15%;
 }
 h1{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 50px;
     margin-bottom: 2%;
     font-weight: bolder;

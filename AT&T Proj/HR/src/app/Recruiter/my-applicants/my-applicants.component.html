@@ -5,7 +5,7 @@
         <li id="starter" class="nav-divider"></li><br>
         <strong><label class="searchLabel"> Search : </label></strong> <br><br>
         <li><input type="text" class="searchApp" name="search" [(ngModel)]="search" placeholder="search text goes here">
-          <span class="glyphicon glyphicon-search searchIcon"></span>
+          <span class="fa fa-search searchIcon"></span>
         </li>
         <li class="nav-divider"></li><br><br>
         <strong> Skillset : </strong> <br><br>
@@ -20,19 +20,14 @@
 
 <br><br><br><br><br><br>
 
-<button class="btn btn-primary addApplicantBtn" data-toggle="tooltip" title="Add Aplicant!"> 
-<span class="glyphicon glyphicon-plus plusIcon"></span>Add New Applicant
-</button>
-<br>
-
 <div class="allCards">
-  <div class="card" *ngFor="let applicant of filterdRecruiterApp  | filter:search">
+  <div class="box effect7 card" *ngFor="let applicant of filterdRecruiterApp  | filter:search">
     <h4 class="card-title" (click)="SeeApplicant(applicant)"><strong>{{applicant.Name}}</strong>
 
-      <span *ngIf="applicant.IsLocked == true" class="glyphicon glyphicon-lock" (click)="LockApplicant(applicant)" data-toggle="tooltip"
+      <span *ngIf="applicant.IsLocked == true" class="glyphicon glyphicon-lock appIcon" (click)="LockApplicant(applicant)" data-toggle="tooltip"
         title="Locked by {{applicant.NameWhoLocked}}"></span>
 
-      <span *ngIf="applicant.IsLocked == false" class="fa fa-unlock-alt" (click)="LockApplicant(applicant)" data-toggle="tooltip"
+      <span *ngIf="applicant.IsLocked == false" class="fa fa-unlock-alt appIcon" (click)="LockApplicant(applicant)" data-toggle="tooltip"
         title="Lock Applicant"></span>
     </h4>
     <p class="card-text"><strong>{{applicant.Title}}</strong>

@@ -7,7 +7,7 @@
                 <strong><label class="searchLabel"> Search : </label></strong> <br><br>
                 <li><input type="text" class="searchApp" name="search" [(ngModel)]="search" placeholder="search text goes here">
                     <span
-                        class="glyphicon glyphicon-search searchIcon"></span>
+                        class="fa fa-search searchIcon"></span>
                 </li>
                 <li class="nav-divider"></li><br><br>
                 <strong> Skillset : </strong> <br><br>
@@ -28,11 +28,11 @@
 <br><br><br><br><br><br>
 
 <div class="allCards">
-<div class="card" *ngFor="let applicant of allFilterdApplicant | filter:search">
+<div class="box effect7 card" *ngFor="let applicant of allFilterdApplicant | filter:search">
     <h4 class="card-title" (click)="SeeApplicant(applicant.Id)"><strong>{{applicant.Name}}</strong></h4>
     <p class="card-text">{{applicant.Title}}
-        <span class="glyphicon glyphicon-remove-circle" (click)="GetApplicantToDelete(applicant)" data-toggle="modal" data-target="#myModal"></span>
-        <span class="glyphicon glyphicon-pencil" (click)="EditApplicant(applicant.Id)" data-toggle="tooltip" title="Edit Applicant!"></span>
+        <span class="fa fa-window-close appIcon" (click)="GetApplicantToDelete(applicant)" data-toggle="modal" data-target="#myModal"></span>
+        <span class="fa fa-pencil appIcon" (click)="EditApplicant(applicant.Id)" data-toggle="tooltip" title="Edit Applicant!"></span>
     </p>
     <button class="activateBtn" (click)="Activate(applicant)" data-toggle="tooltip" title="Activate Applicant and go back to all active applicants">Activate</button>
 </div>

@@ -18,7 +18,7 @@
     <div class="card-body">
         <h1 class="card-title" id="title">{{Name}}</h1>
 
-        <span id="lockIcon" *ngIf="IsLocked == true" class="glyphicon glyphicon-lock" (click)="LockApplicant()" data-toggle="tooltip"
+        <span id="lockIcon" *ngIf="IsLocked == true" class="fa fa-lock" (click)="LockApplicant()" data-toggle="tooltip"
             title="Locked by {{nameWhoLocked}}"></span>
         <span id="unlockIcon" *ngIf="IsLocked == false" class="fa fa-unlock-alt" (click)="LockApplicant()" data-toggle="tooltip"
             title="Lock Applicant"></span>
@@ -26,7 +26,7 @@
 
         <button class="interviewBtn" (click)="showCalander = !showCalander" *ngIf="IsLocked == true && showAddSummary == true">
         <strong><span *ngIf="IsLocked == true && showAddSummary == true && interviewDate == null"
-        class="glyphicon glyphicon-calendar"></span> Add an interview date</strong></button>
+        class="fa fa-calendar"></span> Add an interview date</strong></button>
 
         <div *ngIf="showCalander">
             <input type="date" id="Date" [(ngModel)]="interviewDate" #trvDate="ngModel" name="Date" required data-toggle="tooltip" data-placement="bottom"
@@ -49,13 +49,22 @@
         <div class="clickedPass" *ngIf="PassOrFail">
             <a class="mailto" href="mailto:{{EmailHRArray}}?subject=Applicant%20{{PassOrFailSubject}}&body={{massage}}">
         Please click to send an email to HR
-        <i class="glyphicon glyphicon-send sendI" title="Response maile to__" aria-hidden="true"></i>
+        <i class="fa fa-paper-plane sendI" title="Response maile to__" aria-hidden="true"></i>
     </a>
         </div>
 
 
 
-        <button class="publishBtn" (click)="Publish()" *ngIf="isPublished == false && showAddSummary == false">Publish</button>
+        <button class="publishBtn" (click)="Publish()" *ngIf="isPublished == false && showAddSummary == false && successPublished == false">Publish</button>
+
+
+<div *ngIf="successPublished == true && showAddSummary == false">
+         <a (click)="hideSendMail()" class="mailBtn" href="mailto:{{recruitersEmail}}?Subject=New%20Applicant&body={{massage}}">
+        Please click to send an email to recruiters
+        <i class="fa fa-paper-plane sendI" title="Response maile to__" aria-hidden="true"></i>
+     </a>
+    </div>    
+
 
         <span id="deleteIcon" class="glyphicon glyphicon-remove-circle" (click)="GetApplicantToDelete()" *ngIf="!SummaryRecruitment"
             data-toggle="modal" data-target="#myModal"></span>
@@ -86,9 +95,9 @@
 
 
         <p class="card-text" id="text">
-            <span class="glyphicon glyphicon-envelope"></span> {{Email}}<br><br>
+            <span class="fa fa-envelope"></span> {{Email}}<br><br>
 
-            <span class="glyphicon glyphicon-phone"></span> {{Phone}}<br><br>
+            <span class="fa fa-phone"></span> {{Phone}}<br><br>
             <strong>Position </strong> : {{Position}}<br><br>
             <strong>Year Of Experience </strong> : {{YearOfExperience}}<br><br>
         </p>
@@ -102,7 +111,7 @@
 
         <br>
         <p class="downloadCv">
-            <span class="glyphicon glyphicon-download"></span>
+            <span class="fa fa-download"></span>
             <a href="http://localhost:55187/UploadedCV's/{{CV}}" download>click to download CV</a><br>
         </p>
 

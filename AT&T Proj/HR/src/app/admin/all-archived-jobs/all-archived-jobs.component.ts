@@ -40,7 +40,9 @@ export class AllArchivedJobsComponent implements OnInit {
   }
 
   getAllArchiveJobs() {
+    debugger;
     this.jobService.GetArchivedJobs().subscribe(rsp => {
+      debugger;
       if (rsp.status == 200) {
         this.allJobs = rsp.json();
         let UserName = this.allJobs.UserId;
@@ -89,12 +91,7 @@ export class AllArchivedJobsComponent implements OnInit {
       },
       (err) => {
         console.log("error : " + err);
-        window.alert(JSON.stringify(err));
       });
-  }
-
-  filterBySkills(skill) {
-
   }
 
   SeeJob(id: number) {
@@ -108,7 +105,6 @@ export class AllArchivedJobsComponent implements OnInit {
   }
 
   GetJobToDelete(job: any) {
-    window.alert("del");
     this.jobObj = job;
   }
 
@@ -127,7 +123,6 @@ export class AllArchivedJobsComponent implements OnInit {
       },
       (err) => {
         console.log("error : " + err);
-        window.alert(JSON.stringify(err));
       });
   }
 }

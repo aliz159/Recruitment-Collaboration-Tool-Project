@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   userID: number;
   search = false;
   HRIsLoggedIn = false;
+  HideRouterOutlet=false;
   //IsLogged=true;
   ngOnInit() {
     this.nav.hideMenu();
@@ -62,6 +63,7 @@ export class AppComponent implements OnInit {
     this.nav.hideLoginForm();
     this.cookiesService.deleteCookie("Role");
     this.router.navigate(['/App']);
+    this.HideRouterOutlet = true;
     //this.router.navigate(['/App', { relativeTo: this.router }]);
   }
 

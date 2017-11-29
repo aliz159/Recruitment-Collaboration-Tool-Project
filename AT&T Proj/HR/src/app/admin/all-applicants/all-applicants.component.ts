@@ -111,26 +111,11 @@ export class AllApplicantsComponent implements OnInit {
     console.log(this.FilterSkills);
   }
 
-  //Updating the applicant's publication in the database
-  Publish(applicant: any) {
-    this.applicantService.editApplicant(applicant.Id, applicant.Name, applicant.Title,
-      applicant.Phone, applicant.Email, applicant.YearOfExperience, applicant.Position, applicant.Cv,
-      applicant.IsLocked, applicant.UserIdLockedBy, applicant.NameWhoLocked, true,
-      applicant.IsActive, applicant.InterviewDate, applicant.StatusAfterInterview).subscribe(rsp => {
-        console.log(rsp);
-        this.ngOnInit();
-      },
-      (err) => {
-        console.log("error : " + err);
-      });
-  }
-
   SeeApplicant(id: number) {
     this.router.navigate(['/Applicant', id]);
   }
 
   LockApplicant(applicant: any) {
-    window.alert("lock Applicant");
     if (applicant.IsLocked != true) {
       const req = this.applicantService.editApplicant(applicant.Id, applicant.Name, applicant.Title, applicant.Phone,
         applicant.Email, applicant.YearOfExperience, applicant.Position, applicant.Cv, true, applicant.UserIdLockedBy,
@@ -149,11 +134,9 @@ export class AllApplicantsComponent implements OnInit {
 
   EditApplicant(applicantId: any) {
     this.router.navigate(['/EditApplicant', applicantId]);
-    window.alert("editAPP");
   }
 
   GetApplicantToDelete(applicant: any) {
-    window.alert("del");
     this.applicantObj = applicant;
   }
 
@@ -172,7 +155,6 @@ export class AllApplicantsComponent implements OnInit {
       },
       (err) => {
         console.log("error : " + err);
-        window.alert(JSON.stringify(err));
       });
   }
 

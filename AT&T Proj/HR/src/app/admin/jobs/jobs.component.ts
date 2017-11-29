@@ -83,7 +83,6 @@ export class JobComponent implements OnInit {
      debugger;
      let User = rsp.json();
       this.UserName = User.Name;
-     //window.alert(UserName);
       console.log("Skills For Job");
       console.log(this.SkillsForJob);
     },
@@ -94,7 +93,6 @@ export class JobComponent implements OnInit {
   }
 
   GetJobToDelete() {
-    window.alert("del");
     this.jobObj = this.JobObj;
   }
 
@@ -111,13 +109,11 @@ export class JobComponent implements OnInit {
       },
       (err) => {
         console.log("error : " + err);
-        window.alert(JSON.stringify(err));
       });
   }
 
   EditJob() {
     debugger;
     this.router.navigate(['/EditJob', this.JobId]);
-    window.alert("job Id")
   }
 }

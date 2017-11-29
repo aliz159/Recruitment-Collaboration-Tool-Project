@@ -147,7 +147,6 @@ export class AllJobsComponent {
   }
 
   GetJobToDelete(job: any) {
-    window.alert("del");
     this.jobObj = job;
   }
 
@@ -168,7 +167,6 @@ export class AllJobsComponent {
       },
       (err) => {
         console.log("error : " + err);
-        window.alert(JSON.stringify(err));
       });
   }
 

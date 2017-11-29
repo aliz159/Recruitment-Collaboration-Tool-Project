@@ -1,120 +1,102 @@
 <p>
   edit-applicant works!
 </p>
- <div id="Misgert">
-<div id="divForm"> 
-<form  #trvformEditApplicant="ngForm" (ngSubmit)="SaveApplicantEdit(trvformEditApplicant)" > 
-      <div id="firstpart">  
-  <div class="form-row">
-       <button type="submit" id="savedButtone" [disabled]="!trvformEditApplicant.valid"> <span span id="saved" data-toggle="tooltip" title=" Save Applicant Changes !"class="plusIcon glyphicon glyphicon-floppy-saved">  </span> </button>
-    <div class="form-group">
-      <label class="FormInput">Name</label>
-      <input type="text" class="form-control"   [(ngModel)]="Name" name="Name"  placeholder="Name" required #name="ngModel">
-         <div *ngIf="name.errors && (name.dirty || name.touched)" class="alert alert-danger">
-              <p [hidden]="!name.errors.required" class="error"> 
+<div id="Misgert">
+      <h1>Edit Applicant</h1>
+  <div id="divForm">
+    <form #trvformEditApplicant="ngForm" (ngSubmit)="SaveApplicantEdit(trvformEditApplicant)">
+      <div id="firstpart">
+        <div class="form-row">
+          <button type="submit" id="savedButtone" [disabled]="!trvformEditApplicant.valid"> <span span id="saved" data-toggle="tooltip" title=" Save Applicant Changes !"class="plusIcon glyphicon glyphicon-floppy-saved">  </span> </button>
+          <div class="form-group">
+            <label class="FormInput">Name</label>
+            <input type="text" class="form-control" [(ngModel)]="Name" name="Name" placeholder="Name" required #name="ngModel">
+            <div *ngIf="name.errors && (name.dirty || name.touched)" class="alert alert-danger">
+              <p [hidden]="!name.errors.required" class="error">
                 Name is required
-              </p>                  
-    </div>  
-    </div>
-     <div class="form-group">
-      <label class="FormInput">Title</label>
-      <input type="text" class="form-control" [(ngModel)]="Title" name="Title" placeholder="Title" required  #title="ngModel">
-                 <div *ngIf="title.errors && (title.dirty || title.touched)" class="alert alert-danger">
-              <p [hidden]="!title.errors.required" class="error"> 
+              </p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="FormInput">Title</label>
+            <input type="text" class="form-control" [(ngModel)]="Title" name="Title" placeholder="Title" required #title="ngModel">
+            <div *ngIf="title.errors && (title.dirty || title.touched)" class="alert alert-danger">
+              <p [hidden]="!title.errors.required" class="error">
                 Title is required
-              </p>                  
-    </div> 
-    </div> 
-  </div>
-  <div class="form-group">
-<label class="FormInput"> Email</label>
-<input type="email" class="form-control"  [(ngModel)]="Email" name="Email"placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #email="ngModel"> 
-      <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
-          <p [hidden]="!email.errors.pattern" class="error">              
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="FormInput"> Email</label>
+          <input type="email" class="form-control" [(ngModel)]="Email" name="Email" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+            #email="ngModel">
+          <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
+            <p [hidden]="!email.errors.pattern" class="error">
               Invalid Email
-              </p>                  
-              <p [hidden]="!email.errors.required" class="error"> 
-                Email is required
-              </p>                  
-    </div> 
-  </div>
+            </p>
+            <p [hidden]="!email.errors.required" class="error">
+              Email is required
+            </p>
+          </div>
+        </div>
 
-<label class="FormInput"> Position </label>
-<select  class="form-control" readonly disabled>   
+        <label class="FormInput"> Position </label>
+        <select class="form-control" readonly disabled>   
     <option>Developer</option>
 </select>
-<div class="form-group">
-<label class="FormInput"> Phone Number </label>
-<input type="text" class="form-control"   [(ngModel)]="Phone" name="Phone" placeholder="Phone Number"  pattern="[0-9]{10}"  required #phone="ngModel"  > 
- <div *ngIf="phone.errors && (phone.dirty || phone.touched)" class="alert alert-danger">
-                       
-              <p [hidden]="!phone.errors.required" class="error"> 
-                Phone Number is required
-              </p>   
-                <p [hidden]="!phone.errors.pattern" class="error"> 
-             Invalid Phone Number
-              </p>               
-    </div> 
-</div>
-<div class="form-group">
-<label class="FormInput"> Years of Experience</label>
-<input type="number"  class="form-control"   [(ngModel)]="experience"    #Experience="ngModel"  required name="experience" placeholder="can be expressed as the year that relevant career started" > 
- <div *ngIf="Experience.errors && (Experience.dirty || Experience.touched)" class="alert alert-danger">
-              <p [hidden]="!Experience.errors.required" class="error"> 
-                Experience is required
-              </p>                  
-    </div> 
-</div>
+        <div class="form-group">
+          <label class="FormInput"> Phone Number </label>
+          <input type="text" class="form-control" [(ngModel)]="Phone" name="Phone" placeholder="Phone Number" pattern="[0-9]{10}" required
+            #phone="ngModel">
+          <div *ngIf="phone.errors && (phone.dirty || phone.touched)" class="alert alert-danger">
+
+            <p [hidden]="!phone.errors.required" class="error">
+              Phone Number is required
+            </p>
+            <p [hidden]="!phone.errors.pattern" class="error">
+              Invalid Phone Number
+            </p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="FormInput"> Years of Experience</label>
+          <input type="number" class="form-control" [(ngModel)]="experience" #Experience="ngModel" required name="experience" placeholder="can be expressed as the year that relevant career started">
+          <div *ngIf="Experience.errors && (Experience.dirty || Experience.touched)" class="alert alert-danger">
+            <p [hidden]="!Experience.errors.required" class="error">
+              Experience is required
+            </p>
+          </div>
+        </div>
 
 
-</div>
-<div class="secondpart">
-<div class="form-group">
-<label class="FormInput"> CV Attachment </label>
-<input
-  id="idUpload" type="file" (change)="fileChange($event)" class="upload" value="Upload" 
- placeholder="CV Attachment (PDF or WORD)" > 
-</div>
-</div>
+      </div>
+      <div class="secondpart">
+        <div class="form-group">
+          <label class="FormInput"> CV Attachment </label>
+          <input id="idUpload" type="file" (change)="fileChange($event)" class="upload" value="Upload" placeholder="CV Attachment (PDF or WORD)">
+        </div>
+      </div>
+    </form>
+    <br>
 
 
+    <div class="secondpart">
 
- </form>
-
-<br>
-
-
-<div class="secondpart">
-   
-  <label id="SkillId"> Skillset </label>  
-  <!-- <button (click)="ShowaddSkill()"> 
-      <span class="glyphicon glyphicon-plus"></span> Add
-      </button>
+      <label id="SkillId"> Skillset </label>
+      <div id="skillsApp">
+        <ul *ngFor="let skill of skillsObj">
+          <li> {{skill.skill}}</li>
+        </ul>
+      </div>
 
 
-    <div *ngIf = "AddSkillInput" >
-    <input class="form-control" type="text" [(ngModel)]="newSkill" 
-    name="newSkill" placeholder="Add New Skill">
-    <button (click)="addNewSkill()"> Add Skill</button>
-    </div> -->
+      <p *ngFor="let skill of Skills">
+        <input type="checkbox" name="skill" [(ngModel)]="skill.selected" (change)="SkillsetArray(skill)" [value]="skill.value">        {{skill.skill}}
+        <!-- (click)="SkillsetArray(skill)"  -->
+      </p>
 
-
- <div id="skillsApp">
-  <ul *ngFor="let skill of skillsObj">
-    <li> {{skill.skill}}</li>
-  </ul>
-</div>
-
-
-   <p *ngFor="let skill of Skills">
-    <input type="checkbox" name="skill" 
-    [(ngModel)]="skill.selected"
-   (change)="SkillsetArray(skill)"
-    [value]="skill.value"> {{skill.skill}}
-    <!-- (click)="SkillsetArray(skill)"  -->
-  </p>
-
-<!-- </form> -->
-  </div> 
-</div>
+      <!-- </form> -->
+    </div>
+  </div>
 </div>

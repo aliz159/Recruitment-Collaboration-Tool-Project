@@ -1,14 +1,14 @@
 <div *ngIf="nav.menuVisible" class="navbar navbar-fixed-top navbar-default" role="navigation">
     <div class="container-fluid">
-        <div style="background:#3c3c3c;height:100px;width:18%;display:flex;align-items:center;justify-content:center" class="navbar-header">
-            <a style="height:100px;display:flex;align-items:center;justify-content:center" class="navbar-brand" style="color:white">AT&T Collaboration Tool <br> Hi, {{userObj.Name}} ({{userObj.UserType}})</a>
+        <div class="navbar-header theme">
+            <a style="height:100px;display:flex;align-items:center;justify-content:center;" class="navbar-brand" style="color:white">AT&T Collaboration Tool <br> Hi, {{userObj.Name}} ({{userObj.UserType}})</a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right" style="height:100px">
                 <li class="tabs">
-                    <button style="display:flex;align-items:center;justify-content:center;" class="btn btn-lg btn-primary" *ngIf="nav.menuVisible"
+                    <button *ngIf="nav.menuVisible"
                         (click)="Logout()">
-        <a style="color:white;text-decoration:none;" (click)="nav.hideLoginForm()">Logout</a></button>
+        <a id="link" (click)="nav.hideLoginForm()">Logout</a></button>
                 </li>
                 <li class="tabs">
                     <a role="button" href="https://www.att.com/">
@@ -43,7 +43,7 @@
 </div>
 
 
-<div class="container">
+<div *ngIf="!HideRouterOutlet" class="container">
     <div class="card card-container" *ngIf="nav.loginVisible">
         <img id="profile-img" class="profile-img-card" src="../../assets/images/p-trans.gif" />
         <p id="profile-name" class="profile-name-card"></p>

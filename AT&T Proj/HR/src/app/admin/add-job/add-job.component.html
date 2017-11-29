@@ -1,5 +1,6 @@
 <div class="divContainAll">
- 
+   <h1>Add Job</h1>
+   
   <span class="plusIcon glyphicon glyphicon-floppy-saved"
   (click)="SaveDatilesJob()"></span>
 
@@ -25,24 +26,15 @@
 <p>
     Reccruiters: 
       <button> 
-      <span class="glyphicon glyphicon-plus"
+      <span class="fa fa-plus"
       (click)="RecruitingMangersList()"></span> Add
       </button> 
-
-<!-- <div *ngIf="AddManager">  -->
    <p *ngFor="let manager of Managers">
     <input type="checkbox"  name="skill" required
     [(ngModel)]="manager.selected"
     (change)="ManagersArray(manager)"
     [value]="manager.value"> {{manager.Name}}
-   </p>
-
-<!-- </div>   -->
-
-
-
-
-    
+   </p> 
   </div>
 
   <div class="container">
@@ -74,7 +66,7 @@
   <div class="container">
    <p>Skillset 
       <button (click)="addSkill()"> 
-      <span class="glyphicon glyphicon-plus"></span> Add
+      <span class="fa fa-plus"></span> Add
       </button> </p>
    
     <div *ngIf = "AddSkillInput" >

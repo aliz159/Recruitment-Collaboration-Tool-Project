@@ -17,7 +17,6 @@ export class ApplicantComponent implements OnInit {
   RecruitmentId: number;
 
   recruiterObj: any;
-  recruitersEmail = [];
   applicantsObj: any;
   skillsObj: any;
   interviewObj: any;
@@ -50,7 +49,7 @@ export class ApplicantComponent implements OnInit {
   categoryArr = ["General", "Skillset", "CV", "Interview Summery"];
   ApplicantObj: any;
   hrEmail: string;
-
+successPublished=false;
   constructor(private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
@@ -179,6 +178,8 @@ export class ApplicantComponent implements OnInit {
       });
   }
 
+  recruitersEmail = [];
+  Subject: string;
   //Updating the applicant's publication in the database
   Publish() {
     let applicant = this.applicantsObj;
@@ -187,12 +188,14 @@ export class ApplicantComponent implements OnInit {
       applicant.IsLocked, applicant.UserIdLockedBy, applicant.NameWhoLocked, true,
       applicant.IsActive, applicant.InterviewDate, applicant.StatusAfterInterview).subscribe(rsp => {
         console.log(rsp);
-        this.isPublished = true;
+        this.massage = "Notice of a new candidate who is suitable for the job you are recruiting!!<br>Applicant name: " + this.Name +
+          "Email: " + this.Email + "phone: " + this.Phone;
 
         //Publication of the applicant for the relevant recruiters by email
         this.MatchingJobsList.forEach(matchJob => {
           this.userService.GetOneUser(matchJob.UserId).subscribe(rsp => {
             if (rsp.status == 200) {
+              this.successPublished = true;
               debugger;
               let ObjRecruiter = rsp.json();
               console.log("recruiter Object =>");
@@ -201,10 +204,12 @@ export class ApplicantComponent implements OnInit {
               console.log("Recruiters Email =>");
               console.log(this.recruitersEmail);
             }
-            else { console.log("server responded error : " + rsp); }
+            else { console.log("server responded error : " + rsp); 
+                                this.successPublished = false;}
           },
             (err) => {
               console.log("error : " + err);
+                      this.successPublished = false;
             });
         });
 
@@ -212,6 +217,11 @@ export class ApplicantComponent implements OnInit {
       (err) => {
         console.log("error : " + err);
       });
+  }
+
+  hideSendMail(){
+    this.successPublished = false;
+    this.isPublished = true;
   }
 
   objManager: any;
@@ -292,7 +302,6 @@ export class ApplicantComponent implements OnInit {
         let objApplicant = rsp;
         window.alert("Your choice: " + status + " was accepted");
         //get all hr email
-        window.alert("now HR function");
         if (objApplicant.StatusAfterInterview == "Pass") {
           //this.hrEmail = "";
           this.GetAllUsers("Pass");
@@ -315,7 +324,6 @@ export class ApplicantComponent implements OnInit {
 
   EditApplicant() {
     this.router.navigate(['/EditApplicant', this.applicantsObj.Id]);
-    window.alert("editAPP");
   }
 
   SetInterviewDate() {
@@ -349,7 +357,6 @@ export class ApplicantComponent implements OnInit {
   GetAllUsers(status: string) {
     this.userService.Get().subscribe(rsp => {
       if (rsp != null) {
-        window.alert("good + allUsers")
         this.allusers = rsp.json();
         this.PassOrFail = true;
         debugger;
@@ -391,7 +398,6 @@ export class ApplicantComponent implements OnInit {
 
 
   GetApplicantToDelete() {
-    window.alert("del");
     this.ApplicantObj = this.applicantsObj;
   }
 
@@ -409,7 +415,6 @@ export class ApplicantComponent implements OnInit {
       },
       (err) => {
         console.log("error : " + err);
-        window.alert(JSON.stringify(err));
       });
   }
 }

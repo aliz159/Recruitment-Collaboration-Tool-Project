@@ -6,7 +6,7 @@
                 <li id="starter" class="nav-divider"></li><br>
                 <strong><label class="searchLabel"> Search : </label></strong> <br><br>
                 <li><input type="text" class="searchjob" name="searchjob" [(ngModel)]="searchjob" placeholder="search text goes here">
-                    <span class="glyphicon glyphicon-search searchIcon"></span></li>
+                    <span class="fa fa-search searchIcon"></span></li>
                 <li class="nav-divider"></li><br><br>
                 <strong> Skillset : </strong> <br><br>
                 <li *ngFor="let skill of Skills">
@@ -24,11 +24,11 @@
 
 <!--all jobs shortly-->
 <div class="allCards">
-    <div class="card" *ngFor="let job of allJobs | filter:searchjob">
+    <div class="box effect7 card" *ngFor="let job of allJobs | filter:searchjob">
         <div>
             <h3 class="card-title">{{job.Name}}
-                <span class="glyphicon glyphicon-remove-circle" (click)="GetJobToDelete(job)"  data-toggle="modal" data-target="#myModal"></span>
-                <span class="glyphicon glyphicon-pencil" (click)="EditJob(job.Id)"></span>
+                <span class="fa fa-window-close jobIcon" (click)="GetJobToDelete(job)"  data-toggle="modal" data-target="#myModal"></span>
+                <span class="fa fa-pencil jobIcon" (click)="EditJob(job.Id)"></span>
               </h3>
             <p *ngFor="let user of allUsersObj" class="card-text" (click)="SeeJob(job.Id)">
                 <span *ngIf="job.UserId==user.Id">

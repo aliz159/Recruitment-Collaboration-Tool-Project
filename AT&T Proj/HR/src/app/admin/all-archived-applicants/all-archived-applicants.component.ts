@@ -129,11 +129,9 @@ export class AllArchivedApplicantsComponent implements OnInit {
 
   EditApplicant(applicantId: any) {
     this.router.navigate(['/EditApplicant', applicantId]);
-    window.alert("editAPP");
   }
 
   GetApplicantToDelete(applicant: any) {
-    window.alert("del");
     this.applicantObj = applicant;
   }
 
@@ -152,7 +150,6 @@ export class AllArchivedApplicantsComponent implements OnInit {
       },
       (err) => {
         console.log("error : " + err);
-        window.alert(JSON.stringify(err));
       });
   }
 

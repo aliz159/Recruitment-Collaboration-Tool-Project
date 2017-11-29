@@ -1,13 +1,12 @@
 <nav class="col-xs-6 col-sm-3 sidebar-offcanvas sideBarNav">
     <div style="background:#f8f8f8;height:100%;" class="navbar-fixed-left">
-        <!-- <div style="background:#f8f8f8;width:15%;"  class="col-xs-6 col-sm-3 sidebar-offcanvas" role="navigation"> -->
         <div class="sidebar-nav">
             <ul class="nav">
                 <li id="starter" class="nav-divider"></li><br>
                 <strong><label class="searchLabel"> Search : </label></strong> <br><br>
                 <li><input type="text" class="searchApp" name="search" [(ngModel)]="search" placeholder="search text goes here">
                     <span
-                        class="glyphicon glyphicon-search searchIcon"></span>
+                        class="fa fa-search searchIcon"></span>
                 </li>
                 <li class="nav-divider"></li><br><br>
                 <strong> Skillset : </strong> <br><br>
@@ -28,24 +27,23 @@
 <br><br><br><br><br><br>
 
 <button type="button" class="btn btn-primary addApplicantBtn" data-toggle="tooltip" title="Add Aplicant!" routerLink="/AddApplicant"> 
-<span class="glyphicon glyphicon-plus plusIcon"></span>Add New Applicant
+<span class="fa fa-plus plusIcon"></span>Add New Applicant
 </button>
 <br>
 
 <div class="allCards">
-<div class="card" *ngFor="let applicant of allFilterdApplicant | filter:search">
+<div class="box effect7 card" *ngFor="let applicant of allFilterdApplicant | filter:search">
     <h4 class="card-title" (click)="SeeApplicant(applicant.Id)"><strong>{{applicant.Name}}</strong>
-        <span *ngIf="applicant.IsLocked == true" class="glyphicon glyphicon-lock" (click)="LockApplicant(applicant)" data-toggle="tooltip"
+        <span *ngIf="applicant.IsLocked == true" class="fa fa-lock appLock" (click)="LockApplicant(applicant)" data-toggle="tooltip"
             title="Locked by {{applicant.NameWhoLocked}}"></span>
-
-        <span *ngIf="applicant.IsLocked == false" class="fa fa-unlock-alt" (click)="LockApplicant(applicant)" data-toggle="tooltip"
+        <span *ngIf="applicant.IsLocked == false" class="fa fa-unlock-alt appLock" (click)="LockApplicant(applicant)" data-toggle="tooltip"
             title="Lock Applicant"></span>
     </h4>
     <p class="card-text">{{applicant.Title}}
-        <span class="glyphicon glyphicon-remove-circle" (click)="GetApplicantToDelete(applicant)" data-toggle="modal" data-target="#myModal"></span>
-        <span class="glyphicon glyphicon-pencil" (click)="EditApplicant(applicant.Id)" data-toggle="tooltip" title="Edit Applicant!"></span>
+        <span class="fa fa-window-close edit" (click)="GetApplicantToDelete(applicant)" data-toggle="modal" data-target="#myModal"></span>
+        <span class="fa fa-pencil" (click)="EditApplicant(applicant.Id)" data-toggle="tooltip" title="Edit Applicant!"></span>
     </p>
-    <button class="publishBtn" (click)="Publish(applicant)" *ngIf="applicant.IsPublished == false">Publish</button>
+
 </div>
 </div>
 
