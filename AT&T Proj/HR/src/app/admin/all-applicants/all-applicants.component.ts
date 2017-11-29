@@ -12,9 +12,14 @@ import { JobService } from "../../services/JobService/job.service";
 })
 export class AllApplicantsComponent implements OnInit {
   allApplicant: any;
+  allFilterdApplicant: any;
   lock = false;
   Skills: string[];
   applicantObj: any;
+  FilterSkills = [];
+  skillsObj: any[];
+  counter: number = 0;
+  counterFullMatch: number = 0;
 
   constructor(public jobService: JobService, public applicantService: ApplicantService,
     private router: Router) {
@@ -39,6 +44,7 @@ export class AllApplicantsComponent implements OnInit {
     this.applicantService.Get().subscribe(rsp => {
       if (rsp.status == 200) {
         this.allApplicant = rsp.json();
+        this.allFilterdApplicant = this.allApplicant;
         console.log("all the applicants:");
         console.log(this.allApplicant);
       }
@@ -47,6 +53,62 @@ export class AllApplicantsComponent implements OnInit {
       (err) => {
         console.log("error : " + err);
       });
+  }
+
+  GetApplicantSkills(id: number, skill, applicant) {
+    this.applicantService.GetApplicantSkills(id).subscribe(rsp => {
+      if (rsp.status == 200) {
+        this.skillsObj = rsp.json();
+        console.log("applicant skills Obj: =>");
+        console.log(this.skillsObj);
+
+        this.FilterSkills.forEach(Fskill => {
+          this.skillsObj.forEach(Askill => {
+            if (Fskill == Askill.Id) {
+              //return;
+              this.counterFullMatch++;
+            }
+            // else {
+            //   this.counter++;
+            // }
+          });
+        });
+
+        if(this.counterFullMatch != this.FilterSkills.length){
+          this.allFilterdApplicant = this.allFilterdApplicant.filter((s: any) => s.Id != applicant.Id);
+        }
+        // if (this.counter == this.skillsObj.length) {
+        //   this.allFilterdApplicant = this.allFilterdApplicant.filter((s: any) => s.Id != applicant.Id);
+        // }
+        this.counter = 0;
+        this.counterFullMatch = 0;
+      }
+      else { console.log("server responded error : " + rsp); }
+    },
+      (err) => {
+        console.log("error : " + err);
+      });
+  }
+
+
+  filterBySkills(skill) {
+    debugger;
+    this.ngOnInit();
+    this.allFilterdApplicant = this.allApplicant;
+
+    if (skill.selected) {
+      this.FilterSkills.push(skill.Id);
+
+      this.allFilterdApplicant.forEach(applicant => {
+
+        this.GetApplicantSkills(applicant.Id, skill, applicant);
+      });
+    }
+    else {
+        this.FilterSkills = this.FilterSkills.filter((s: any) => s != skill.Id);
+    }
+
+    console.log(this.FilterSkills);
   }
 
   //Updating the applicant's publication in the database
@@ -84,9 +146,6 @@ export class AllApplicantsComponent implements OnInit {
     }
   }
 
-  filterBySkills(skill) {
-
-  }
 
   EditApplicant(applicantId: any) {
     this.router.navigate(['/EditApplicant', applicantId]);
@@ -109,10 +168,6 @@ export class AllApplicantsComponent implements OnInit {
       false, this.applicantObj.InterviewDate, this.applicantObj.StatusAfterInterview).subscribe(rsp => {
         console.log(rsp);
         window.alert('Applicant inactivated successfully');
-
-        // let index = this.allApplicant.indexOf(this.applicantObj);
-        // this.allApplicant.splice(index, 1);
-        // console.log(this.allApplicant);
         this.ngOnInit();
       },
       (err) => {
@@ -120,4 +175,5 @@ export class AllApplicantsComponent implements OnInit {
         window.alert(JSON.stringify(err));
       });
   }
+
 }

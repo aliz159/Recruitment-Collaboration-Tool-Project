@@ -20,22 +20,29 @@ namespace WebApplication1.Controllers.api
         }
 
         [HttpGet]
-        public IEnumerable<Job> GetJobToApplicant(long id)
+        public List<Job> GetJobToApplicant(long id)
         {
-            var MatchingJob = from JToA in m_db.JobToApplicant
-                              from job in m_db.Jobs
-                              where JToA.ApplicantId == id && 
+            var alljobs = m_db.Jobs.ToList();
+            var allJToA = m_db.JobToApplicant.ToList();
+
+            foreach (var jToA in allJToA)
+            {
+                foreach (var job in alljobs)
+                {
+                    if (job.Id == jToA.JobId && jToA.ApplicantId == id)
+                    {
+                        job.CurrentMatchPercent = jToA.MatchPercent;
+                    }
+                }
+            }
+
+            var MatchingJob = from JToA in allJToA
+                              from job in alljobs
+                              where JToA.ApplicantId == id &&
                               JToA.JobId == job.Id &&
                               JToA.MatchPercent > 60
                               select job;
-
-            //var MatchingJob2 = from JToA in m_db.JobToApplicant
-            //                   join job in m_db.Jobs on JToA.ApplicantId equals id into jobGroup
-            //                   from job2 in jobGroup
-            //                   where job2.MatchPercent > 60
-            //                   select job2;
-
-            return MatchingJob.AsQueryable();
+            return MatchingJob.ToList();
         }
 
         //[HttpGet]

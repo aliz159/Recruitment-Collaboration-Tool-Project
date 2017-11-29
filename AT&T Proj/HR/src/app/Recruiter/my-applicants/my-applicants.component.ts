@@ -13,32 +13,43 @@ import { JobService } from "../../services/JobService/job.service";
 })
 export class MyApplicantsComponent implements OnInit {
   recruiterApplicants: any;
+  filterdRecruiterApp: any;
   recruiterID: number;
   recruiterObj: any;
-    Skills: any[];
-
+ Skills: string[];
+  applicantObj: any;
+  FilterSkills = [];
+  skillsObj: any[];
+  counter: number = 0;
+  counterFullMatch: number = 0;
 
   ngOnInit() { 
-        this.jobService.GetSkillSet().subscribe(rsp => {
-      if (rsp.status == 200) {
-        this.Skills = rsp.json();
+    this.GetRecruiterApplicants();
+  }
 
-        console.log("Array Skiils From DB");
-        console.log(this.Skills);
-      }
-      else { console.log("server responded error : " + rsp); }
-    },
+  constructor(public jobService: JobService, public jobToApplicantService: JobToApplicantService,
+    public ApplicantService: ApplicantService, private router: Router,
+    public applicantService: ApplicantService, route: ActivatedRoute, public userService: UserService) {
+    this.recruiterID = route.snapshot.params['id'];
+    this.GetSkillSet();
+    this.GetOneUser(this.recruiterID);
+  }
+
+  GetRecruiterApplicants() {
+    this.ApplicantService.GetRecruiterApplicants(this.recruiterObj.Id, this.recruiterObj.Name,
+      this.recruiterObj.Email, this.recruiterObj.Password, this.recruiterObj.UserType).subscribe(rsp => {
+        this.recruiterApplicants = rsp;
+        this.filterdRecruiterApp = this.recruiterApplicants;
+        console.log("all the allJobToApplicant:");
+        console.log(this.recruiterApplicants);
+      },
       (err) => {
         console.log("error : " + err);
       });
   }
 
-  constructor(public jobService: JobService, public jobToApplicantService: JobToApplicantService,
-    public ApplicantService: ApplicantService, private router: Router,
-    route: ActivatedRoute, public userService: UserService) {
-    this.recruiterID = route.snapshot.params['id'];
-
-    this.userService.GetOneUser(this.recruiterID).subscribe(rsp => {
+  GetOneUser(id:any){
+    this.userService.GetOneUser(id).subscribe(rsp => {
       if (rsp.status == 200) {
         this.recruiterObj = rsp.json();
         console.log("recruiter Obj:");
@@ -52,18 +63,20 @@ export class MyApplicantsComponent implements OnInit {
       });
   }
 
-  GetRecruiterApplicants() {
-    this.ApplicantService.GetRecruiterApplicants(this.recruiterObj.Id, this.recruiterObj.Name,
-      this.recruiterObj.Email, this.recruiterObj.Password, this.recruiterObj.UserType).subscribe(rsp => {
-        this.recruiterApplicants = rsp;
-        console.log("all the allJobToApplicant:");
-        console.log(this.recruiterApplicants);
-      },
+  GetSkillSet(){
+        this.jobService.GetSkillSet().subscribe(rsp => {
+      if (rsp.status == 200) {
+        this.Skills = rsp.json();
+
+        console.log("Array Skiils From DB");
+        console.log(this.Skills);
+      }
+      else { console.log("server responded error : " + rsp); }
+    },
       (err) => {
         console.log("error : " + err);
       });
   }
-
     LockApplicant(applicant: any) {
     if (applicant.IsLocked != true) {
       const req = this.ApplicantService.editApplicant(applicant.Id, applicant.Name, applicant.Title, applicant.Phone,
@@ -85,7 +98,56 @@ export class MyApplicantsComponent implements OnInit {
   SeeApplicant(applicant: any) {
     this.router.navigate(['/Applicant', applicant.Id, this.recruiterID]);
   }
-  filterBySkills(skill) {
 
+    GetApplicantSkills(id: number, skill, applicant) {
+    this.applicantService.GetApplicantSkills(id).subscribe(rsp => {
+      if (rsp.status == 200) {
+        this.skillsObj = rsp.json();
+        console.log("applicant skills Obj: =>");
+        console.log(this.skillsObj);
+
+        this.FilterSkills.forEach(Fskill => {
+          this.skillsObj.forEach(Askill => {
+            if (Fskill == Askill.Id) {
+              this.counterFullMatch++;
+            }
+            // else {
+            //   this.counter++;
+            // }
+          });
+        });
+        if(this.counterFullMatch != this.FilterSkills.length){
+          this.filterdRecruiterApp = this.filterdRecruiterApp.filter((s: any) => s.Id != applicant.Id);
+        }
+        // if (this.counter == this.skillsObj.length) {
+        //   this.filterdRecruiterApp = this.filterdRecruiterApp.filter((s: any) => s.Id != applicant.Id);
+        // }
+        this.counter = 0;
+      }
+      else { console.log("server responded error : " + rsp); }
+    },
+      (err) => {
+        console.log("error : " + err);
+      });
+  }
+
+  filterBySkills(skill) {
+    debugger;
+    this.ngOnInit();
+    this.filterdRecruiterApp = this.recruiterApplicants;
+
+    if (skill.selected) {
+      this.FilterSkills.push(skill.Id);
+
+      this.filterdRecruiterApp.forEach(applicant => {
+
+        this.GetApplicantSkills(applicant.Id, skill, applicant);
+      });
+    }
+    else {
+        this.FilterSkills = this.FilterSkills.filter((s: any) => s != skill.Id);
+    }
+
+    console.log(this.FilterSkills);
   }
 }

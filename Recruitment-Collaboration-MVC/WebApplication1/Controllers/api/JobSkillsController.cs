@@ -56,7 +56,7 @@ namespace WebApplication1.Controllers.api
                 m_db.SkillsForTheJob.Add(skill);
                 m_db.SaveChanges();
             }
-            return Request.CreateResponse(HttpStatusCode.OK, "Job skills added successfully");           
+            return Request.CreateResponse(HttpStatusCode.OK, "Job skills added successfully");
         }
 
 

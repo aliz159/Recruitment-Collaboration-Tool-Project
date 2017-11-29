@@ -28,7 +28,7 @@
 </a>
 <!--all jobs shortly-->
 <div class="allCards">
-    <div class="card" *ngFor="let job of allJobs | filter:searchjob">
+    <div class="card" *ngFor="let job of allFilterdjobs | filter:searchjob">
         <div>
             <h3 class="card-title">{{job.Name}}
                 <span class="glyphicon glyphicon-remove-circle" (click)="GetJobToDelete(job)"  data-toggle="modal" data-target="#myModal"></span>

@@ -80,7 +80,7 @@ export class AllArchivedJobsComponent implements OnInit {
   Activate(job: any) {
     this.jobService.editJob(job.Id, job.UserId, job.StrUniqueID,
       job.Name, job.Position, job.Description, job.Requirements,
-      true, job.YearOfExperience).subscribe(rsp => {
+      true, job.YearOfExperience, 0).subscribe(rsp => {
         console.log(rsp);
         window.alert('job inactivated successfully');
         debugger;

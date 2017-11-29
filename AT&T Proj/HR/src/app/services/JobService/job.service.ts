@@ -83,12 +83,12 @@ export class JobService {
   }
   editJob(Id: number, userId: number,strUniqueID:string, name: string, 
     position:string,description: string, requirements: string, 
-    isActive: boolean,YearOfExperience:number) {
+    isActive: boolean,YearOfExperience:number, currentMatchPercent: number) {
         debugger;
     let url = this.url + "/" + Id;
     let body = { id: Id, UserId: userId,strUniqueID:strUniqueID, Name: name, Position:position,
      Description: description,Requirements: requirements, IsActive: isActive,YearOfExperience:YearOfExperience,
-   };
+    CurrentMatchPercent:currentMatchPercent};
 
     return this.http.put(url, body, this.headers).map((res) => {
       return res.json();

@@ -1,13 +1,8 @@
 <nav class="col-xs-6 col-sm-3 sidebar-offcanvas sideBarNav">
     <div style="background:#f8f8f8;height:100%;" class="navbar-fixed-left">
-        <!-- <div style="background:#f8f8f8;width:15%;"  class="col-xs-6 col-sm-3 sidebar-offcanvas" role="navigation"> -->
         <div class="sidebar-nav">
             <ul class="nav">
-                <li id="starter" class="nav-divider"></li><br>
-                <strong><label class="searchLabel"> Find in applicant: </label></strong> <br><br>
-                <li><input type="text" class="searchInApplicant" name="searchApplicant" [(ngModel)]="searchjob" placeholder="search text goes here">
-                    <span class="glyphicon glyphicon-search searchIcon"></span></li>
-                <li class="nav-divider"></li><br><br>
+                <li id="starter" class="nav-divider"></li><br><br><br>
                 <li>
                     <select class="selectCategory" name="category" title="Area">
                     <option *ngFor="let category of categoryArr" [value]="category">
@@ -20,7 +15,6 @@
 <br><br><br>
 
 <div class="card text-primary border-primary">
-    <!-- <button class="publishBtn" (click)="Publish()" *ngIf="isPublished == false">Publish</button> -->
     <div class="card-body">
         <h1 class="card-title" id="title">{{Name}}</h1>
 
@@ -43,7 +37,8 @@
         </div>
         <br/>
 
-        <p *ngIf="interviewDate != null">{{addSummaryMassage}}</p>
+        <p class="MassageForManager" *ngIf="interviewDate != null">{{addSummaryMassage1}}<br>{{addSummaryMassage2}}</p>
+
         <p *ngIf="ShowStatusInterview && interviewDate != null && IsLocked"></p>
         <div class="DivBtn" *ngIf="interviewDate != null && showAddSummary && ShowStatusInterview">
             <button class="btn btn-danger" (click)="Fail_Applicant()">Fail</button>
@@ -51,23 +46,22 @@
             <button class="btn btn-primary" (click)="NotRelevant_Applicant()">Not Relevant</button>
         </div>
 
-        <div class="clickedPass" *ngIf="ClickedPass">
-            <a class="mailto" href="mailto:name@rapidtables.com?subject=The%20subject%20of%20the%20mail">
-   Please click to send an email to HR
-<i class="glyphicon glyphicon-send sendI" title="Response maile to__" aria-hidden="true"></i></a>
-            <a class="AddSummary" href="#AddSummary">Please click to add summary</a>
+        <div class="clickedPass" *ngIf="PassOrFail">
+            <a class="mailto" href="mailto:{{EmailHRArray}}?subject=Applicant%20{{PassOrFailSubject}}&body={{massage}}">
+        Please click to send an email to HR
+        <i class="glyphicon glyphicon-send sendI" title="Response maile to__" aria-hidden="true"></i>
+    </a>
         </div>
-
-
 
 
 
         <button class="publishBtn" (click)="Publish()" *ngIf="isPublished == false && showAddSummary == false">Publish</button>
 
-
-
         <span id="deleteIcon" class="glyphicon glyphicon-remove-circle" (click)="GetApplicantToDelete()" *ngIf="!SummaryRecruitment"
             data-toggle="modal" data-target="#myModal"></span>
+            
+        <span id="pencilIcon" class="glyphicon glyphicon-pencil" *ngIf="!SummaryRecruitment" (click)="EditApplicant()" data-toggle="tooltip"
+            title="Edit Applicant!"></span>
 
 
         <div class="container">
@@ -91,10 +85,6 @@
         </div>
 
 
-        <span id="pencilIcon" class="glyphicon glyphicon-pencil" *ngIf="!SummaryRecruitment" (click)="EditApplicant()" data-toggle="tooltip"
-            title="Edit Applicant!"></span>
-
-
         <p class="card-text" id="text">
             <span class="glyphicon glyphicon-envelope"></span> {{Email}}<br><br>
 
@@ -111,26 +101,28 @@
         </div>
 
         <br>
-        <p>
+        <p class="downloadCv">
             <span class="glyphicon glyphicon-download"></span>
             <a href="http://localhost:55187/UploadedCV's/{{CV}}" download>click to download CV</a><br>
         </p>
 
-        <h3 *ngIf="SummaryRecruitment">
-            <br>
-            <ins>Here Are The Matching Jobs List :</ins>
-        </h3>
+        <div id="MatchingJobs">
+            <h3 *ngIf="!SummaryRecruitment" class="titleMatch">
+                <ins>Here Are The Matching Jobs List :</ins>
+            </h3>
 
-        <div class="card JobCard" *ngIf="SummaryRecruitment">
-            <div class="card-block" *ngFor="let job of MatchingJobsList">
-                <p class="card-text">
-                    <strong> Name : </strong> {{job.Name}}<br>
-                    <strong>  Position : </strong> {{job.Position}}<br/>
-                    <strong> Year Of Experience: </strong> {{job.YearOfExperience}}<br/>
-                    <strong>Description:</strong> {{job.Description}}<br/>
-                    <strong>Requirements:</strong> {{job.Requirements}}<br/><br/><br/>
+            <div class="card JobCard" *ngIf="!SummaryRecruitment">
+                <div class="card-block" *ngFor="let job of MatchingJobsList">
+                    <p class="card-text">
+                        <strong> Match : </strong> {{job.CurrentMatchPercent}} %<br>
+                        <strong> Name : </strong> {{job.Name}}<br>
+                        <strong>  Position : </strong> {{job.Position}}<br/>
+                        <strong> Year Of Experience: </strong> {{job.YearOfExperience}}<br/>
+                        <strong>Description:</strong> {{job.Description}}<br/>
+                        <strong>Requirements:</strong> {{job.Requirements}}<br/><br/><br/>
 
-                </p>
+                    </p>
+                </div>
             </div>
         </div><br/>
 
@@ -142,15 +134,11 @@
             </div>
         </div><br/>
 
-
-        <div id="AddSummary" class="secondpart" *ngIf="SummaryRecruitment&&showAddSummary">
+        <div id="AddSummary" class="secondpart" *ngIf="interviewDate != null">
             <div class="form-group">
                 <label class="labelSummary"> Add an interview summary </label>
                 <textarea class="form-control textAreaSummaray" [(ngModel)]="Summary" name="summary" placeholder="Interviwe Summary"></textarea>
-                <button class="addSummarayButtom" (click)="addInterview()"> 
-      <span class="glyphicon glyphicon-plus"></span>
-       Add Summary
-      </button>
+                <button class="addSummarayButtom" (click)="addInterview()">Add Summary</button>
             </div>
         </div>
     </div>

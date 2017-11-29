@@ -8,6 +8,19 @@
     color: black;
     margin-top: 2px;
 }
+.publishBtn{
+height: 34px;
+    border: 1px solid black;
+    float: left;
+    margin-left: 5%;
+    padding-left: 1%;
+    padding-right: 1%;
+    color: black;
+    margin-top: -2%;    
+    width: 10%;
+    font-size: 143%;
+    font-weight: bold;
+}
 .card{
     margin-top: 8%;
     max-width: 97rem;
@@ -15,7 +28,7 @@
 }
 .labelSummary{
     font-size: 20px;  
-    margin-left: 2%;
+    margin-left: 5%;
 }
 .textAreaSummaray{
     width: 87%;
@@ -32,26 +45,29 @@
 }
 
 #lockIcon, #unlockIcon{
-padding-right: 4%;
+    padding-right: 4%;
     font-size: 227%;
-    margin-top: -5%;
+    margin-top: 0%;
     color: black;
-        margin-left: 87%;
+    display: block;
+    float: right;
 }
 #deleteIcon{
-        float: right;
-            margin-top: -4%;
-                font-size: 227%;
-                    color: black;
-
-
-}
-        #pencilIcon{
-    margin-left: 92%;
+    float: right;
+    margin-top: -2%;
     font-size: 227%;
     color: black;
-    margin-top: -4%;
-        }
+    display: block;
+    margin-right: 5%;
+}
+#pencilIcon{
+    font-size: 227%;
+    color: black;
+    margin-top: -2%;
+    display: block;
+    float: right;
+    margin-right: 5%;
+}
 p{
     color: black;
     margin-left: 6%;
@@ -77,13 +93,15 @@ h3{
     font-size: 20px;
 }
 .SummaryCard{
-    width: 87%;
-    margin-left: 2%;
+    width: 92%;
+    margin-left: 5%;
     margin-top: -1%;
+    padding: 1.5%;
 }
 .JobCard{
-    margin-left: 2%;
-    width: 96%;
+    margin-left: 5%;
+    width: 92%;
+    padding: 1%;
 }
 .card-text, .card-title{
     margin-left:1%;
@@ -143,10 +161,7 @@ width: 102%;
         height:100%;
         position:fixed
 }
-    .searchLabel{
-        font-size: 109%;
-    margin-top: 39%;
-}
+
 .selectCategory{
     height: 38px;
     margin-left: -4%;
@@ -161,4 +176,14 @@ width: 102%;
     width: 18%;
     height: 36px;
     margin-right: 2%;
+}
+.titleMatch{
+margin-top: 9%;
+    margin-left: 6%;
+    font-weight: bold;
+    margin-bottom: -4%;
+}
+.downloadCv{
+    margin-top: 4%;
+    font-weight: bold;
 }

@@ -16,5 +16,6 @@ namespace WebApplication1.Models
         public int YearOfExperience { get; set; }
         public string strUniqueID { get; set; }
         public string Position { get; set; }
+        public float CurrentMatchPercent { get; set; }
     }
 }

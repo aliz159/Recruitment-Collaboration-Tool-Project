@@ -55,6 +55,7 @@ namespace WebApplication1.Controllers.api
                 return BadRequest();
             }
             job.IsActive = true;
+            job.CurrentMatchPercent = 0;
             m_db.Jobs.Add(job);
             m_db.SaveChanges();
             return CreatedAtRoute("DefaultApi", new { id = job.Id }, job);
@@ -83,6 +84,7 @@ namespace WebApplication1.Controllers.api
             job.Description = j.Description;
             job.Requirements = j.Requirements;
             job.YearOfExperience = j.YearOfExperience;
+            job.CurrentMatchPercent = j.CurrentMatchPercent;
             m_db.SaveChanges();
             return Ok(HttpStatusCode.NoContent);
         }

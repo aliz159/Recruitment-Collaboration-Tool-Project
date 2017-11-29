@@ -105,7 +105,7 @@ export class JobComponent implements OnInit {
 
     this.jobService.editJob(this.jobObj.Id, this.jobObj.UserId, this.jobObj.StrUniqueID,
       this.jobObj.Name, this.jobObj.Position, this.jobObj.Description, this.jobObj.Requirements,
-      false, this.jobObj.YearOfExperience).subscribe(rsp => {
+      false, this.jobObj.YearOfExperience, 0).subscribe(rsp => {
         console.log(rsp.json());
         window.alert('job deleted successfully');
       },

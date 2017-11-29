@@ -242,6 +242,10 @@
     <Compile Include="Migrations\201711220518033_addFieldsToDB.Designer.cs">
       <DependentUpon>201711220518033_addFieldsToDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711282229290_addMatchFielsToJob.cs" />
+    <Compile Include="Migrations\201711282229290_addMatchFielsToJob.Designer.cs">
+      <DependentUpon>201711282229290_addMatchFielsToJob.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AllSkills.cs" />
@@ -259,10 +263,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\aspnet-WebApplication1-20171113023355.mdf" />
-    <Content Include="App_Data\aspnet-WebApplication1-20171113023355_log.ldf">
-      <DependentUpon>aspnet-WebApplication1-20171113023355.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -321,6 +321,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="UploadedCV%27s\" />
   </ItemGroup>
   <ItemGroup>
@@ -353,6 +354,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711220518033_addFieldsToDB.resx">
       <DependentUpon>201711220518033_addFieldsToDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711282229290_addMatchFielsToJob.resx">
+      <DependentUpon>201711282229290_addMatchFielsToJob.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

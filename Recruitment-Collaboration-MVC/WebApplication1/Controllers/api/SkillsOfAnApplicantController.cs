@@ -90,6 +90,7 @@ namespace WebApplication1.Controllers.api
                 jobToApplicantObj.MatchPercent = counter;
                 m_db.JobToApplicant.Add(jobToApplicantObj);
                 m_db.SaveChanges();
+                counter = 0;
             }
 
             return Request.CreateResponse(HttpStatusCode.OK, "Applicant skills added successfully");

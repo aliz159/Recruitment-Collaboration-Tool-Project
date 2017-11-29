@@ -11,18 +11,23 @@ import { JobService } from "../../services/JobService/job.service";
 })
 export class AllArchivedApplicantsComponent implements OnInit {
   allApplicant: any;
+  allFilterdApplicant: any;
   lock = false;
   Skills: string[];
   applicantObj: any;
   IsActive: string;
+  FilterSkills = [];
+  skillsObj: any[];
+  counter: number = 0;
+  counterFullMatch: number = 0;
 
   ngOnInit() {
-    this.GetSkillSet();
     this.getAllArchiveApplicants();
    }
 
   constructor(public jobService: JobService, public applicantService: ApplicantService,
     private router: Router) {
+      this.GetSkillSet();
   }
 
   GetSkillSet() {
@@ -43,6 +48,7 @@ export class AllArchivedApplicantsComponent implements OnInit {
   getAllArchiveApplicants() {
     this.applicantService.GetArchivedApplicants().subscribe(rsp => {
       this.allApplicant = rsp.json();
+      this.allFilterdApplicant = this.allApplicant;
       console.log("all the applicants:");
       console.log(this.allApplicant);
     },
@@ -73,8 +79,52 @@ export class AllArchivedApplicantsComponent implements OnInit {
     this.router.navigate(['/Applicant', id]);
   }
 
-  filterBySkills(skill) {
 
+  
+  GetApplicantSkills(id: number, skill, applicant) {
+    this.applicantService.GetApplicantSkills(id).subscribe(rsp => {
+      if (rsp.status == 200) {
+        this.skillsObj = rsp.json();
+        console.log("applicant skills Obj: =>");
+        console.log(this.skillsObj);
+
+        this.FilterSkills.forEach(Fskill => {
+          this.skillsObj.forEach(Askill => {
+            if (Fskill == Askill.Id) {
+              this.counterFullMatch++;
+            }
+          });
+        });
+
+        if(this.counterFullMatch != this.FilterSkills.length){
+          this.allFilterdApplicant = this.allFilterdApplicant.filter((s: any) => s.Id != applicant.Id);
+        }
+        this.counter = 0;
+        this.counterFullMatch = 0;
+      }
+      else { console.log("server responded error : " + rsp); }
+    },
+      (err) => {
+        console.log("error : " + err);
+      });
+  }
+
+  filterBySkills(skill) {
+    debugger;
+    this.ngOnInit();
+    this.allFilterdApplicant = this.allApplicant;
+
+    if (skill.selected) {
+      this.FilterSkills.push(skill.Id);
+
+      this.allFilterdApplicant.forEach(applicant => {
+        this.GetApplicantSkills(applicant.Id, skill, applicant);
+      });
+    }
+    else {
+        this.FilterSkills = this.FilterSkills.filter((s: any) => s != skill.Id);
+    }
+    console.log(this.FilterSkills);
   }
 
   EditApplicant(applicantId: any) {

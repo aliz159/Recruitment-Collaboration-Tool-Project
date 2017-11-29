@@ -37,18 +37,18 @@ export class EditJobComponent implements OnInit {
     private userService: UserService) {
 
     this.JobId = route.snapshot.params['id'];
+    this.GetJobSkills(Number(this.JobId)); 
     debugger;
   }
 
   ngOnInit() {
-    this.GetOneJob();
-    this.GetJobSkills()
-    this.GetSkillSet();  
+    this.GetOneJob(Number(this.JobId));
+    this.GetJobSkills(Number(this.JobId)); 
   }
 
 
-  GetOneJob() {
-    this.jobService.GetOneJob(Number(this.JobId)).subscribe(rsp => {
+  GetOneJob(id:any) {
+    this.jobService.GetOneJob(id).subscribe(rsp => {
       this.jobObj = rsp;
 
       this.jobObj.Id;
@@ -70,13 +70,14 @@ export class EditJobComponent implements OnInit {
   }
 
 
-  GetJobSkills() {
+  GetJobSkills(id:number) {
     debugger;
-    this.jobService.GetSkillsetForJob(Number(this.JobId)).subscribe(rsp => {
+    this.jobService.GetSkillsetForJob(id).subscribe(rsp => {
       debugger;
       this.SkillsForJob = rsp;
       console.log("Skills For Job");
       console.log(this.SkillsForJob);
+      this.GetSkillSet();  
     },
       (err) => {
         debugger;
@@ -92,6 +93,11 @@ export class EditJobComponent implements OnInit {
 
         console.log("Array Skiils From DB");
         console.log(this.AllSkills);
+    
+        //Filter skills that exist for the applicant
+        this.SkillsForJob.forEach(skill => {
+        this.AllSkills = this.AllSkills.filter((s: any) => s.skill != skill.skill);
+        });
       }
       else { console.log("server responded error : " + rsp); }
     },
@@ -126,7 +132,7 @@ export class EditJobComponent implements OnInit {
     debugger;
     this.jobService.editJob(Number(this.JobId), this.UserId,
       this.strUniqueID, this.Name, this.Position, this.Description,
-      this.Requirements, this.IsActive, this.YearOfExperience).subscribe(rsp => {
+      this.Requirements, this.IsActive, this.YearOfExperience, 0).subscribe(rsp => {
         this.jobObj = rsp;
         console.log("job Obj =>");
         console.log(this.jobObj);

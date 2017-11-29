@@ -33,7 +33,7 @@
 <br>
 
 <div class="allCards">
-<div class="card" *ngFor="let applicant of allApplicant | filter:search">
+<div class="card" *ngFor="let applicant of allFilterdApplicant | filter:search">
     <h4 class="card-title" (click)="SeeApplicant(applicant.Id)"><strong>{{applicant.Name}}</strong>
         <span *ngIf="applicant.IsLocked == true" class="glyphicon glyphicon-lock" (click)="LockApplicant(applicant)" data-toggle="tooltip"
             title="Locked by {{applicant.NameWhoLocked}}"></span>

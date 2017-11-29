@@ -11,8 +11,14 @@ import { UserService } from "../../services/UsersService/user.service";
 })
 export class AllJobsComponent {
   allJobs: any;
-  openFormToEditJob: boolean = false;
+  allFilterdjobs: any;
   Skills: any[];
+  FilterSkills = [];
+  skillsObj: any[];
+  counter: number = 0;
+  SkillsForJob: any;
+
+  openFormToEditJob: boolean = false;
 
   Title: string;
   UniqueID: string;
@@ -21,16 +27,20 @@ export class AllJobsComponent {
   Requirements: string;
 
   jobObj: any;
+  allUsersObj: any;
 
 
   constructor(public jobService: JobService,
     private router: Router, private userService: UserService) {
-
+    this.GetSkillSet();
   }
 
 
   ngOnInit() {
     this.getAllJobs();
+  }
+
+  GetSkillSet() {
     this.jobService.GetSkillSet().subscribe(rsp => {
       if (rsp.status == 200) {
         this.Skills = rsp.json();
@@ -45,11 +55,11 @@ export class AllJobsComponent {
       });
   }
 
-allUsersObj:any;
   getAllJobs() {
     this.jobService.Get().subscribe(rsp => {
       if (rsp.status == 200) {
         this.allJobs = rsp.json();
+        this.allFilterdjobs = this.allJobs;
         let UserName = this.allJobs.UserId;
         debugger;
 
@@ -58,11 +68,11 @@ allUsersObj:any;
             debugger;
             if (rsp.status == 200) {
               this.allUsersObj = rsp.json();
-            //  name.Name
             }
-           else { console.log("server responded error : " + rsp); }
+            else { console.log("server responded error : " + rsp); }
           },
-            (err) => {debugger;
+            (err) => {
+              debugger;
               console.log("error : " + err);
             });
         }
@@ -77,10 +87,54 @@ allUsersObj:any;
       });
   }
 
-    filterBySkills(skill)
-    {
 
+  GetJobSkills(id: number, skill, job) {
+    debugger;
+    this.jobService.GetSkillsetForJob(id).subscribe(rsp => {
+      debugger;
+      this.SkillsForJob = rsp;
+
+      console.log("Skills For Job");
+      console.log(this.SkillsForJob);
+
+      this.FilterSkills.forEach(Fskill => {
+        this.SkillsForJob.forEach(jskill => {
+          if (Fskill == jskill.Id) {
+            return;
+          }
+          else {
+            this.counter++;
+          }
+        });
+      });
+
+      if (this.counter == this.SkillsForJob.length) {
+        this.allFilterdjobs = this.allFilterdjobs.filter((s: any) => s.Id != job.Id);
+      }
+      this.counter = 0;
+    },
+      (err) => {
+        debugger;
+        console.log("error : " + err);
+      });
+  }
+
+  filterBySkills(skill) {
+    debugger;
+    this.ngOnInit();
+    this.allFilterdjobs = this.allJobs;
+
+    if (skill.selected) {
+      this.FilterSkills.push(skill.Id);
+      this.allFilterdjobs.forEach(job => {
+        this.GetJobSkills(job.Id, skill, job);
+      });
     }
+    else {
+      this.FilterSkills = this.FilterSkills.filter((s: any) => s != skill.Id);
+    }
+    console.log(this.FilterSkills)
+  }
 
   SeeJob(id: number) {
     debugger;
@@ -104,7 +158,7 @@ allUsersObj:any;
 
     this.jobService.editJob(this.jobObj.Id, this.jobObj.UserId, this.jobObj.StrUniqueID,
       this.jobObj.Name, this.jobObj.Position, this.jobObj.Description, this.jobObj.Requirements,
-      false, this.jobObj.YearOfExperience).subscribe(rsp => {
+      false, this.jobObj.YearOfExperience, 0).subscribe(rsp => {
         console.log(rsp);
         window.alert('job inactivated successfully');
 

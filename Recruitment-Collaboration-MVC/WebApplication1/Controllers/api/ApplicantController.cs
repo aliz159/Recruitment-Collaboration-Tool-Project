@@ -37,10 +37,10 @@ namespace WebApplication1.Controllers.api
         public IEnumerable<Applicant> GetRecruiterApplicants(User user)
         {
             var appList = from applicant in m_db.Applicants
-                           from jTOa in m_db.JobToApplicant
-                           where jTOa.UserId == user.Id && jTOa.ApplicantId == applicant.Id
-                           && applicant.IsPublished != false && applicant.IsActive != false
-                           select applicant;
+                          from jTOa in m_db.JobToApplicant
+                          where jTOa.UserId == user.Id && jTOa.ApplicantId == applicant.Id
+                          && applicant.IsPublished != false && applicant.IsActive != false
+                          select applicant;
             return appList.AsQueryable();
         }
 
@@ -105,7 +105,7 @@ namespace WebApplication1.Controllers.api
             applicant.StatusAfterInterview = a.StatusAfterInterview;
 
             m_db.SaveChanges();
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok(applicant);
         }
 
         // DELETE /api/Applicant/4 -> delete Applicant with id 4

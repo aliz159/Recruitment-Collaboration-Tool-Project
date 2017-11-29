@@ -37,12 +37,14 @@ export class AppComponent implements OnInit {
         this.userID = this.userObj.Id;
         if (this.userObj.UserType == "Admin") {
           this.HRIsLoggedIn = true;
+          this.cookiesService.setCoockie("Role",this.userObj.UserType);
           this.nav.showMenu();
           this.nav.hideLoginForm();
           this.routeToAdminFramework();
         }
         else if (this.userObj.UserType == "Recruiter") {
           this.HRIsLoggedIn = false;
+          this.cookiesService.setCoockie("Role",this.userObj.UserType);
           this.nav.showMenu();
           this.nav.hideLoginForm();
           this.routeToRecruiterFramework();
